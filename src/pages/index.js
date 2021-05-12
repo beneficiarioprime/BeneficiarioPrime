@@ -5,7 +5,18 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDay, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCommentMedical,
+  faMapMarkerAlt,
+  faCalendarAlt,
+  faCreditCard,
+  faThumbsUp,
+  faStethoscope,
+  faVideo,
+  faMicroscope,
+  faCrutch,
+  faNotesMedical
+} from '@fortawesome/free-solid-svg-icons'
 
 const ButtonOptions = props => {
   return (
@@ -59,19 +70,22 @@ export default function Home() {
         <div className={`container-fluid ${styles.containerFluid}`}>
           <div className={`d-flex flex-row-reverse`}>
             <div className={`${styles.content}`}>
-              <h1>Conteúdo pra botar pra baixo, será <br />que funciona?</h1>
+              <h1 className={`${styles.title}`}>Conteúdo pra botar pra baixo, será que <br /> funciona?</h1>
               <h4>Exercitation dolore et ad laborum labore cillum deserunt id. <br />Ut fugiat aliquip est labore consequat irure esse sint do cupidatat.</h4>
               <div className={`card mt-4 ${styles.card}`}>
                 <div className="card-body">
                   <div className="mb-3">
-                    <ButtonOptions>Consultas Presenciais</ButtonOptions>
-                    <ButtonOptions>Telemedicina</ButtonOptions>
-                    <ButtonOptions>Exames</ButtonOptions>
-                    <ButtonOptions>Vacinas</ButtonOptions>
-                    <ButtonOptions>Procedimentos</ButtonOptions>
+                    <ButtonOptions><span><FontAwesomeIcon icon={faStethoscope} /></span> Consultas Presenciais</ButtonOptions>
+                    <ButtonOptions><span><FontAwesomeIcon icon={faVideo} /></span> Telemedicina</ButtonOptions>
+                    <ButtonOptions><span><FontAwesomeIcon icon={faMicroscope} /></span> Exames</ButtonOptions>
+                    <ButtonOptions><span><FontAwesomeIcon icon={faCrutch} /></span> Vacinas</ButtonOptions>
+                    <ButtonOptions><span><FontAwesomeIcon icon={faNotesMedical} /></span> Procedimentos</ButtonOptions>
                   </div>
                   <FormOptions placeholder="São Paulo" list="cidades" for="estado">Selecione uma cidade</FormOptions>
-                  <datalist></datalist>
+                  <datalist id="cidades">
+                    <option>Cidade 1</option>
+                    <option>Cidade 2</option>
+                  </datalist>
                   <FormOptions placeholder="Dentista" for="especialidade">Digite ou escolha uma especialidade</FormOptions>
                   <div className="d-flex">
                     <FormOptions placeholder="Dentista" className="flex-grow-1" for="cidade">Escolha um bairro disponível</FormOptions>
@@ -127,40 +141,40 @@ export default function Home() {
         </div>
       </section>
       <div className={`${styles.container}`}>
-        <div className={`${styles.containerFluid} container-fluid`} style={{ backgroundColor: "blue", color: "#FFFFFF" }}>
+        <div className={`${styles.containerFluid} container-fluid`} style={{ backgroundColor: "#CFDBF9", color: "#FFFFFF" }}>
           <div className={`card-title mt-5 mb-5`}>
             <h1>Olá</h1>
           </div>
           <div className={`${styles.boxScheduling} `}>
             <div className={`${styles.iconScheduling}`}>
               <figure>
-                <FontAwesomeIcon icon={faCalendarDay} />
+                <FontAwesomeIcon icon={faCommentMedical} />
               </figure>
               <p>Selecione o tipo de atendimento</p>
             </div>
             <div className={`${styles.iconScheduling}`}>
               <figure>
-                <FontAwesomeIcon icon={faCalendarDay} />
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
               </figure>
-              <p>Selecione o tipo de atendimento</p>
+              <p>Escolha o local</p>
             </div>
             <div className={`${styles.iconScheduling}`}>
               <figure>
-                <FontAwesomeIcon icon={faCalendarDay} />
+                <FontAwesomeIcon icon={faCalendarAlt} />
               </figure>
-              <p>Selecione o tipo de atendimento</p>
+              <p>Faça sua sugestão da data e hora</p>
             </div>
             <div className={`${styles.iconScheduling}`}>
               <figure>
-                <FontAwesomeIcon icon={faCalendarDay} />
+                <FontAwesomeIcon icon={faCreditCard} />
               </figure>
-              <p>Selecione o tipo de atendimento</p>
+              <p>Realize o pagamento</p>
             </div>
             <div className={`${styles.iconScheduling}`}>
               <figure>
-                <FontAwesomeIcon icon={faCalendarDay} />
+                <FontAwesomeIcon icon={faThumbsUp} />
               </figure>
-              <p>Selecione o tipo de atendimento</p>
+              <p>Aguarde a confirmação do agendamento</p>
             </div>
           </div>
         </div>
