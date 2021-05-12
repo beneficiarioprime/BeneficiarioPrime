@@ -1,11 +1,50 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
-import Navbar from '../components/Navbar'
-import React, { useEffect, useState } from 'react'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import Link from 'next/link';
+import Navbar from '../components/Navbar';
+import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarDay, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
+const ButtonOptions = props => {
+  return (
+    <button
+      className={`${styles.buttonOptions} ${props.className}`}
+      title={props.title}
+      onClick={props.onClick}
+      onChange={props.onChange}
+    >{props.children}
+    </button>
+  )
+}
+
+const FormOptions = props => {
+  return (
+    <div className={`form-floating mb-2 ${props.className}`}>
+      <input autoComplete="off" autoCapitalize="none" list={props.list} type="text" className={`form-control`}
+        placeholder={props.placeholder}
+        id={props.for} />
+      <label
+        for={props.for}
+      >{props.children}</label>
+    </div>
+  )
+}
+
+const CardOffers = props => {
+  return (
+    <div className={`card ${styles.cardOffers} ${props.className}`}>
+      <div className="card-body">
+        {props.children}
+      </div>
+    </div>
+  )
+}
+
 
 export default function Home() {
+
   return (
     <>
       <Head>
@@ -18,17 +57,146 @@ export default function Home() {
       </header>
       <header className={styles.container}>
         <div className={`container-fluid ${styles.containerFluid}`}>
-          <div className={`${cardHeader}`}>
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div className={`d-flex flex-row-reverse`}>
+            <div className={`${styles.content}`}>
+              <h1>Conteúdo pra botar pra baixo, será <br />que funciona?</h1>
+              <h4>Exercitation dolore et ad laborum labore cillum deserunt id. <br />Ut fugiat aliquip est labore consequat irure esse sint do cupidatat.</h4>
+              <div className={`card mt-4 ${styles.card}`}>
+                <div className="card-body">
+                  <div className="mb-3">
+                    <ButtonOptions>Consultas Presenciais</ButtonOptions>
+                    <ButtonOptions>Telemedicina</ButtonOptions>
+                    <ButtonOptions>Exames</ButtonOptions>
+                    <ButtonOptions>Vacinas</ButtonOptions>
+                    <ButtonOptions>Procedimentos</ButtonOptions>
+                  </div>
+                  <FormOptions placeholder="São Paulo" list="cidades" for="estado">Selecione uma cidade</FormOptions>
+                  <datalist></datalist>
+                  <FormOptions placeholder="Dentista" for="especialidade">Digite ou escolha uma especialidade</FormOptions>
+                  <div className="d-flex">
+                    <FormOptions placeholder="Dentista" className="flex-grow-1" for="cidade">Escolha um bairro disponível</FormOptions>
+                    <div className="d-flex align-items-center">
+                      <button className={`ms-3 ${styles.buttonSend}`}>Buscar</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </header>
+      <section className={styles.container}>
+        <div className={`${styles.containerFluid} container-fluid`} style={{ backgroundColor: "#666666" }}>
+          <div className={`d-flex`}>
+            <div className={`${styles.content} ${styles.contentCardOffers} d-flex mb-5 mt-5`}>
+              <CardOffers>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </CardOffers>
+              <CardOffers>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </CardOffers>
+              <CardOffers className={`${styles.cardRed}`}>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </CardOffers>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className={`${styles.container}`}>
+        <div className={`${styles.containerFluid} container-fluid`} style={{ backgroundColor: "blue", color: "#FFFFFF" }}>
+          <div className={`card-title mt-5 mb-5`}>
+            <h1>Olá</h1>
+          </div>
+          <div className={`${styles.boxScheduling} `}>
+            <div className={`${styles.iconScheduling}`}>
+              <figure>
+                <FontAwesomeIcon icon={faCalendarDay} />
+              </figure>
+              <p>Selecione o tipo de atendimento</p>
+            </div>
+            <div className={`${styles.iconScheduling}`}>
+              <figure>
+                <FontAwesomeIcon icon={faCalendarDay} />
+              </figure>
+              <p>Selecione o tipo de atendimento</p>
+            </div>
+            <div className={`${styles.iconScheduling}`}>
+              <figure>
+                <FontAwesomeIcon icon={faCalendarDay} />
+              </figure>
+              <p>Selecione o tipo de atendimento</p>
+            </div>
+            <div className={`${styles.iconScheduling}`}>
+              <figure>
+                <FontAwesomeIcon icon={faCalendarDay} />
+              </figure>
+              <p>Selecione o tipo de atendimento</p>
+            </div>
+            <div className={`${styles.iconScheduling}`}>
+              <figure>
+                <FontAwesomeIcon icon={faCalendarDay} />
+              </figure>
+              <p>Selecione o tipo de atendimento</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`${styles.container}`}>
+        <div className={`${styles.containerFluid} container-fluid`} style={{ backgroundColor: "#f4f4f4" }}>
+          <div className={`mt-5 mb-5 d-flex justify-content-between`}>
+            <div className={``}>
+              <div className={`mb-4`}>
+                <h1>VANTAGENS DE SER</h1>
+                <h1>Beneficiário Prime</h1>
+              </div>
+              <div className={`d-flex`}>
+                <div className={`${styles.benefits}`}>
+                  <ul>
+                    <li>A partir de R$ 13,75 por pessoa</li>
+                    <li>Consultas médicas com até 90% de desconto</li>
+                    <li>Exames e Procedimentos com até 100% de desconto</li>
+                  </ul>
+                </div>
+                <div className={`${styles.benefits}`}>
+                  <ul>
+                    <li>Até 4 beneficiários por cartão</li>
+                    <li>Retorno médico Gratuito!</li>
+                    <li>Sem nenhuma carência!</li>
+                    <li>Agendamento fácil, via telefone, site ou celular</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className={``}>
+              <h1>IMAGEM</h1>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
