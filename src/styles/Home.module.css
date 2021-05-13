@@ -94,7 +94,7 @@
 }
 
 .contentScheduling h4 {
-  color: rgb(51, 118, 180);
+  color: #3174b4;
 }
 
 .containerCardOffers {
@@ -220,6 +220,16 @@
   background-color: #37B6AB;
   color: #FFFFFF;
   border-radius: 25px;
+  transition: .25s;
+}
+
+.btnPlan a:hover {
+  padding: 12px 20px;
+  text-decoration: none;
+  background-color: #3174b4;
+  color: #FFFFFF;
+  border-radius: 25px;
+  transition: .25s;
 }
 
 .btnSpotlight a {
