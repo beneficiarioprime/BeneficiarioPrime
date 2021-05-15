@@ -8,7 +8,7 @@ const Login = () => {
     return (
         <>
             <Head>
-                <title>Beneficiário Prime</title>
+                <title>Login - Beneficiário Prime</title>
             </Head>
             <main className={`${style.container}`}>
                 <div className="container">
