@@ -1,0 +1,183 @@
+.container {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(131deg, #37B6AB, #2fffee);
+    /* background-color: #DEE4F0; */
+    z-index: 0;
+}
+
+.cardSignin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.300);
+    overflow: hidden;
+    z-index: 3;
+}
+
+.cardSignin .cardTitle {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.cardSignin .cardImgLeft {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('/img/wallpaper-login.jpg');
+    background-size: cover;
+}
+
+.cardSignin .cardBody {
+    padding: 2rem;
+}
+
+.formSignin {
+    width: 100%;
+}
+
+.formSignin .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+.formLabelGroup {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.btnRegister {
+    margin-top: 7em!important;
+}
+
+.logo {
+    margin-top: 6em;
+    margin-bottom: 4em;
+}
+
+.text {
+    font-size: 38px;
+    color: #FFFFFF;
+    margin-top: 1em;
+}
+
+.text p {
+    text-align: center;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.685);
+}
+
+.text p:last-child {
+    font-weight: 600;
+    margin-top: -15px;
+}
+
+.formSignin button {
+    border-radius: 30px;
+    background-color: #37B6AB;
+    border: none;
+}
+
+.formSignin button:hover {
+    background-color: #3174b4;
+    border: none;
+}
+
+.formSignin a:first-child {
+    color: #5C5C5C;
+    text-decoration: none;
+}
+
+.formSignin > div {
+    margin: 0 5em;
+}
+
+.btnRegister a {
+    color: #37B6AB;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.formLabelGroup input {
+    height: auto;
+    border-radius: 2rem;
+}
+
+.formLabelGroup>input,
+.formLabelGroup>label {
+    padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.formLabelGroup>label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+}
+
+.formLabelGroup input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.formLabelGroup input:-ms-input-placeholder {
+    color: transparent;
+}
+
+.formLabelGroup input::-ms-input-placeholder {
+    color: transparent;
+}
+
+.formLabelGroup input::-moz-placeholder {
+    color: transparent;
+}
+
+.formLabelGroup input::placeholder {
+    color: transparent;
+}
+
+.formLabelGroup input:not(:placeholder-shown) {
+    padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+    padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.formLabelGroup input:not(:placeholder-shown)~label {
+    padding-top: calc(var(--input-padding-y) / 3);
+    padding-bottom: calc(var(--input-padding-y) / 3);
+    font-size: 12px;
+    color: #777;
+}
+
+.btn-google {
+    color: white;
+    background-color: #ea4335;
+}
+
+.btn-facebook {
+    color: white;
+    background-color: #3b5998;
+}
+
+@media(max-width: 992px) {
+    .formSignin > div {
+        margin: 0 0;
+    }
+
+    .row > div {
+        padding-right: 0!important;
+        padding-left: 0!important;
+    }
+    
+}

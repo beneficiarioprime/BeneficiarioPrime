@@ -7,7 +7,7 @@ const Navbar = () => {
     return (<>
         <nav className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}>
             <div className={`container-fluid ${styles.container}`}>
-                <Link href="/"><a className="navbar-brand me-5"><Image src="/img/logos/logo.png" width={188.53} height={42.98} quality={100} /></a></Link>
+                <Link href="/"><a className="navbar-brand me-5"><img src="/img/logos/logo-teste.png" width="210px" /></a></Link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -21,7 +21,7 @@ const Navbar = () => {
                         </li>
                     </ul>
                     <Link href="/login"><a className={`me-5 ${styles.btnLogin}`} type="submit">Login</a></Link>
-                    <a className={`btn ${styles.btnCadastrar}`} type="submit">Cadastre-se</a>
+                    <a className={`btn ${styles.btnRegister}`} type="submit">Cadastre-se</a>
                 </div>
             </div>
         </nav>

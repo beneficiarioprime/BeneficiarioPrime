@@ -39,8 +39,12 @@
 }
 
 .contentCard {
-  max-width: 724px;
+  max-width: 744px;
   z-index: 1;
+}
+
+.container h4 {
+  font-weight: 400;
 }
 
 .contentCardOffers {
@@ -69,13 +73,13 @@
   margin-top: 2em;
 }
 
-.cardRed {
-  background: linear-gradient(131deg, #f11f49, #dd3557);
+.cardGray {
+  background: linear-gradient(131deg, #5c5c5c, #949494);
   color: #FFFFFF;
 }
 
 .cardGreen {
-  background: linear-gradient(131deg, #37B6AB, #00e0ce);
+  background: linear-gradient(131deg, #37B6AB, #00f1dd);
   color: #FFFFFF;
 }
 
@@ -160,6 +164,7 @@
 .buttonOptions {
   margin: 0 10px 10px 0;
   background-color: #FFFFFF;
+  font-size: 14px;
   color: #262626;
   border-radius: 20px;
   padding: 6px 10px;
@@ -170,6 +175,12 @@
 .buttonOptions span,
 .title {
   color: #37B6AB;
+}
+
+.buttonOptions:hover {
+  background-color: #37b6ab1e;
+  border: 1px solid #37B6AB;
+  transition: .25s;
 }
 
 .title {
@@ -189,12 +200,6 @@
   display: flex;
 }
 
-.buttonOptions:hover {
-  background-color: #37b6ab1e;
-  border: 1px solid #37B6AB;
-  transition: .25s;
-}
-
 .benefits {
   margin-right: 2em;
   max-width: 380px;
@@ -208,6 +213,12 @@
 .benefits li {
   margin-bottom: 10px;
   display: flex;
+}
+
+.benefits li svg {
+  margin-right: 10px;
+  margin-top: 5px;
+  color: #3174b4;
 }
 
 .btnPlan {
@@ -239,19 +250,6 @@
 
 .content h4 {
   z-index: 4;
-}
-
-.benefits li::before {
-  content: "";
-  width: 15px;
-  height: 17px;
-  display: inline-block;
-  background-image: url(/svg/arrow-right-solid.svg);
-  color: #37B6AB;
-  flex-shrink: 0;
-  position: relative;
-  margin-right: 18px;
-  top: 5px;
 }
 
 .footer {
@@ -301,6 +299,12 @@
 
   .containerScheduling {
     display: none;
+  }
+}
+
+@media (max-width: 1440px) {
+  .containerFluid {
+    padding: 0 60px;
   }
 }
 

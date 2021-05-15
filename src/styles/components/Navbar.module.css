@@ -23,16 +23,16 @@
   color: #3174b4;
 }
 
-.btnCadastrar {
+.btnRegister {
   padding: 10px 20px;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   color: #fff;
   border-radius: 25px;
   background-color: #37B6AB;
 }
 
-.btnCadastrar:hover {
+.btnRegister:hover {
   color: #FFF;
   background-color: #3174b4;
 }
@@ -47,6 +47,12 @@
   color: #37B6AB !important;
   background-color: rgba(46, 46, 46, 0.041);
   transition: 0.25s;
+}
+
+@media (max-width: 1440px) {
+  .container {
+    padding: 0 60px;
+  }
 }
 
 @media (max-width: 1102px) {
