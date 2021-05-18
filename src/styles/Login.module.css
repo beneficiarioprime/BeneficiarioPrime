@@ -2,10 +2,10 @@
     display: flex;
     align-items: center;
     margin: auto;
-    position: absolute;
+    height: 100vh;
     top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(131deg, #37B6AB, #2fffee);
-    /* background-color: #DEE4F0; */
+    /* background: linear-gradient(131deg, #37B6AB, #2fffee); */
+    background-color: #DEE4F0;
     z-index: 0;
 }
 
@@ -88,17 +88,17 @@
     border: none;
 }
 
-.formSignin a:first-child {
+.formSignin > div a:first-child {
     color: #5C5C5C;
     text-decoration: none;
 }
 
 .formSignin > div {
-    margin: 0 5em;
+    margin: 0 3em;
 }
 
 .btnRegister a {
-    color: #37B6AB;
+    color: #37B6AB!important;
     text-decoration: none;
     font-weight: 600;
 }

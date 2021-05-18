@@ -14,13 +14,16 @@ const Navbar = () => {
                 <div className={`collapse navbar-collapse`} id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="me-3 ms-3 nav-item">
-                            <a className={`nav-link ${styles.navLink}`} aria-current="page" href="#">Área do Cliente</a>
+                            <a className={`nav-link ${styles.navLink}`} aria-current="page" href="#">Seja um consultor</a>
                         </li>
                         <li className="me-3 ms-3 nav-item">
-                            <a className={`nav-link ${styles.navLink}`} href="#">Área do Prestador</a>
+                            <a className={`nav-link ${styles.navLink}`} href="#">Credencie sua Clínica</a>
+                        </li>
+                        <li className="me-3 ms-3 nav-item">
+                            <a className={`nav-link ${styles.navLink}`} href="#">Planos para Empresas</a>
                         </li>
                     </ul>
-                    <Link href="/login"><a className={`me-5 ${styles.btnLogin}`} type="submit">Login</a></Link>
+                    <Link href="/login"><a className={`me-5 ${styles.btnLogin}`} type="submit">Entrar</a></Link>
                     <a className={`btn ${styles.btnRegister}`} type="submit">Cadastre-se</a>
                 </div>
             </div>

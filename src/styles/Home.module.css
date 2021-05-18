@@ -69,8 +69,12 @@
   margin-bottom: 2.5em;
 }
 
-.cardOffers ul li:last-child {
-  margin-top: 2em;
+.contentAppointments {
+  display: flex !important;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  gap: 2.4rem;
+  margin: 50px 0;
 }
 
 .cardGray {
@@ -187,6 +191,7 @@
   font-size: 40px;
 }
 
+
 .buttonSend button {
   padding: 8px 70px;
   border-radius: 20px;
@@ -207,7 +212,15 @@
 
 .benefits ul {
   list-style-type: none;
-  font-size: 18px;
+  font-size: 14px;
+}
+
+.containerAppointments {
+  background-color: #C0F0F4;
+}
+
+.containerAppointments h1 {
+  color: #37B6AB;
 }
 
 .benefits li {
@@ -215,14 +228,52 @@
   display: flex;
 }
 
+.bodyAppointment ul {
+  font-size: 14px;
+  /* margin-right: 35px; */
+}
+
+.bodyAppointment ul li:first-child {
+  font-size: 18px;
+}
+
+.bodyAppointment ul li {
+  padding-bottom: 12px;
+}
+
 .benefits li svg {
   margin-right: 10px;
   margin-top: 5px;
-  color: #3174b4;
+  font-size: 16px;
+}
+
+.faCheck {
+  color: #00c700;
+}
+
+.faTimes {
+  color: red;
+}
+
+.imageBenefits {
+  display: flex;
+  align-items: flex-end;
 }
 
 .btnPlan {
-  transform-origin: center center!important;
+  transform-origin: center center !important;
+}
+
+.btnFirst {
+  margin-top: 112px;
+}
+
+.bodyAppointment .cardOffers {
+  height: 100%;
+}
+
+.btnSecond {
+  margin-top: 64px;
 }
 
 .btnPlan a {
@@ -241,6 +292,11 @@
   color: #FFFFFF;
   border-radius: 25px;
   transition: .25s;
+}
+
+.scrollXPC {
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .btnSpotlight a {
@@ -272,9 +328,44 @@
   .contentCardOffers {
     grid-template-columns: 1fr 1fr;
   }
+
+  .bodyAppointment .cardOffers {
+    width: 500px;
+    height: 100%;
+  }
+
+  .scrollXAppointments {
+    overflow: auto;
+  }
+
+  .bodyAppointment ul li:first-child {
+    font-size: 14px;
+  }
+
+  .bodyAppointment ul {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 915px) {
+
+  .scrollXAppointments {
+    overflow: auto;
+  }
+
+  .bodyAppointment ul li:first-child {
+    font-size: 14px;
+  }
+
+  .bodyAppointment ul {
+    font-size: 14px;
+  }
+
+  .bodyAppointment .cardOffers {
+    width: 400px;
+    height: 100%;
+  }
+  
   .contentCardOffers {
     grid-template-columns: 1fr;
   }
@@ -309,16 +400,54 @@
 }
 
 @media (max-width: 1102px) {
+  .bodyAppointment ul {
+    font-size: 14px;
+  }
+
+  .bodyAppointment ul li:first-child {
+    font-size: 14px;
+  }
+
   .containerFluid {
     padding: 0 14px;
+  }
+
+  .bodyAppointment .cardOffers {
+    width: 500px;
+    height: 100%;
+  }
+
+  .scrollXAppointments {
+    overflow: auto;
   }
 }
 
 @media (max-width: 600px) {
 
+  .bodyAppointment ul {
+    font-size: 14px;
+  }
+
+  .bodyAppointment ul li:first-child {
+    font-size: 14px;
+  }
+
+  .bodyAppointment .cardOffers {
+    width: 430px;
+    height: 100%;
+  }
+
+  .containerBenefits {
+    display: block !important;
+  }
+
   .scrollX {
     overflow: auto;
     white-space: nowrap;
+  }
+
+  .scrollXAppointments {
+    overflow: auto;
   }
 
   .grid {

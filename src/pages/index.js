@@ -16,7 +16,11 @@ import {
   faMicroscope,
   faCrutch,
   faNotesMedical,
-  faArrowCircleRight
+  faArrowCircleRight,
+  faCheck,
+  faTimes,
+  faTimesCircle,
+  faCheckCircle
 } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../components/Footer';
 
@@ -55,6 +59,30 @@ const CardOffers = props => {
   )
 }
 
+const CardAppointments = props => {
+  return (
+    <div className={`${styles.bodyAppointment}`} style={{ width: "520px" }}>
+      <div className={`card ${styles.cardOffers} ${props.className}`}>
+        <div className="card-body">
+          {props.children}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const FaCheck = () => {
+  return (
+    <span className={`${styles.faCheck}`}><FontAwesomeIcon icon={faCheckCircle} /></span>
+  )
+}
+
+const FaTimes = () => {
+  return (
+    <span className={`${styles.faTimes}`}><FontAwesomeIcon icon={faTimesCircle} /></span>
+  )
+}
+
 
 export default function Home() {
 
@@ -62,6 +90,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Home - Beneficiário Prime</title>
+      </Head>
       <Navbar />
 
       <header className={styles.container}>
@@ -71,8 +102,8 @@ export default function Home() {
           </div>
           <div className={`d-flex`}>
             <div className={`${styles.content} ${styles.contentCard}`}>
-              <h1 className={`${styles.title} card-title`}>Conteúdo pra botar pra baixo, será que funciona?</h1>
-              <h4>Exercitation dolore et ad laborum labore cillum deserunt id. Ut fugiat aliquip est labore consequat irure esse sint do cupidatat.</h4>
+              <h1 className={`${styles.title} card-title`}>Tem sempre uma clínica perto de você!</h1>
+              <h4>Agende agora mesmo sua consulta, exame, procedimento, ou vacina. São centenas de estabelecimentos credenciados.</h4>
               <div className={`card mt-4 ${styles.card}`}>
                 <div className="card-body">
                   <div className={`mb-1 ${styles.scrollX}`}>
@@ -91,14 +122,14 @@ export default function Home() {
                     </>
                   ) : (
                     <>
-                      <FormOptions placeholder="São Paulo" list="cidades" for="estado">Selecione uma cidade</FormOptions>
+                      <FormOptions placeholder="São Paulo" list="cidades" for="estado">Selecione seu estado</FormOptions>
                       <datalist id="cidades">
                         <option>Cidade 1</option>
                         <option>Cidade 2</option>
                       </datalist>
                       <FormOptions placeholder="Dentista" for="especialidade">Digite ou escolha uma especialidade</FormOptions>
                       <div className={`${styles.cardBtnCenter}`}>
-                        <FormOptions placeholder="Jardim" className="flex-grow-1" for="cidade">Escolha um bairro disponível</FormOptions>
+                        <FormOptions placeholder="Jardim" className="flex-grow-1" for="cidade">Escolha o bairro</FormOptions>
                         <div className={`d-flex align-items-center ${styles.buttonSend}`}>
                           <button className={`ms-3`}>Buscar</button>
                         </div>
@@ -123,13 +154,17 @@ export default function Home() {
                 <span>PLANO</span>
                 <br />
                 <h1 className={`mb-2`}>ESSENCIAL</h1>
-                <p className={`mb-4`}>Qualquer consulta apenas: R$ 59,90, e exames até 50% mais baratos</p>
+                <p className={`mb-4`}>Qualquer consulta: R$ 59,90</p>
+                <p className="mb-4">Exames até 50% mais baratos</p>
+                <p className="mb-4">Exames a partir de R$ 5,00</p>
+                <p className="mb-4">Consultas presenciais ou telemedicina</p>
                 <ul>
-                  <li>1 Vida = 12 X R$ 24,90 no crédito ou 3 X R$ 99,00 no boleto</li>
-                  <li>2 Vidas - 12 X R$ 35,90 no crédito ou 3 X R$ 140,00 no boleto</li>
-                  <li>Plano Família + 5,00/ mês por dependente adicional a partir da 3ª vida</li>
+                  <li>1 Vida = 12 X R$ 24,90</li>
+                  <li>2 Vidas - 12 X R$ 35,90</li>
+                  <li>3 Vidas - 12 X R$ 40,90</li>
                 </ul>
-                <div className={`${styles.btnPlan} d-flex flex-row-reverse `}>
+                <p>Plano Família + R$ 5,00/mês por dependente adicional</p>
+                <div className={`${styles.btnPlan} ${styles.btnFirst} d-flex flex-row-reverse`}>
                   <Link href="#"><a>ASSINE AGORA</a></Link>
                 </div>
               </CardOffers>
@@ -137,13 +172,18 @@ export default function Home() {
                 <span>PLANO</span>
                 <br />
                 <h1 className={`mb-2`}>PRIME</h1>
-                <p className={`mb-4`}>Qualquer consulta apenas: R$ 49,90, e exames até 70% mais baratos</p>
+                <p className={`mb-4`}>Qualquer consulta: R$ 49,90</p>
+                <p className="mb-4">Exames até 70% mais baratos</p>
+                <p className="mb-4">Exames a partir de R$ 4,00</p>
+                <p className="mb-4">Consultas presenciais ou telemedicina</p>
+                <p className="mb-4">Procedimentos e Vacinas</p>
                 <ul>
-                  <li>1 Vida - 12 X R$ 35,90 no crédito ou 3 X R$ 140,00 no boleto</li>
-                  <li>2 Vidas - 12 X R$ 45,90 no crédito ou 3 X R$ 180,00 no boleto</li>
-                  <li>Plano Família + 9,00/ mês por dependente adicional a partir da 3ª vida</li>
+                  <li>1 Vida - 12 X R$ 35,90</li>
+                  <li>2 Vidas - 12 X R$ 45,90</li>
+                  <li>3 Vidas - 12 X R$ 54,90</li>
                 </ul>
-                <div className={`${styles.btnPlan} ${styles.btnSpotlight} d-flex flex-row-reverse `}>
+                <p>Plano Família + R$9,00/mês por dependente adicional</p>
+                <div className={`${styles.btnPlan} ${styles.btnSecond} ${styles.btnSpotlight} d-flex flex-row-reverse`}>
                   <Link href="#"><a>ASSINE AGORA</a></Link>
                 </div>
               </CardOffers>
@@ -151,12 +191,18 @@ export default function Home() {
                 <span>PLANO</span>
                 <br />
                 <h1 className={`mb-2`}>ESPECIAL</h1>
-                <p className={`mb-4`}>Qualquer consulta apenas: R$ 39,90, e exames até 90% mais baratos</p>
+                <p className={`mb-4`}>Qualquer consulta: R$ 39,90</p>
+                <p className="mb-4">Exames até 90% mais baratos</p>
+                <p className="mb-4">Exames a partir de R$ 3,00</p>
+                <p className="mb-4">Consultas presenciais ou telemedicina</p>
+                <p className="mb-4">Procedimentos e Vacinas</p>
+                <p className="mb-4">Medicina Estética (botox, harmonização facial, etc...)</p>
                 <ul>
-                  <li>1 Vida - 12 X R$ 45,90 no crédito ou 3 X R$ 180,00 no boleto</li>
-                  <li>2 Vidas - 12 X R$ 54,90 no crédito ou 3 X R$ 210,00 no boleto</li>
-                  <li>Plano Família + 12,00/ mês por dependente adicional a partir da 3ª vida</li>
+                  <li>1 Vida - 12 X R$ 45,90</li>
+                  <li>2 Vidas - 12 X R$ 54,90</li>
+                  <li>3 Vidas - 12 X R$ 66,90</li>
                 </ul>
+                <p>Plano Família + R$ 12,00/ mês por dependente adicional</p>
                 <div className="d-flex flex-row-reverse ">
                   <div className={`${styles.btnPlan} ${styles.btnSpotlight} animate__animated animate__pulse animate__slow animate__infinite`}>
                     <Link href="#"><a className="">ASSINE AGORA</a></Link>
@@ -191,7 +237,7 @@ export default function Home() {
                 <figure>
                   <FontAwesomeIcon icon={faCalendarAlt} />
                 </figure>
-                <p>Escolha sua sugestão da data e hora</p>
+                <p>Selecione a data e horário previsto</p>
               </div>
               <div className={`${styles.iconScheduling}`}>
                 <figure>
@@ -203,7 +249,7 @@ export default function Home() {
                 <figure>
                   <FontAwesomeIcon icon={faThumbsUp} />
                 </figure>
-                <p>Pronto</p>
+                <p>Receba a confirmação</p>
               </div>
             </div>
           </div>
@@ -211,90 +257,236 @@ export default function Home() {
       </div>
       <div className={`${styles.container}`}>
         <div className={`${styles.containerFluid} container-fluid`} style={{ backgroundColor: "#f4f4f4" }}>
-          <div className={`mt-5 mb-5 d-flex justify-content-between`}>
+          <div className={`mt-5 d-flex justify-content-between`}>
             <div className={`mt-5`}>
               <div className={`mb-4`}>
-                <h1>VANTAGENS DE SER</h1>
-                <h1>Beneficiário Prime</h1>
+                <h1>COMPARE VOCÊ MESMO</h1>
+
               </div>
-              <div className={`d-flex`}>
-                <div className={`${styles.benefits}`}>
+              <div className={`d-flex ${styles.containerBenefits}`}>
+                <div className={`${styles.benefits} mb-5`}>
+                  <h2 className="mb-3">Convênios Antigos</h2>
                   <ul>
-                    <li><FontAwesomeIcon icon={faArrowCircleRight} /><span>A partir de R$ 13,75 por pessoa</span></li>
-                    <li><FontAwesomeIcon icon={faArrowCircleRight} /><span>Consultas médicas com até 90% de desconto</span></li>
-                    <li><FontAwesomeIcon icon={faArrowCircleRight} /><span>Exames e Procedimentos com até 100% de desconto</span></li>
+                    <li><FaCheck /><span>Consultas médicas</span></li>
+                    <li><FaCheck /><span>Exames diagnósticos</span></li>
+                    <li><FaCheck /><span>Acesso a Procedimentos</span></li>
+                    <li><FaCheck /><span>Pronto socorro</span></li>
+                    <li><FaCheck /><span>Internação</span></li>
+                    <li><FaTimes /><span>Carência em tudo</span></li>
+                    <li><FaTimes /><span>Rede de atendimento limitada</span></li>
+                    <li><FaTimes /><span>Aumenta o plano conforme idade</span></li>
+                    <li><FaTimes /><span>Agendamento difícil, até 30 dias de espera, via telefone</span></li>
+                    <li><FaTimes /><span>Sem Medicina Estética</span></li>
+                    <li><FaTimes /><span>Dificuldade em encontrar credenciais</span></li>
+                    <li><FaTimes /><span>Valor médio R$ 500,00/mês</span></li>
                   </ul>
                 </div>
-                <div className={`${styles.benefits}`}>
+                <div className={`${styles.benefits} mb-5`}>
+                  <h2 className="mb-3">Beneficiário Prime</h2>
                   <ul>
-                    <li><FontAwesomeIcon icon={faArrowCircleRight} /><span>Até 4 beneficiários por cartão</span></li>
-                    <li><FontAwesomeIcon icon={faArrowCircleRight} /><span>Retorno médico Gratuito!</span></li>
-                    <li><FontAwesomeIcon icon={faArrowCircleRight} /><span>Sem nenhuma carência!</span></li>
-                    <li><FontAwesomeIcon icon={faArrowCircleRight} /><span>Agendamento fácil, via telefone, site ou celular</span></li>
+                    <li><FaCheck /><span>Consultas médicas</span></li>
+                    <li><FaCheck /><span>Exames diagnósticos</span></li>
+                    <li><FaCheck /><span>Acesso a Procedimentos</span></li>
+                    <li><FaTimes /><span>Pronto socorro</span></li>
+                    <li><FaTimes /><span>Internação</span></li>
+                    <li><FaCheck /><span>Carência 0, uso imediato</span></li>
+                    <li><FaCheck /><span>Rede de atendimento ilimitada</span></li>
+                    <li><FaCheck /><span>Não aumenta o plano conforme idade</span></li>
+                    <li><FaCheck /><span>Agendamento fácil, via telefone, site ou app, até para o mesmo dia</span></li>
+                    <li><FaCheck /><span>Medicina estética</span></li>
+                    <li><FaCheck /><span>Há sempre um credenciado perto de você</span></li>
+                    <li><FaCheck /><span>Valor médio R$ 35,90/mês</span></li>
                   </ul>
                 </div>
               </div>
-              <div className={`text-center mt-5 ${styles.btnPlan}`}>
+              <div className={`text-center mb-5 ${styles.btnPlan}`}>
                 <Link href="#"><a>ASSINE AGORA</a></Link>
               </div>
             </div>
             <div className={`${styles.imageBenefits}`}>
-              <Image src="/svg/undraw_doctor.svg" width={600} height={600} />
+              <Image src="/img/home/medicos-olhando.png" width={539} height={513} />
             </div>
           </div>
         </div>
       </div>
-      <section className={styles.container}>
-        <div className={`${styles.containerFluid} container-fluid`}>
-          <div className={`${styles.containerCardOffers}`}>
-            <h1>O Beneficiário Prime é tudo que você está precisando!</h1>
-            <h4>Com ele, terá assistência médica e laboratorial de qualidade e com preço justo.</h4>
-            <h4>Consultas presenciais, telemedicina, exames e procedimentos.</h4>
-            <h3>Confira nossos planos:</h3>
-            <div className={`${styles.content} ${styles.contentCardOffers} d-flex`}>
-              <CardOffers>
-                <span>PLANO</span>
-                <br />
-                <h1 className={`mb-2`}>ESSENCIAL</h1>
-                <p className={`mb-4`}>Qualquer consulta apenas: R$ 59,90, e exames até 50% mais baratos</p>
-                <ul>
-                  <li>1 Vida = 12 X R$ 24,90 no crédito ou 3 X R$ 99,00 no boleto</li>
-                  <li>2 Vidas - 12 X R$ 35,90 no crédito ou 3 X R$ 140,00 no boleto</li>
-                  <li>Plano Família + 5,00/ mês por dependente adicional a partir da 3ª vida</li>
-                </ul>
-                <div className={`${styles.btnPlan} d-flex flex-row-reverse `}>
-                  <Link href="#"><a>ASSINE AGORA</a></Link>
+      <section className={`${styles.container}`}>
+        <div className={`${styles.containerFluid} ${styles.containerAppointments} container-fluid`}>
+          <div className={`mt-5`}>
+            <h1>Vantagens de verdade para nossos Beneficiários</h1>
+            <h4>Menor preço garantido em consultas, exames, vacinas e procedimentos, confira!</h4>
+            <div className={`${styles.content} ${styles.contentAppointments} ${styles.scrollXAppointments} d-flex`}>
+              <CardAppointments>
+                <h3 className={`mb-2`}>CONSULTA MÉDICAS</h3>
+                <div className="d-flex justify-content-between">
+                  <ul className="pt-4">
+                    <li></li>
+                    <li>Clínica Médica</li>
+                    <li>Ginecologia</li>
+                    <li>Pediatria</li>
+                    <li>Cardiologia</li>
+                    <li>Psiquiatria</li>
+                    <li>Vascular</li>
+                    <li>Urologia</li>
+                    <li>Ortopedia</li>
+                    <li>Dermatologia</li>
+                    <li>Psicologia</li>
+                    <li>Oftamologia</li>
+                    <li>Nutrição</li>
+                  </ul>
+
+                  <ul className="text-center">
+                    <li>PARTICULAR</li>
+                    <li>90</li>
+                    <li>200</li>
+                    <li>150</li>
+                    <li>250</li>
+                    <li>250</li>
+                    <li>300</li>
+                    <li>250</li>
+                    <li>150</li>
+                    <li>150</li>
+                    <li>200</li>
+                    <li>150</li>
+                    <li>150</li>
+                  </ul>
+
+                  <ul className="text-center">
+                    <li>PELO PLANO</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                    <li>39,90</li>
+                  </ul>
                 </div>
-              </CardOffers>
-              <CardOffers>
-                <span>PLANO</span>
-                <br />
-                <h1 className={`mb-2`}>PRIME</h1>
-                <p className={`mb-4`}>Qualquer consulta apenas: R$ 49,90, e exames até 70% mais baratos</p>
-                <ul>
-                  <li>1 Vida - 12 X R$ 35,90 no crédito ou 3 X R$ 140,00 no boleto</li>
-                  <li>2 Vidas - 12 X R$ 45,90 no crédito ou 3 X R$ 180,00 no boleto</li>
-                  <li>Plano Família + 9,00/ mês por dependente adicional a partir da 3ª vida</li>
+                <ul className="">
+                  <li style={{fontSize: "14px", marginTop: "-60px"}}>Mais outras dezenas de especialidades por R$39,90</li>
                 </ul>
-                <div className={`${styles.btnPlan} d-flex flex-row-reverse `}>
-                  <Link href="#"><a>ASSINE AGORA</a></Link>
+                <div className={`${styles.btnPlan} d-flex justify-content-center`}>
+                  <Link href="#"><a>VEJA MAIS</a></Link>
                 </div>
-              </CardOffers>
-              <CardOffers>
-                <span>PLANO</span>
-                <br />
-                <h1 className={`mb-2`}>ESSENCIAL</h1>
-                <p className={`mb-4`}>Qualquer consulta apenas: R$ 59,90, e exames até 50% mais baratos</p>
-                <ul>
-                  <li>1 Vida = 12 X R$ 24,90 no crédito ou 3 X R$ 99,00 no boleto</li>
-                  <li>2 Vidas - 12 X R$ 35,90 no crédito ou 3 X R$ 140,00 no boleto</li>
-                  <li>Plano Família + 5,00/ mês por dependente adicional a partir da 3ª vida</li>
-                </ul>
-                <div className={`${styles.btnPlan} d-flex flex-row-reverse `}>
-                  <Link href="#"><a>ASSINE AGORA</a></Link>
+              </CardAppointments>
+              <CardAppointments>
+                <h3 className={`mb-2`}>EXAMES DIAGNÓSTICOS</h3>
+                <div className="d-flex justify-content-between">
+                  <ul className="pt-4">
+                    <li></li>
+                    <li>Hemograma Completo</li>
+                    <li>Colesterol</li>
+                    <li>Glicose</li>
+                    <li>Ácido Úrico</li>
+                    <li>Urina I</li>
+                    <li>Electrocardiograma</li>
+                    <li>Raio X Tórax</li>
+                    <li>Raio X Coluna</li>
+                    <li>Mamografia Digital</li>
+                    <li>Ultrassom Mamas</li>
+                    <li>Ultrassom Obstétrico</li>
+                    <li>Tomografia Compu. Crânio</li>
+                    <li>Tomografia Compu. Tórax</li>
+                  </ul>
+                  <ul className="text-center">
+                    <li>PARTICULAR</li>
+                    <li>22</li>
+                    <li>20</li>
+                    <li>17</li>
+                    <li>17</li>
+                    <li>17</li>
+                    <li>70</li>
+                    <li>80</li>
+                    <li>80</li>
+                    <li>300</li>
+                    <li>300</li>
+                    <li>300</li>
+                    <li>600</li>
+                    <li>600</li>
+                  </ul>
+                  <ul className="text-center">
+                    <li>PELO PLANO</li>
+                    <li>6</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>25</li>
+                    <li>25</li>
+                    <li>25</li>
+                    <li>99</li>
+                    <li>99</li>
+                    <li>99</li>
+                    <li>190</li>
+                    <li>190</li>
+                  </ul>
                 </div>
-              </CardOffers>
+                <div className={`${styles.btnPlan} d-flex justify-content-center`}>
+                  <Link href="#"><a>VEJA MAIS</a></Link>
+                </div>
+              </CardAppointments>
+              <CardAppointments>
+                <h3 className={`mb-2`}>EXAMES DIAGNÓSTICOS</h3>
+                <div className="d-flex justify-content-between">
+                  <ul className="pt-4">
+                    <li></li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                    <li>Vacina da Gripe</li>
+                  </ul>
+                  <ul className="text-center">
+                    <li>PARTICULAR</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                  </ul>
+                  <ul className="text-center">
+                    <li>PELO PLANO</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                    <li>50</li>
+                  </ul>
+                </div>
+                <div className={`${styles.btnPlan} d-flex justify-content-center`}>
+                  <Link href="#"><a>VEJA MAIS</a></Link>
+                </div>
+              </CardAppointments>
             </div>
+            <span style={{fontSize: "12px"}}>*Valores referenciais, com base na Tabela do Plano Especial de São Paulo em Janeiro de 2021. Consulte os laboratórios e clínicas participantes no ato da compra.</span>
           </div>
         </div>
       </section>
