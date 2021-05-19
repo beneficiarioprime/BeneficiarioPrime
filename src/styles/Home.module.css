@@ -5,6 +5,9 @@
   display: flex;
 }
 
+.containerCard {
+  display: flex;
+}
 
 .containerFluid {
   padding: 0 140px;
@@ -12,6 +15,10 @@
   margin-right: auto;
   margin-left: auto;
   background-color: #f4f4f4;
+}
+
+.displayFlexCard {
+  display: flex;
 }
 
 .content {
@@ -29,6 +36,10 @@
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 15%);
 }
 
+.formOptions label{
+  font-size: 14px!important;
+}
+
 .containerCardOffers>h1 {
   color: #3174B4;
 }
@@ -39,7 +50,7 @@
   text-align: center;
 }
 
-.cardDarkBlue{
+.cardDarkBlue {
   background-color: #435BA1;
   color: #FFFFFF;
 }
@@ -198,7 +209,6 @@
   font-size: 40px;
 }
 
-
 .buttonSend button {
   padding: 8px 70px;
   border-radius: 20px;
@@ -346,6 +356,14 @@
   flex-grow: 1;
 }
 
+.containerCollapse>div {
+  padding: 1em 0;
+}
+
+.containerCollapse>div>h1 {
+  margin-bottom: 1em;
+}
+
 @media (max-width: 1500px) {
   .contentCardOffers {
     grid-template-columns: 1fr 1fr;
@@ -387,7 +405,7 @@
     width: 400px;
     height: 100%;
   }
-  
+
   .contentCardOffers {
     grid-template-columns: 1fr;
   }
@@ -444,6 +462,25 @@
   }
 }
 
+@media (max-width: 772px) {
+  .containerCard {
+    display: initial;
+  }
+
+  .displayFlexCard {
+    display: initial;
+  }
+
+  .containerFluid:first-child {
+    display: initial;
+  }
+
+  .scrollX {
+    overflow: scroll;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 600px) {
 
   .bodyAppointment ul {
@@ -452,6 +489,11 @@
 
   .bodyAppointment ul li:first-child {
     font-size: 14px;
+  }
+
+  .scrollX {
+    overflow: scroll;
+    white-space: nowrap;
   }
 
   .bodyAppointment .cardOffers {
@@ -463,10 +505,6 @@
     display: block !important;
   }
 
-  .scrollX {
-    overflow: scroll;
-    /* white-space: nowrap; */
-  }
 
   .scrollXAppointments {
     overflow: auto;

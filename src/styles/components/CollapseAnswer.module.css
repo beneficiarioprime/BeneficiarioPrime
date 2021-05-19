@@ -1,0 +1,24 @@
+.contentCollapse {
+    margin: 1em 0;
+}
+
+.contentCollapse>.answer {
+    color: #212529;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.contentCollapse > .answer > .icon {
+    color: #3174B4;
+    margin-right: 40px;
+    margin-left: 10px;
+    border-radius: 50%;
+    padding: 2px 8px;
+    border: solid 2px #3174B4;
+}
+
+.contentCollapse > .collapse > div {
+    border: none;
+    border-radius: 0;
+    margin-top: 10px;
+}

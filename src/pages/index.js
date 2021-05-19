@@ -20,9 +20,14 @@ import {
   faCheck,
   faTimes,
   faTimesCircle,
-  faCheckCircle
+  faCheckCircle,
+  faHeartbeat,
+  faUsers,
+  faDiagnoses
 } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../components/Footer';
+import AnimatedCounter from '../components/AnimatedCounter';
+import CollapseAnswer from '../components/CollapseAnswer';
 
 const ButtonOptions = props => {
   return (
@@ -38,7 +43,7 @@ const ButtonOptions = props => {
 
 const FormOptions = props => {
   return (
-    <div className={`form-floating mb-2 ${props.className}`}>
+    <div className={`form-floating mb-2 ${styles.formOptions} ${props.className}`}>
       <input autoComplete="off" autoCapitalize="none" list={props.list} type="text" className={`form-control`}
         placeholder={props.placeholder}
         id={props.for} />
@@ -86,25 +91,6 @@ const FaTimes = () => {
 export default function Home() {
 
   let [option, setOption] = useState('consulta')
-  let [count, setCount] = useState(0);
-
-  // let [consultas, setConsultas] = useState(0);
-  // let [beneficiarios, setBeneficiarios] = useState(0);
-  // let [especialidades, setEspecialidades] = useState(0);
-  // let [exames, setExames] = useState(0);
-  // let [atendimento, setAtendimento] = useState(0);
-
-  useEffect(() =>{
-    counter(0,75000)
-  },[])
-
-const counter = (minimum, maximum) => {
-  for(let count = minimum; count <= maximum; count++) {
-    setTimeout(() => {
-      setCount(count)
-    }, 1000)
-  }
-}
 
   return (
     <>
@@ -114,11 +100,11 @@ const counter = (minimum, maximum) => {
       <Navbar />
 
       <header className={styles.container}>
-        <div className={`container-fluid d-flex flex-row-reverse ${styles.containerFluid}`} style={{ height: "626px" }}>
+        <div className={`container-fluid flex-row-reverse ${styles.containerFluid} ${styles.displayFlexCard}`} style={{ height: "626px" }}>
           <div className={`${styles.imageBackground}`}>
             <Image src="/svg/undraw_doctors_hwty.svg" layout="fill" />
           </div>
-          <div className={`d-flex`}>
+          <div className={`${styles.containerCard}`}>
             <div className={`${styles.content} ${styles.contentCard}`}>
               <h1 className={`${styles.title} card-title`}>Tem sempre uma clínica perto de você!</h1>
               <h4>Agende agora mesmo sua consulta, exame, procedimento, ou vacina. São centenas de estabelecimentos credenciados.</h4>
@@ -509,27 +495,34 @@ const counter = (minimum, maximum) => {
         </div>
       </section>
       <div className={`${styles.container}`}>
-        <div className={`${styles.containerFluid} container-fluid pt-5 pb-5`} style={{ backgroundColor: "#37B6AB", color: "#FFFFFF" }}>
-          <div className="d-flex">
-            <div className="me-5">
-              <p>{count}</p>
-              <p></p>
-            </div>
-            <div className="me-5">
-              <p></p>
-              <p></p>
-            </div>
-            <div className="me-5">
-              <p></p>
-              <p></p>
-            </div>
-            <div className="me-5">
-              <p></p>
-              <p></p>
-            </div>
-            <div className="me-5">
-              <p></p>
-              <p></p>
+        <div className={`${styles.containerFluid} container-fluid pt-5 pb-5`} style={{ backgroundColor: "#3174B4", color: "#FFFFFF" }}>
+          <div className="d-flex justify-content-center">
+            <div>
+              <AnimatedCounter
+                number={2000}
+                icon={faCalendarAlt}
+                name="Consultas Agendadas"
+              />
+              <AnimatedCounter
+                number={3000}
+                icon={faHeartbeat}
+                name="Total de Beneficiários"
+              />
+              <AnimatedCounter
+                number={400}
+                icon={faUsers}
+                name="Especialidades"
+              />
+              <AnimatedCounter
+                number={560}
+                icon={faDiagnoses}
+                name="Exames Disponíveis"
+              />
+              <AnimatedCounter
+                number={13}
+                icon={faMapMarkerAlt}
+                name="Unidades de Atendimento"
+              />
             </div>
           </div>
         </div>
@@ -537,37 +530,58 @@ const counter = (minimum, maximum) => {
       <div className={`${styles.container}`}>
         <div className={`${styles.containerFluid} container-fluid`}>
           <h1 className="mt-5 mb-5">Últimas mídias:</h1>
-          <div className="d-flex justify-content-around mb-5">
-            <div className="card" style={{ width: "30rem" }}>
-              <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
-                  <a href="#">Saiba mais</a>
+          <div className="d-flex justify-content-center mb-5">
+            <div>
+              <div className="card ms-3 me-3 mb-3" style={{ maxWidth: "30rem", minWidth: "20rem", display: "inline-block" }}>
+                <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Card title</h5>
+                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
+                    <a href="#">Saiba mais</a>
+                  </div>
+                </div>
+              </div>
+              <div className="card ms-3 me-3 mb-3" style={{ maxWidth: "30rem", minWidth: "20rem", display: "inline-block" }}>
+                <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Card title</h5>
+                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
+                    <a href="#">Saiba mais</a>
+                  </div>
+                </div>
+              </div>
+              <div className="card ms-3 me-3 mb-3" style={{ maxWidth: "30rem", minWidth: "20rem", display: "inline-block" }}>
+                <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Card title</h5>
+                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
+                    <a href="#">Saiba mais</a>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="card" style={{ width: "30rem" }}>
-              <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
-                  <a href="#">Saiba mais</a>
-                </div>
-              </div>
-            </div>
-            <div className="card" style={{ width: "30rem" }}>
-              <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
-                  <a href="#">Saiba mais</a>
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`${styles.container}`}>
+        <div className={`${styles.containerFluid} ${styles.containerCollapse} container-fluid`}>
+          <div>
+            <h1>Perguntas e Respostas</h1>
+            <CollapseAnswer id="pergunta1"
+              answer="Do in officia qui laborum culpa aliqua consequat.">
+              <p>Peixe que anda, peixinho é</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta2"
+              answer="Do in officia qui laborum culpa aliqua consequat.">
+              <p>Peixe que anda, peixinho é</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta3"
+              answer="Do in officia qui laborum culpa aliqua consequat.">
+              <p>Peixe que anda, peixinho é</p>
+            </CollapseAnswer>
           </div>
         </div>
       </div>
