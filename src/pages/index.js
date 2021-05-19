@@ -83,10 +83,28 @@ const FaTimes = () => {
   )
 }
 
-
 export default function Home() {
 
   let [option, setOption] = useState('consulta')
+  let [count, setCount] = useState(0);
+
+  // let [consultas, setConsultas] = useState(0);
+  // let [beneficiarios, setBeneficiarios] = useState(0);
+  // let [especialidades, setEspecialidades] = useState(0);
+  // let [exames, setExames] = useState(0);
+  // let [atendimento, setAtendimento] = useState(0);
+
+  useEffect(() =>{
+    counter(0,75000)
+  },[])
+
+const counter = (minimum, maximum) => {
+  for(let count = minimum; count <= maximum; count++) {
+    setTimeout(() => {
+      setCount(count)
+    }, 1000)
+  }
+}
 
   return (
     <>
@@ -150,7 +168,7 @@ export default function Home() {
             <h4>Consultas presenciais, telemedicina, exames e procedimentos.</h4>
             <h3>Confira nossos planos:</h3>
             <div className={`${styles.content} ${styles.contentCardOffers} d-flex`}>
-              <CardOffers>
+              <CardOffers className={`${styles.cardDarkBlue}`}>
                 <span>PLANO</span>
                 <br />
                 <h1 className={`mb-2`}>ESSENCIAL</h1>
@@ -168,7 +186,7 @@ export default function Home() {
                   <Link href="#"><a>ASSINE AGORA</a></Link>
                 </div>
               </CardOffers>
-              <CardOffers className={`${styles.cardGray}`}>
+              <CardOffers className={`${styles.cardBlue}`}>
                 <span>PLANO</span>
                 <br />
                 <h1 className={`mb-2`}>PRIME</h1>
@@ -183,7 +201,7 @@ export default function Home() {
                   <li>3 Vidas - 12 X R$ 54,90</li>
                 </ul>
                 <p>Plano Família + R$9,00/mês por dependente adicional</p>
-                <div className={`${styles.btnPlan} ${styles.btnSecond} ${styles.btnSpotlight} d-flex flex-row-reverse`}>
+                <div className={`${styles.btnPlan} ${styles.btnSecond} d-flex flex-row-reverse`}>
                   <Link href="#"><a>ASSINE AGORA</a></Link>
                 </div>
               </CardOffers>
@@ -202,9 +220,9 @@ export default function Home() {
                   <li>2 Vidas - 12 X R$ 54,90</li>
                   <li>3 Vidas - 12 X R$ 66,90</li>
                 </ul>
-                <p>Plano Família + R$ 12,00/ mês por dependente adicional</p>
+                <p>Plano Família + R$ 12,00/mês por dependente adicional</p>
                 <div className="d-flex flex-row-reverse ">
-                  <div className={`${styles.btnPlan} ${styles.btnSpotlight} animate__animated animate__pulse animate__slow animate__infinite`}>
+                  <div style={{ marginTop: "24px" }} className={`${styles.btnPlan} ${styles.btnSpotlight} animate__animated animate__pulse animate__slow animate__infinite`}>
                     <Link href="#"><a className="">ASSINE AGORA</a></Link>
                   </div>
                 </div>
@@ -299,7 +317,7 @@ export default function Home() {
                   </ul>
                 </div>
               </div>
-              <div className={`text-center mb-5 ${styles.btnPlan}`}>
+              <div className={`text-center mb-5 ${styles.btnPlan} ${styles.btnGreen}`}>
                 <Link href="#"><a>ASSINE AGORA</a></Link>
               </div>
             </div>
@@ -366,10 +384,10 @@ export default function Home() {
                     <li>39,90</li>
                   </ul>
                 </div>
-                <ul className="">
-                  <li style={{fontSize: "14px", marginTop: "-60px"}}>Mais outras dezenas de especialidades por R$39,90</li>
+                <ul className={``}>
+                  <li style={{ fontSize: "14px", marginTop: "-38px!important" }}>Mais outras dezenas de especialidades por R$39,90</li>
                 </ul>
-                <div className={`${styles.btnPlan} d-flex justify-content-center`}>
+                <div className={`${styles.btnPlan} ${styles.btnGreen} d-flex justify-content-center`}>
                   <Link href="#"><a>VEJA MAIS</a></Link>
                 </div>
               </CardAppointments>
@@ -425,7 +443,7 @@ export default function Home() {
                     <li>190</li>
                   </ul>
                 </div>
-                <div className={`${styles.btnPlan} d-flex justify-content-center`}>
+                <div className={`${styles.btnPlan} ${styles.btnGreen} d-flex justify-content-center`}>
                   <Link href="#"><a>VEJA MAIS</a></Link>
                 </div>
               </CardAppointments>
@@ -481,15 +499,78 @@ export default function Home() {
                     <li>50</li>
                   </ul>
                 </div>
-                <div className={`${styles.btnPlan} d-flex justify-content-center`}>
+                <div className={`${styles.btnPlan} ${styles.btnGreen} d-flex justify-content-center`}>
                   <Link href="#"><a>VEJA MAIS</a></Link>
                 </div>
               </CardAppointments>
             </div>
-            <span style={{fontSize: "12px"}}>*Valores referenciais, com base na Tabela do Plano Especial de São Paulo em Janeiro de 2021. Consulte os laboratórios e clínicas participantes no ato da compra.</span>
+            <span style={{ fontSize: "12px" }}>*Valores referenciais, com base na Tabela do Plano Especial de São Paulo em Janeiro de 2021. Consulte os laboratórios e clínicas participantes no ato da compra.</span>
           </div>
         </div>
       </section>
+      <div className={`${styles.container}`}>
+        <div className={`${styles.containerFluid} container-fluid pt-5 pb-5`} style={{ backgroundColor: "#37B6AB", color: "#FFFFFF" }}>
+          <div className="d-flex">
+            <div className="me-5">
+              <p>{count}</p>
+              <p></p>
+            </div>
+            <div className="me-5">
+              <p></p>
+              <p></p>
+            </div>
+            <div className="me-5">
+              <p></p>
+              <p></p>
+            </div>
+            <div className="me-5">
+              <p></p>
+              <p></p>
+            </div>
+            <div className="me-5">
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`${styles.container}`}>
+        <div className={`${styles.containerFluid} container-fluid`}>
+          <h1 className="mt-5 mb-5">Últimas mídias:</h1>
+          <div className="d-flex justify-content-around mb-5">
+            <div className="card" style={{ width: "30rem" }}>
+              <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
+              <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
+                  <a href="#">Saiba mais</a>
+                </div>
+              </div>
+            </div>
+            <div className="card" style={{ width: "30rem" }}>
+              <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
+              <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
+                  <a href="#">Saiba mais</a>
+                </div>
+              </div>
+            </div>
+            <div className="card" style={{ width: "30rem" }}>
+              <img src="/img/home/imagem-teste.png" className="card-img-top" alt="..." />
+              <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div className={`${styles.btnGreen} ${styles.btnPlan} mt-4 mb-3`}>
+                  <a href="#">Saiba mais</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <Footer />
     </>
   )

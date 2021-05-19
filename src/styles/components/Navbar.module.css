@@ -14,13 +14,13 @@
   text-decoration: none;
   font-weight: 700;
   transition: 0.25s;
-  color: #37B6AB;
+  color: #3174B4;
 }
 
 
 .btnLogin:hover {
   transition: 0.25s;
-  color: #3174b4;
+  color: #37B6AB;
 }
 
 .btnRegister {
@@ -29,12 +29,12 @@
   font-weight: 500;
   color: #fff;
   border-radius: 25px;
-  background-color: #37B6AB;
+  background-color: #3174B4;
 }
 
 .btnRegister:hover {
   color: #FFF;
-  background-color: #3174b4;
+  background-color: #37B6AB;
 }
 
 .navLink {
@@ -44,7 +44,7 @@
 }
 
 .navLink:hover {
-  color: #37B6AB !important;
+  color: #3174B4 !important;
   background-color: rgba(46, 46, 46, 0.041);
   transition: 0.25s;
 }
