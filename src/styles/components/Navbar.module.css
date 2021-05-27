@@ -7,6 +7,7 @@
   padding: 0 !important;
   box-shadow: rgb(34 20 20 / 17%) 1px 1px 2px 1px;
   z-index: 2;
+  background-color: #FFFFFF;
 }
 
 .btnLogin {

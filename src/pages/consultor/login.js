@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import style from '../../styles/ConsultorLogin.module.css'
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
 const ConsultorLogin = () => {
 
@@ -12,6 +14,7 @@ const ConsultorLogin = () => {
             <Head>
                 <title>Área do Consultor - Beneficiário Prime</title>
             </Head>
+            <Navbar />
 
             <main className={`${style.container}`}>
                 <div className="container">
@@ -108,6 +111,7 @@ const ConsultorLogin = () => {
                     </div>
                 </div>
             </main>
+            <Footer />
         </>
     )
 }
