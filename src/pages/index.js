@@ -16,18 +16,17 @@ import {
   faMicroscope,
   faCrutch,
   faNotesMedical,
-  faArrowCircleRight,
-  faCheck,
-  faTimes,
   faTimesCircle,
   faCheckCircle,
   faHeartbeat,
   faUsers,
-  faDiagnoses
+  faDiagnoses,
+  faArrowCircleUp
 } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../components/Footer';
 import AnimatedCounter from '../components/AnimatedCounter';
 import CollapseAnswer from '../components/CollapseAnswer';
+import LoginModal from '../components/LoginModal';
 
 const ButtonOptions = props => {
   return (
@@ -90,14 +89,34 @@ const FaTimes = () => {
 
 export default function Home() {
 
-  let [option, setOption] = useState('consulta')
+  let [option, setOption] = useState('consulta');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [showScroll, setShowScroll] = useState(false)
+
+  const checkScrollTop = () => {
+    if (!showScroll && window.pageYOffset > 400){
+      setShowScroll(true)
+    } else if (showScroll && window.pageYOffset <= 400){
+      setShowScroll(false)
+    }
+  };
+
+  const scrollTop = () =>{
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+  
+  window.addEventListener('scroll', checkScrollTop)
 
   return (
     <>
       <Head>
         <title>Home - Beneficiário Prime</title>
       </Head>
-      <Navbar />
+      <Navbar onClick={() => setIsModalVisible(true)} />
+      {isModalVisible ? (
+        <LoginModal onClose={() => setIsModalVisible(false)}>
+        </LoginModal>
+      ) : null}
 
       <header className={styles.container}>
         <div className={`container-fluid flex-row-reverse ${styles.containerFluid} ${styles.displayFlexCard}`} style={{ height: "626px" }}>
@@ -308,7 +327,7 @@ export default function Home() {
               </div>
             </div>
             <div className={`${styles.imageBenefits}`}>
-              <Image src="/img/home/medicos-olhando.png" width={539} height={513} />
+              <Image src="/img/home/medicos-olhando.png" width={739} height={713} />
             </div>
           </div>
         </div>
@@ -322,8 +341,8 @@ export default function Home() {
               <CardAppointments>
                 <h3 className={`mb-2`}>CONSULTA MÉDICAS</h3>
                 <div className="d-flex justify-content-between">
-                  <ul className="pt-4">
-                    <li></li>
+                  <ul>
+                    <li className={`${styles.liEspaco}`}></li>
                     <li>Clínica Médica</li>
                     <li>Ginecologia</li>
                     <li>Pediatria</li>
@@ -340,6 +359,7 @@ export default function Home() {
 
                   <ul className="text-center">
                     <li>PARTICULAR</li>
+                    <li>R$</li>
                     <li>90</li>
                     <li>200</li>
                     <li>150</li>
@@ -356,6 +376,7 @@ export default function Home() {
 
                   <ul className="text-center">
                     <li>PELO PLANO</li>
+                    <li>R$</li>
                     <li>39,90</li>
                     <li>39,90</li>
                     <li>39,90</li>
@@ -380,8 +401,8 @@ export default function Home() {
               <CardAppointments>
                 <h3 className={`mb-2`}>EXAMES DIAGNÓSTICOS</h3>
                 <div className="d-flex justify-content-between">
-                  <ul className="pt-4">
-                    <li></li>
+                  <ul>
+                    <li className={`${styles.liEspaco}`}></li>
                     <li>Hemograma Completo</li>
                     <li>Colesterol</li>
                     <li>Glicose</li>
@@ -398,6 +419,7 @@ export default function Home() {
                   </ul>
                   <ul className="text-center">
                     <li>PARTICULAR</li>
+                    <li>R$</li>
                     <li>22</li>
                     <li>20</li>
                     <li>17</li>
@@ -414,6 +436,7 @@ export default function Home() {
                   </ul>
                   <ul className="text-center">
                     <li>PELO PLANO</li>
+                    <li>R$</li>
                     <li>6</li>
                     <li>5</li>
                     <li>6</li>
@@ -436,8 +459,8 @@ export default function Home() {
               <CardAppointments>
                 <h3 className={`mb-2`}>EXAMES DIAGNÓSTICOS</h3>
                 <div className="d-flex justify-content-between">
-                  <ul className="pt-4">
-                    <li></li>
+                  <ul>
+                    <li className={`${styles.liEspaco}`}></li>
                     <li>Vacina da Gripe</li>
                     <li>Vacina da Gripe</li>
                     <li>Vacina da Gripe</li>
@@ -454,6 +477,7 @@ export default function Home() {
                   </ul>
                   <ul className="text-center">
                     <li>PARTICULAR</li>
+                    <li>R$</li>
                     <li>100</li>
                     <li>100</li>
                     <li>100</li>
@@ -470,6 +494,7 @@ export default function Home() {
                   </ul>
                   <ul className="text-center">
                     <li>PELO PLANO</li>
+                    <li>R$</li>
                     <li>50</li>
                     <li>50</li>
                     <li>50</li>
@@ -585,6 +610,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div onClick={scrollTop} style={{display: showScroll ? 'flex' : 'none'}} className={`${styles.scrollTop}`}><FontAwesomeIcon icon={faArrowCircleUp} /></div>
       <Footer />
     </>
   )

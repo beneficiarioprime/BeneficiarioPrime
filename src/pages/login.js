@@ -14,11 +14,11 @@ const Login = () => {
                 <div className="container">
                     <div className={`row ${style.row}`}>
                         <div className="col-lg-12 col-xl-9 mx-auto">
-                            <div className={`card ${style.cardSignin} flex-row my-5`}>
+                            <div className={`card ${style.cardSignin} my-5`}>
                                 <div className={`${style.cardImgLeft} d-none justify-content-center d-md-flex`}>
                                     <div className={`pt-5 ps-3 pe-3 ${style.text}`}>
                                         <p>Bem vindo a</p>
-                                        <p>Área do Paciente</p>
+                                        <p>Área do Consultor</p>
                                     </div>
                                 </div>
                                 <div className="card-body">
@@ -30,6 +30,7 @@ const Login = () => {
                                             <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
                                             <label for="floatingInput">Email</label>
                                         </div>
+
 
                                         <div className="form-floating mb-3">
                                             <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />

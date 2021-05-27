@@ -3,7 +3,7 @@ import styles from '../styles/components/Navbar.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (<>
         <nav className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}>
             <div className={`container-fluid ${styles.container}`}>
@@ -14,7 +14,7 @@ const Navbar = () => {
                 <div className={`collapse navbar-collapse`} id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="me-3 ms-3 nav-item">
-                            <a className={`nav-link ${styles.navLink}`} aria-current="page" href="#">Seja um consultor</a>
+                            <Link href="/login"><a className={`nav-link ${styles.navLink}`} aria-current="page" href="#">Seja um consultor</a></Link>
                         </li>
                         <li className="me-3 ms-3 nav-item">
                             <a className={`nav-link ${styles.navLink}`} href="#">Credencie sua Clínica</a>
@@ -23,7 +23,7 @@ const Navbar = () => {
                             <a className={`nav-link ${styles.navLink}`} href="#">Planos para Empresas</a>
                         </li>
                     </ul>
-                    <Link href="/login"><a className={`me-5 ${styles.btnLogin}`} type="submit">Entrar</a></Link>
+                    <a onClick={props.onClick} className={`me-5 ${styles.btnLogin}`}>Entrar</a>
                     <a className={`btn ${styles.btnRegister}`} type="submit">Cadastre-se</a>
                 </div>
             </div>

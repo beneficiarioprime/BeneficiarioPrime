@@ -206,7 +206,7 @@
 }
 
 .title {
-  font-size: 40px;
+  font-size: 37px;
 }
 
 .buttonSend button {
@@ -232,6 +232,10 @@
   font-size: 14px;
 }
 
+.liEspaco {
+  padding-bottom: 69px!important;
+}
+
 .containerAppointments {
   background-color: #C0F0F4;
 }
@@ -247,7 +251,6 @@
 
 .bodyAppointment ul {
   font-size: 14px;
-  /* margin-right: 35px; */
 }
 
 .bodyAppointment ul li:first-child {
@@ -362,6 +365,26 @@
 
 .containerCollapse>div>h1 {
   margin-bottom: 1em;
+}
+
+.scrollTop {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.scrollTop svg {
+  font-size: 40px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  transition: .25s;
+  color: #3174b4;
+}
+
+.scrollTop svg:hover {
+  transition: .25s;
+  color: #1a5b97;
 }
 
 @media (max-width: 1500px) {
