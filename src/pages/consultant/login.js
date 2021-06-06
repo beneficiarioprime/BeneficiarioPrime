@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import style from '../../styles/ConsultorLogin.module.css'
+import style from '../../styles/ConsultantLogin.module.css'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 

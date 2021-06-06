@@ -1,0 +1,17 @@
+.body {
+    margin: auto;
+    width: auto;
+    height: 100vh;
+}
+
+.body > div {
+    max-width: 1000px;
+}
+
+.title {
+    font-size: 22px;
+}
+
+.floatingLabel {
+    max-width: 500px;
+}

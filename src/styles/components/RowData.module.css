@@ -1,0 +1,16 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu > div {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.menu > div:hover {
+    background-color:lavender;
+    border-radius: 25px;
+}
