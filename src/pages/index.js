@@ -27,6 +27,7 @@ import Footer from '../components/Footer';
 import AnimatedCounter from '../components/AnimatedCounter';
 import CollapseAnswer from '../components/CollapseAnswer';
 import LoginModal from '../components/LoginModal';
+import FormOptions from '../components/FormOptions';
 
 const ButtonOptions = props => {
   return (
@@ -37,19 +38,6 @@ const ButtonOptions = props => {
       onChange={props.onChange}
     >{props.children}
     </button>
-  )
-}
-
-const FormOptions = props => {
-  return (
-    <div className={`form-floating mb-2 ${styles.formOptions} ${props.className}`}>
-      <input autoComplete="off" autoCapitalize="none" list={props.list} type="text" className={`form-control`}
-        placeholder={props.placeholder}
-        id={props.for} />
-      <label
-        for={props.for}
-      >{props.children}</label>
-    </div>
   )
 }
 

@@ -7,6 +7,8 @@ import FloatingLabels from '../../components/FloatingLabels';
 import RowData from '../../components/RowData';
 import style from '../../styles/PersonalData.module.css';
 import Footer from '../../components/Footer';
+import Head from 'next/head';
+import Image from 'next/image';
 
 const data = {
     name: "Doas Urgouxei Zuygo",
@@ -29,6 +31,9 @@ const Wallet = () => {
 
     return (
         <>
+        <Head>
+            <title>Carteira - Beneficiário Prime</title>
+        </Head>
             <div className={`${style.body}`}>
                 <div className="container pt-5 mb-5">
                     <div className="card card-body mb-3">

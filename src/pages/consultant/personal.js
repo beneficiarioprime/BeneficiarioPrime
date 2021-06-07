@@ -3,6 +3,8 @@ import React from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowData from '../../components/RowData';
 import style from '../../styles/PersonalData.module.css';
+import Head from 'next/head';
+import Image from 'next/image';
 import {
     faFacebook,
     faInstagram,
@@ -19,7 +21,9 @@ const data = {
 const PersonalData = () => {
     return (
         <>
-
+            <Head>
+                <title>Dados pessoais - Beneficiário Prime</title>
+            </Head>
             <div className={`${style.body}`}>
                 <div className="container pt-5">
                     <div className="card card-body mb-3">

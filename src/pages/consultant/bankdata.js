@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowData from '../../components/RowData';
 import style from '../../styles/PersonalData.module.css';
+import Head from 'next/head';
+import Image from 'next/image';
 
 const data = {
   name: "Doas Urgouxei Zuygo",
@@ -18,6 +20,9 @@ const BankData = () => {
 
   return (
     <>
+    <Head>
+      <title>Dados bancários - Beneficiário Prime</title>
+    </Head>
       <div className={`${style.body}`}>
         <div className="container pt-5">
           <div className="card card-body mb-3">

@@ -5,14 +5,14 @@ import style from '../../styles/ConsultantLogin.module.css'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
-const ConsultantLogin = () => {
+const ClinicalLogin = () => {
 
     let [change, setChange] = useState('login')
 
     return (
         <>
             <Head>
-                <title>Área do Consultor - Beneficiário Prime</title>
+                <title>Área Clínica - Beneficiário Prime</title>
             </Head>
             <Navbar />
 
@@ -38,7 +38,7 @@ const ConsultantLogin = () => {
                                         <form className={`${style.formSignin}`}>
                                             <div className="form-floating mb-3">
                                                 <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                                <label for="floatingInput">Email ou CPF</label>
+                                                <label for="floatingInput">Email ou CNPJ</label>
                                             </div>
                                             <div className="form-floating mb-3">
                                                 <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
@@ -58,19 +58,19 @@ const ConsultantLogin = () => {
                                                 <div className="col-md-6">
                                                     <div className="form-floating mb-3">
                                                         <input name="name" type="text" className="form-control" id="floatingInput" placeholder="Nome" />
-                                                        <label for="floatingInput">Nome</label>
+                                                        <label for="floatingInput">Nome da Clínica</label>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-floating mb-3">
                                                         <input name="lastname" type="text" className="form-control" id="floatingInput" placeholder="Sobrenome" />
-                                                        <label for="floatingInput">Sobrenome</label>
+                                                        <label for="floatingInput">Nome do responsável</label>
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="form-floating mb-3">
                                                         <input name="cpf" type="text" className="form-control" id="floatingPassword" placeholder="CPF" />
-                                                        <label for="floatingPassword">CPF</label>
+                                                        <label for="floatingPassword">CNPJ</label>
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
@@ -117,4 +117,4 @@ const ConsultantLogin = () => {
     )
 }
 
-export default ConsultantLogin
+export default ClinicalLogin

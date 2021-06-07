@@ -15,3 +15,7 @@
 .floatingLabel {
     max-width: 500px;
 }
+
+.borderRight {
+    border-right: 1px solid #000;
+}
