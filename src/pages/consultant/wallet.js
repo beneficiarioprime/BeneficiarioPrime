@@ -17,13 +17,13 @@ const data = {
 }
 
 const sales = [
-    { id: "1", name: "Maria Aparecida", appointment: "Oftamologista", price: 150.00 },
-    { id: "2", name: "Maria Aparecida", appointment: "Oftamologista", price: 150.00 },
-    { id: "3", name: "Maria Aparecida", appointment: "Oftamologista", price: 150.00 },
-    { id: "4", name: "Maria Aparecida", appointment: "Oftamologista", price: 150.00 },
-    { id: "5", name: "Maria Aparecida", appointment: "Oftamologista", price: 150.00 },
-    { id: "6", name: "Maria Aparecida", appointment: "Oftamologista", price: 150.00 },
-    { id: "7", name: "Maria Aparecida", appointment: "Oftamologista", price: 150.00 }
+    { id: "1", name: "Maria Aparecida", date: "20/06/2021", price: 150.00 },
+    { id: "2", name: "Maria Aparecida", date: "20/06/2021", price: 150.00 },
+    { id: "3", name: "Maria Aparecida", date: "20/06/2021", price: 150.00 },
+    { id: "4", name: "Maria Aparecida", date: "20/06/2021", price: 150.00 },
+    { id: "5", name: "Maria Aparecida", date: "20/06/2021", price: 150.00 },
+    { id: "6", name: "Maria Aparecida", date: "20/06/2021", price: 150.00 },
+    { id: "7", name: "Maria Aparecida", date: "20/06/2021", price: 150.00 }
 ]
 
 const Wallet = () => {
@@ -57,7 +57,7 @@ const Wallet = () => {
                                 <button className="btn btn-primary me-3"><FontAwesomeIcon icon={faFacebook} /></button>
                                 <button className="btn btn-primary me-3"><FontAwesomeIcon icon={faInstagram} /></button>
                             </div>
-                            <Link href="/consultant/bankdata"><a className="btn btn-success">Tranferir para a conta bancária</a></Link>
+                            <Link href="/consultant/bankdata"><a className="btn btn-success">Solicitar Saque</a></Link>
                         </form>
                     </RowData>
                     <div className="card card-body mt-4">
@@ -67,8 +67,8 @@ const Wallet = () => {
                                     <tr>
                                         <th>#</th>
                                         <th>Paciente</th>
-                                        <th>Consulta</th>
-                                        <th>R$</th>
+                                        <th>Data</th>
+                                        <th>Valor de comissão</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,7 +76,7 @@ const Wallet = () => {
                                         <tr>
                                             <td>{sale.id}</td>
                                             <td>{sale.name}</td>
-                                            <td>{sale.appointment}</td>
+                                            <td>{sale.date}</td>
                                             <td>{sale.price.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</td>
                                         </tr>
                                     ))}

@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
-import RowDataClinical from '../../components/RowDataClinical';
-import style from '../../styles/PersonalData.module.css';
+import RowDataClinical from '../../components/RowDataAdmin';
+import style from '../../styles/AdminExams.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
 import {
@@ -31,7 +31,7 @@ const sales = [
     { exam: "Oftamologista", price: 15.00 }
 ]
 
-const ClinicalExams = () => {
+const AdminExams = () => {
     return (
         <>
             <Head>
@@ -48,13 +48,14 @@ const ClinicalExams = () => {
                         <form>
                             <h1 className="mb-5">Exames</h1>
                             <h6>Adicionar novo exame</h6>
-                            <FormOptions placeholder="Raio-x de Tórax" list="exams" for="estado">Selecione ou digite o exame</FormOptions>
-                            <datalist id="exams">
-                                <option>Exame 1</option>
-                                <option>Exame 2</option>
-                            </datalist>
+                            <FormOptions placeholder="Nome do exame">Nome do exame</FormOptions>
+                            <FormOptions placeholder="Sinônimo">Sinônimo</FormOptions>
+                            <div className="form-floating">
+                                <textarea className="form-control" placeholder="Descreva o exame" id="floatingTextarea2" style={{height: "100px"}}></textarea>
+                                <label for="floatingTextarea2">Descrição</label>
+                            </div>
                             <div className="row">
-                                <div className="col-6 col-md">
+                                {/* <div className="col-6 col-md">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Particular" placeholder="Preço Particular" />
                                 </div>
                                 <div className="col col-md">
@@ -65,7 +66,7 @@ const ClinicalExams = () => {
                                 </div>
                                 <div className="col col-md">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Plano 3" placeholder="Preço Plano 3" />
-                                </div>
+                                </div> */}
                             </div>
                             <div className="d-grid gap-2 mt-3">
                                 <button className="btn btn-primary" type="button">Adicionar</button>
@@ -76,18 +77,18 @@ const ClinicalExams = () => {
                                     <thead>
                                         <tr>
                                             <th>Exame</th>
-                                            <th>Preço</th>
+                                            <th>Sinônimo</th>
+                                            <th>Descrição</th>
                                             <th>Ação</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {sales.map(sale => (
                                             <tr>
-                                                <td>{sale.exam}</td>
-                                                <td>{sale.price.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</td>
-                                                <td><Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
+                                                <td>Hemorróida</td>
+                                                <td>Sangue</td>
+                                                <td>Alguma coisa</td>
+                                                <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link> <Link href="#"><a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></Link></td>
                                             </tr>
-                                        ))}
                                     </tbody>
                                 </table>
                             </div>
@@ -99,4 +100,4 @@ const ClinicalExams = () => {
     )
 }
 
-export default ClinicalExams
+export default AdminExams

@@ -22,7 +22,7 @@ const PersonalData = () => {
     return (
         <>
             <Head>
-                <title>Dados pessoais - Beneficiário Prime</title>
+                <title>Dados Pessoais - Beneficiário Prime</title>
             </Head>
             <div className={`${style.body}`}>
                 <div className="container pt-5">
@@ -36,7 +36,14 @@ const PersonalData = () => {
                             <h3 className="mb-5">Seus dados</h3>
                             <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Nome completo" defaultValue={data.name} />
                             <FloatingLabels className={`${style.floatingLabel}`} type="email" title="Email" disabled="disabled" defaultValue={data.email} />
-                            <FloatingLabels className={`${style.floatingLabel}`} type="text" title="CPF" disabled="disabled" defaultValue={data.cpf} />
+                            <div className="row">
+                                <div className="col col-md-4">
+                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="CPF" disabled="disabled" defaultValue={data.cpf} />
+                                </div>
+                                <div className="col col-md-4">
+                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Celular" disabled="disabled" defaultValue={data.cpf} />
+                                </div>
+                            </div>
                             <div className="mb-3">
                                 <label for="exampleFormControlInput1" className="form-label">Link de compartilhamento</label>
                                 <div className="d-flex">

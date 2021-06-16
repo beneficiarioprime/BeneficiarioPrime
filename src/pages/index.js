@@ -82,17 +82,17 @@ export default function Home() {
   const [showScroll, setShowScroll] = useState(false)
 
   const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400){
+    if (!showScroll && window.pageYOffset > 400) {
       setShowScroll(true)
-    } else if (showScroll && window.pageYOffset <= 400){
+    } else if (showScroll && window.pageYOffset <= 400) {
       setShowScroll(false)
     }
   };
 
-  const scrollTop = () =>{
-    window.scrollTo({top: 0, behavior: 'smooth'});
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-  
+
   window.addEventListener('scroll', checkScrollTop)
 
   return (
@@ -107,7 +107,7 @@ export default function Home() {
       ) : null}
 
       <header className={styles.container}>
-        <div className={`container-fluid flex-row-reverse ${styles.containerFluid} ${styles.displayFlexCard}`} style={{ height: "626px" }}>
+        <div className={`container-fluid flex-row-reverse ${styles.containerFluid} ${styles.displayFlexCard}`} style={{ maxHeight: "700px" }}>
           <div className={`${styles.imageBackground}`}>
             <Image src="/svg/undraw_doctors_hwty.svg" layout="fill" />
           </div>
@@ -121,8 +121,8 @@ export default function Home() {
                     <ButtonOptions onClick={() => setOption('consulta')}><span><FontAwesomeIcon icon={faStethoscope} /></span> Consultas Presenciais</ButtonOptions>
                     <ButtonOptions onClick={() => setOption('telemedicina')}><span><FontAwesomeIcon icon={faVideo} /></span> Telemedicina</ButtonOptions>
                     <ButtonOptions onClick={() => setOption('exames')}><span><FontAwesomeIcon icon={faMicroscope} /></span> Exames</ButtonOptions>
-                    <ButtonOptions onClick={() => setOption('vacinas')}><span><FontAwesomeIcon icon={faCrutch} /></span> Vacinas</ButtonOptions>
-                    <ButtonOptions onClick={() => setOption('procedimentos')}><span><FontAwesomeIcon icon={faNotesMedical} /></span> Procedimentos</ButtonOptions>
+                    <ButtonOptions className="d-none" onClick={() => setOption('vacinas')}><span><FontAwesomeIcon icon={faCrutch} /></span> Vacinas</ButtonOptions>
+                    <ButtonOptions className="d-none" onClick={() => setOption('procedimentos')}><span><FontAwesomeIcon icon={faNotesMedical} /></span> Procedimentos</ButtonOptions>
                   </div>
                   {option == 'telemedicina' ? (
                     <>
@@ -327,7 +327,7 @@ export default function Home() {
             <h4>Menor preço garantido em consultas, exames, vacinas e procedimentos, confira!</h4>
             <div className={`${styles.content} ${styles.contentAppointments} ${styles.scrollXAppointments} d-flex`}>
               <CardAppointments>
-                <h3 className={`mb-2`}>CONSULTA MÉDICAS</h3>
+                <h3 className={`mb-2 text-center`}>CONSULTA MÉDICAS</h3>
                 <div className="d-flex justify-content-between">
                   <ul>
                     <li className={`${styles.liEspaco}`}></li>
@@ -387,7 +387,7 @@ export default function Home() {
                 </div>
               </CardAppointments>
               <CardAppointments>
-                <h3 className={`mb-2`}>EXAMES DIAGNÓSTICOS</h3>
+                <h3 className={`mb-2 text-center`}>EXAMES DIAGNÓSTICOS</h3>
                 <div className="d-flex justify-content-between">
                   <ul>
                     <li className={`${styles.liEspaco}`}></li>
@@ -444,8 +444,8 @@ export default function Home() {
                   <Link href="#"><a>VEJA MAIS</a></Link>
                 </div>
               </CardAppointments>
-              <CardAppointments>
-                <h3 className={`mb-2`}>EXAMES DIAGNÓSTICOS</h3>
+              <CardAppointments className="d-none">
+                <h3 className={`mb-2 text-center`}>EXAMES DIAGNÓSTICOS</h3>
                 <div className="d-flex justify-content-between">
                   <ul>
                     <li className={`${styles.liEspaco}`}></li>
@@ -584,22 +584,63 @@ export default function Home() {
           <div>
             <h1>Perguntas e Respostas</h1>
             <CollapseAnswer id="pergunta1"
-              answer="Do in officia qui laborum culpa aliqua consequat.">
-              <p>Peixe que anda, peixinho é</p>
+              answer="Por que devo ser um Beneficiário Prime?">
+              <p>Como Beneficiário, você terá acesso à medicina de qualidade em ótimas clínicas e laboratórios e hospitais por um preço que irá adorar pagar.<br />
+                Você pode fazer um plano só para você ou incluir toda família, pois os planos são bem em conta e o melhor funciona!</p>
             </CollapseAnswer>
             <CollapseAnswer id="pergunta2"
-              answer="Do in officia qui laborum culpa aliqua consequat.">
-              <p>Peixe que anda, peixinho é</p>
+              answer="Quanto pagarei nas consultas? E tem direito a retorno?">
+              <p>O valor é sempre fixo, conforme o plano escolhido, independente da especialidade médica, que deseja passar. Escolha um dos planos disponíveis Essencial, Prime ou Especial.<br />
+                Você ainda tem direito a retorno gratuito nas especialidades Médicas CRM em até 30 dias.
+                E se marcar consulta online, você pode retornar de forma presencial, com mesmo especialista.
+                Somente não há previsão de retorno nas especialidades de tratamento contínuo, que são obstetrícia e psiquiatria.
+              </p>
             </CollapseAnswer>
             <CollapseAnswer id="pergunta3"
-              answer="Do in officia qui laborum culpa aliqua consequat.">
-              <p>Peixe que anda, peixinho é</p>
+              answer="Demora muito para conseguir agendar uma consulta?">
+              <p>Não! Você consegue agendar até para o mesmo dia, desde haja disponibilidade na agenda do médico.</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta4"
+              answer="Como funciona no caso dos exames?">
+              <p>Você terá acesso a ótimos laboratórios espalhados pelo Brasil, podendo escolher aquele que melhor lhe atender. Quanto melhor o plano escolhido menor será o preço dos exames.</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta5"
+              answer="E se eu precisar de uma cirurgia?">
+              <p>Também terá suporte a mais de 30 tipos de cirurgias, em excelentes hospitais, podendo até parcelar o pagamento. Além das cirurgias, você tem acesso às centenas de procedimentos realizados em ambiente clínico.</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta6"
+              answer="Vacinas têm?">
+              <p>Sim, você também terá acesso às dezenas de clínicas de vacinas espalhadas em todo Brasil. E nós negociamos para que você pague um preço justo por elas. E claro, quanto melhor o plano escolhido, menor o preço cobrado.</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta7"
+              answer="E medicina Estética ou Terapêutica, têm?">
+              <p>Tem sim! Botox, harmonização facial, escleroterapia (secagem dos vasinhos)* e outros.<br />
+                Também tem terapia para tratar da saúde mental e física, tais como tratamento de dores ou emagrecimento, condicionamento físico.</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta8"
+              answer="Vocês são convênio? Qual é a diferença?">
+              <p>Não somos convênio e não cobrimos pronto socorro.<br />
+                Mas você sabia que em 98% dos casos, seu problema de saúde é resolvido a nível clínico?
+                Mesmo os exames mais complexos, conosco você pagará mais barato!</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta9"
+              answer="E quais as vantagens então?">
+              <p>A primeira grande vantagem é que seu plano não aumenta conforme a idade.<br />
+                A segunda vantagem, é que você será atendida por excelentes médicos, pagando bem menos do que um convênio cobra todo mês. <br />
+                Nós negociamos todos os preços para que você consiga realizar todo seu tratamento médico, com toda dignidade que merece.<br />
+                E mais uma coisa! Você nunca terá que se aborrecer para agendar uma consulta ou exame.</p>
+            </CollapseAnswer>
+            <CollapseAnswer id="pergunta10"
+              answer="E se eu quiser cancelar, pago multa?">
+              <p>Não, você pode cancelar quando quiser! Nossos Beneficiários estão conosco pois estão contentes com o serviço oferecido, não por que obrigamos. Com você não será diferente!</p>
             </CollapseAnswer>
           </div>
         </div>
       </div>
-      <div onClick={scrollTop} style={{display: showScroll ? 'flex' : 'none'}} className={`${styles.scrollTop}`}><FontAwesomeIcon icon={faArrowCircleUp} /></div>
+      <div onClick={scrollTop} style={{ display: showScroll ? 'flex' : 'none' }} className={`${styles.scrollTop}`}><FontAwesomeIcon icon={faArrowCircleUp} /></div>
       <Footer />
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     </>
   )
 }

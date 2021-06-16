@@ -1,7 +1,7 @@
 .modal {
     width: 100%;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
@@ -13,8 +13,7 @@
 
 .container {
     background-color: #FFFFFF;
-    max-width: 700px;
-    color: #cbcbcb;
+    max-width: 800px;
     border-radius: 16px;
 }
 
@@ -54,4 +53,31 @@
 
 .buttonClose::after {
     transform: rotate(-45deg);
+}
+
+.btnLogin > button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 25px;
+}
+
+.btnFacebook > button {
+    background-color: #2D88FF;
+    border: #2D88FF 1px solid;
+}
+
+.btnGoogle > button {
+    background-color: #F8FAFF;
+    color: #000000;
+    border: gray 1px solid;
+}
+
+.btnGoogle > button > svg {
+    color: red;
+}
+
+.btnGoogle > button:hover {
+    background-color: #F8FAFF;
+    border: gray 1px solid;
+    color: #000000;
 }

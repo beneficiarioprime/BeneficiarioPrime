@@ -5,11 +5,6 @@ import RowDataClinical from '../../../components/RowDataClinical';
 import style from '../../../styles/PersonalData.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
-import {
-    faFacebook,
-    faInstagram,
-    faWhatsapp
-} from '@fortawesome/free-brands-svg-icons';
 import { faPencilAlt, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const data = {
@@ -52,25 +47,39 @@ const NewDoctor = () => {
                                 <div className="col-12 col-md-6">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Especialidade" placeholder="especialidade" />
                                 </div>
-                                <div className="col-4">
+                                <div className="col-7 col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Orgão de classe" placeholder="orgão" />
                                 </div>
-                                <div className="col-4">
+                                <div className="col-5 col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="N° CRM" placeholder="crm" />
                                 </div>
-                                <div className="col-4">
+                                <div className="col col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Estado" placeholder="Estado" />
                                 </div>
                             </div>
 
                             <h5 className="mt-3 mb-4">Horários de atendimento</h5>
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="pix" />
-                                <label class="form-check-label" for="pix">Atendimento Infantil</label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="pix" />
-                                <label class="form-check-label" for="pix">Atendimento Adultos</label>
+                            <div className="row mb-4">
+                                <div className="col-12 col-md">
+                                    <div className="form-check mb-3">
+                                        <input className="form-check-input" type="checkbox" value="" id="childish" />
+                                        <label className="form-check-label" for="childish">Atendimento Infantil</label>
+                                    </div>
+                                    <div className="form-check mb-3">
+                                        <input className="form-check-input" type="checkbox" value="" id="adults" />
+                                        <label className="form-check-label" for="adults">Atendimento Adultos</label>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="form-check mb-3">
+                                        <input className="form-check-input" type="checkbox" value="" id="telemedicin" />
+                                        <label className="form-check-label" for="telemedicin">Atendimento Telemedicina</label>
+                                    </div>
+                                    <div className="form-check mb-3">
+                                        <input className="form-check-input" type="checkbox" value="" id="domicile" />
+                                        <label className="form-check-label" for="domicile">Atendimento Domiciliar</label>
+                                    </div>
+                                </div>
                             </div>
                             <div className="row">
                                 <div className="col-3">
