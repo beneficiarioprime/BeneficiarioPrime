@@ -1,0 +1,138 @@
+.body {
+    margin: auto;
+    width: auto;
+    height: 100vh;
+}
+
+.body>div {
+    max-width: 1000px;
+}
+
+.title {
+    font-size: 22px;
+}
+
+.floatingLabel {
+    max-width: 500px;
+}
+
+.borderRight {
+    border-right: 1px solid #000;
+}
+
+.container {
+    width: 100%;
+    position: relative;
+    min-height: fit-content;
+    display: flex;
+}
+
+.container h4 {
+    font-weight: 400;
+}
+
+.containerFluid {
+    padding: 0 140px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #f4f4f4;
+}
+
+.content {
+    margin: 80px 0;
+}
+
+.content > a {
+    text-decoration: none;
+}
+
+.content > a:hover {
+    background-color: rgba(255, 255, 255, 0.507);
+}
+
+.containerCardOffers>h1 {
+    color: #3174B4;
+}
+
+.containerCardOffers h3 {
+    color: #3174B4;
+    margin-top: 3em;
+    text-align: center;
+}
+
+.cardDarkBlue {
+    background-color: #435BA1;
+    color: #FFFFFF;
+}
+
+.contentCardOffers {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    -webkit-box-pack: justify;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2.4rem;
+    margin: 50px 0;
+}
+
+.contentCardOffers {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    -webkit-box-pack: justify;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2.4rem;
+    margin: 50px 0;
+}
+
+.cardBlue {
+    background: linear-gradient(131deg, #4F6DCD, #435BA1);
+    color: #FFFFFF;
+}
+
+.cardGreen {
+    background: linear-gradient(131deg, #37B6AB, #00f1dd);
+    color: #FFFFFF;
+}
+
+.content .card {
+    border-radius: 10px !important;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 15%);
+}
+
+.cardOffers {
+    border-radius: 30px;
+    padding: 20px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 15%);
+}
+
+.cardOffers ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2.5em;
+}
+
+.btnPlan {
+    transform-origin: center center !important;
+}
+
+.btnPlan a {
+    padding: 12px 20px;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    color: #262626;
+    font-weight: 500;
+    border-radius: 25px;
+    transition: .25s;
+}
+
+.btnFirst {
+    margin-top: 112px;
+}
+
+.btnSecond {
+    margin-top: 64px;
+}
