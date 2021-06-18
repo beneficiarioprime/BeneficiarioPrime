@@ -2,14 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataClinical from '../../components/RowDataAdmin';
-import style from '../../styles/AdminPatients.module.css';
+import style from '../../styles/AdminAppointments.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
-import {
-    faFacebook,
-    faInstagram,
-    faWhatsapp
-} from '@fortawesome/free-brands-svg-icons';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import FormOptions from '../../components/FormOptions';
@@ -35,7 +30,7 @@ const AdminAppointments = () => {
     return (
         <>
             <Head>
-                <title>Pacientes - Beneficiário Prime</title>
+                <title>Consultas - Beneficiário Prime</title>
             </Head>
             <div className={`${style.body}`}>
                 <div className="container pt-5 mb-5">
@@ -46,14 +41,13 @@ const AdminAppointments = () => {
                     </div>
                     <RowDataClinical>
                         <form>
-                            <h1 className="mb-5">Pacientes</h1>
-                            {/* <h6>Adicionar novo</h6>
-                            <FormOptions placeholder="Nome do exame">Nome da vacina</FormOptions>
-                            <FormOptions placeholder="Sinônimo">Sinônimo</FormOptions>
+                            <h1 className="mb-5">Consultas</h1>
+                            <h6>Adicionar novo</h6>
+                            <FormOptions placeholder="Nome do exame">Nome da consulta</FormOptions>
                             <div className="form-floating">
-                                <textarea className="form-control" placeholder="Descreva o exame" id="floatingTextarea2" style={{height: "100px"}}></textarea>
+                                <textarea className="form-control" placeholder="Descreva a consulta" id="floatingTextarea2" style={{height: "100px"}}></textarea>
                                 <label for="floatingTextarea2">Descrição</label>
-                            </div> */}
+                            </div>
                             <div className="row">
                                 {/* <div className="col-6 col-md">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Particular" placeholder="Preço Particular" />
@@ -77,14 +71,15 @@ const AdminAppointments = () => {
                                     <thead>
                                         <tr>
                                             <th>Consulta</th>
-                                            <th>Ativo</th>
+                                            <th>Descrição</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                             <tr>
                                                 <td>Psicologia</td>
-                                                <td>Ativo</td>
-                                                <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
+                                                <td>Algo de psicologia</td>
+                                                <td><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a> <a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></td>
                                             </tr>
                                     </tbody>
                                 </table>
