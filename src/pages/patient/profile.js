@@ -122,7 +122,7 @@ const PatientProfile = () => {
                             </div>
                             <div className="row">
                                 <div className="col-12 col-md-3">
-                                    <FloatingLabels id="cep" type="text" title="CEP" placeholder="CEP" />
+                                    <FloatingLabels id="cep" type="text" maxlength="9" title="CEP" placeholder="CEP" />
                                 </div>
                                 <div className="col-12 col-md-7">
                                     <FloatingLabels id="logradouro" type="text" title="Endereço" placeholder="Endereço" />

@@ -1,6 +1,8 @@
 import React from 'react';
 import style from '../styles/components/RowData.module.css';
 import Link from 'next/link';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const RowData = (props) => {
     return (
@@ -19,6 +21,16 @@ const RowData = (props) => {
                         <div className="card-body">
                             {props.children}
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className="mt-5 pb-5 d-flex justify-content-center">
+                <div>
+                    <div>
+                        Algo de errado? Fale conosco.
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <a className="btn btn-primary btn-lg"><FontAwesomeIcon icon={faWhatsapp} /></a>
                     </div>
                 </div>
             </div>
