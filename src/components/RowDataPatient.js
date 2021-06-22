@@ -2,15 +2,16 @@ import React from 'react';
 import style from '../styles/components/RowData.module.css';
 import Link from 'next/link';
 
-const RowData = (props) => {
+const RowDataPatient = (props) => {
     return (
         <>
             <div className="row">
                 <div className="col-md-3">
                     <div className={style.menu}>
-                        <Link href="/consultant/personal"><div className={`p-3`}>Dados Pessoais</div></Link>
-                        <Link href="/consultant/bankdata"><div className={`p-3`}>Dados Bancários</div></Link>
-                        <Link href="/consultant/wallet"><div className={`p-3`}>Carteira</div></Link>
+                        <Link href="/patient/profile"><div className={`p-3`}>Perfil</div></Link>
+                        <Link href="/patient/#"><div className={`p-3`}>2ª Via</div></Link>
+                        <Link href="/patient/yourplan"><div className={`p-3`}>Seu plano</div></Link>
+                        <Link href="/patient/schedules"><div className={`p-3`}>Agendamentos</div></Link>
                         <div className={`p-3`}>Sair</div>
                     </div>
                 </div>
@@ -26,4 +27,4 @@ const RowData = (props) => {
     )
 }
 
-export default RowData
+export default RowDataPatient

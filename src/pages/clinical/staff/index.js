@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import FloatingLabels from '../../../components/FloatingLabels';
 import RowDataClinical from '../../../components/RowDataClinical';
-import style from '../../styles/PersonalData.module.css';
+import style from '../../../styles/PersonalData.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
 import {
@@ -47,7 +47,7 @@ const ClinicalStaff = () => {
                         <form>
                             <h1 className="mb-5">Corpo Clínico</h1>
                             <div className="d-grid gap-2">
-                                <button className="btn btn-primary mb-5" type="button">Adicionar</button>
+                                <Link href="/clinical/staff/new"><a className="btn btn-primary mb-5" type="button">Adicionar</a></Link>
                             </div>
                             <input className="form-control mt-5" type="text" placeholder="Pesquise pelo nome, especialidade ou nº de CRM do profissional" />
                             <div className="table-responsive">

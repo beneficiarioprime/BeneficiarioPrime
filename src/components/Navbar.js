@@ -13,9 +13,9 @@ const Navbar = (props) => {
                 </button>
                 <div className={`collapse navbar-collapse`} id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="me-3 ms-3 nav-item">
+                        {/* <li className="me-3 ms-3 nav-item">
                             <Link href="/consultant/login"><a className={`nav-link ${styles.navLink}`} aria-current="page">Seja um consultor</a></Link>
-                        </li>
+                        </li> */}
                         <li className="me-3 ms-3 nav-item">
                             <Link href="/clinical/login"><a className={`nav-link ${styles.navLink}`} href="#">Área do Prestador</a></Link>
                         </li>

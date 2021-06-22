@@ -12,7 +12,7 @@ const ClinicalLogin = () => {
     return (
         <>
             <Head>
-                <title>Área Clínica - Beneficiário Prime</title>
+                <title>Área do Prestador - Beneficiário Prime</title>
             </Head>
             <Navbar />
 
@@ -25,7 +25,7 @@ const ClinicalLogin = () => {
                                     <div className={`d-flex justify-content-center ${style.logo}`}>
                                         <img src="/img/logos/logo-grande.png" style={{ maxWidth: "100%" }} />
                                     </div>
-                                    <h1 className="text-center mb-5">Área Clínica</h1>
+                                    <h1 className="text-center mb-5">Área do Prestador</h1>
                                     <div className={`${style.row} row mb-5`}>
                                         <div className="col-lg-6 text-center">
                                             <button onClick={() => { setChange('login') }}>Login</button>

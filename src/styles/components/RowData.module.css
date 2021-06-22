@@ -14,3 +14,16 @@
     background-color:lavender;
     border-radius: 25px;
 }
+
+.menu > div:last-child {
+    color: red;
+    transition: .25s;
+    border-radius: 25px;
+}
+
+.menu > div:last-child:hover {
+    background-color:red;
+    border-radius: 25px;
+    color: white;
+    transition: .25s;
+}

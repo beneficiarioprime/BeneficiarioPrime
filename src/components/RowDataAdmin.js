@@ -15,6 +15,7 @@ const RowData = (props) => {
                         <Link href="/admin/patients"><div className={`p-3`}>Pacientes</div></Link>
                         <Link href="/admin/appointment"><div className={`p-3`}>Consultas</div></Link>
                         <Link href="/admin/consultant"><div className={`p-3`}>Consultores</div></Link>
+                        <div className={`p-3`}>Sair</div>
                     </div>
                 </div>
                 <div className="col-md-9">

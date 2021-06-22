@@ -12,8 +12,9 @@ const RowDataClinical = (props) => {
                         <Link href="/clinical/staff"><div className={`p-3`}>Corpo Clínico</div></Link>
                         <Link href="/clinical/exams"><div className={`p-3`}>Exames</div></Link>
                         <Link href="/clinical/vaccines"><div className={`p-3 d-none`}>Vacinas</div></Link>
-                        <Link href="/clinical/users"><div className={`p-3`}>Usuários</div></Link>
+                        {/* <Link href="/clinical/users"><div className={`p-3`}>Usuários</div></Link> */}
                         <Link href="/clinical/validation"><div className={`p-3`}>Validação</div></Link>
+                        <div className={`p-3`}>Sair</div>
                     </div>
                 </div>
                 <div className="col-md-9">

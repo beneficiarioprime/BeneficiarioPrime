@@ -311,7 +311,7 @@ export default function Home() {
                 </div>
               </div>
               <div className={`text-center mb-5 ${styles.btnPlan} ${styles.btnGreen}`}>
-                <Link href="#"><a>ASSINE AGORA</a></Link>
+                <Link href="/patient/plans"><a>ASSINE AGORA</a></Link>
               </div>
             </div>
             <div className={`${styles.imageBenefits}`}>
