@@ -28,6 +28,11 @@ const data = {
 const PatientProfile = () => {
 
     const [password, setPassword] = useState(false);
+    const [dataCEP, setDataCEP] = useState({
+        cep: '',
+        bairro: '',
+        
+    })
 
     const getInformacoes = (e) => {
         const { value } = e.target;

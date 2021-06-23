@@ -2,55 +2,46 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <footer class="bg-white">
-            <div class="container py-5">
-                <div class="row py-4">
-                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3" />
-                        <ul class="list-inline mt-4">
-                            <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
-                            <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+        <footer className="bg-white">
+            <div className="container py-5">
+                <div className="row py-4">
+                    <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <img src="/img/logos/logo-teste.png" alt="" width="180" className="mb-3" />
+                        <ul className="list-unstyled mb-0 text-muted">
+                            <li className="mb-2">Av. Paes de barros, 2448 - São Paulo - SP</li>
+                            <li className="">(11) 96733-9999</li>
+                            <li className="mb-2">(11) 4659-0040</li>
+                            <li className="mb-2">sac@beneficiarioprime.com.br</li>
                         </ul>
                     </div>
-                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                        <h6 class="text-uppercase font-weight-bold mb-4">Shop</h6>
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><a href="#" class="text-muted">Sobre o Beneficiário Prime</a></li>
-                            <li class="mb-2"><a href="#" class="text-muted">Seja um representante</a></li>
-                            <li class="mb-2"><a href="#" class="text-muted">Área do Prestador</a></li>
-                            <li class="mb-2"><a href="#" class="text-muted">Área do Paciente</a></li>
+                    <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <h6 className="text-uppercase font-weight-bold mb-4">Beneficiários</h6>
+                        <ul className="list-unstyled mb-0">
+                            <li className="mb-2"><a href="#" className="text-muted">Contrate Agora</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Como Funciona</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Mapa de Atendimento</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Painel Administrativo</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Termos de Uso e Política de Privacidade</a></li>
                         </ul>
                     </div>
-                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                        <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><a href="#" class="text-muted">Login</a></li>
-                            <li class="mb-2"><a href="#" class="text-muted">Register</a></li>
-                            <li class="mb-2"><a href="#" class="text-muted">Wishlist</a></li>
-                            <li class="mb-2"><a href="#" class="text-muted">Our Products</a></li>
+                    <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <h6 className="text-uppercase font-weight-bold mb-4">Prestadores</h6>
+                        <ul className="list-unstyled mb-0">
+                            <li className="mb-2"><a href="#" className="text-muted">Credencie seu Estabelecimento de Saúde</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Painel do Prestador</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Sistema Autorizador</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Contato</a></li>
                         </ul>
                     </div>
-                    <div class="col-lg-4 col-md-6 mb-lg-0">
-                        <h6 class="text-uppercase font-weight-bold mb-4">Newsletter</h6>
-                        <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At itaque temporibus.</p>
-                        <div class="p-1 rounded border">
-                            <div class="input-group">
-                                <input type="email" placeholder="Enter your email address" aria-describedby="button-addon1" class="form-control border-0 shadow-0" />
-                                <div class="input-group-append">
-                                    <button id="button-addon1" type="submit" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="col-lg-3 col-md-6 mb-lg-0">
+                        <h6 className="text-uppercase font-weight-bold mb-4">Consultores</h6>
+                        <ul className="list-unstyled mb-0">
+                            <li className="mb-2"><a href="#" className="text-muted">Seja um Consultor</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Painel do Consultor</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Material de Apoio e Marketing</a></li>
+                            <li className="mb-2"><a href="#" className="text-muted">Treinamento</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-
-            {/* Copyright */}
-            <div class="bg-light py-4">
-                <div class="container text-center">
-                    <p class="text-muted mb-0 py-2">© 2019 Bootstrapious All rights reserved.</p>
                 </div>
             </div>
         </footer>

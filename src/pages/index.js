@@ -28,6 +28,8 @@ import AnimatedCounter from '../components/AnimatedCounter';
 import CollapseAnswer from '../components/CollapseAnswer';
 import LoginModal from '../components/LoginModal';
 import FormOptions from '../components/FormOptions';
+import CardResult from '../components/CardResult';
+import Loading from '../components/Loading';
 
 const ButtonOptions = props => {
   return (
@@ -79,7 +81,8 @@ export default function Home() {
 
   let [option, setOption] = useState('consulta');
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [showScroll, setShowScroll] = useState(false)
+  const [showScroll, setShowScroll] = useState(false);
+  const [showCardResult, setShowCardResult] = useState(false);
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 400) {
@@ -142,7 +145,7 @@ export default function Home() {
                       <div className={`${styles.cardBtnCenter}`}>
                         <FormOptions placeholder="Jardim" className="flex-grow-1" for="cidade">Escolha o bairro</FormOptions>
                         <div className={`d-flex align-items-center ${styles.buttonSend}`}>
-                          <button className={`ms-3`}>Buscar</button>
+                          <button className={`ms-3`} onClick={() => setShowCardResult(true)}>Buscar</button>
                         </div>
                       </div>
                     </>
@@ -153,6 +156,16 @@ export default function Home() {
           </div>
         </div>
       </header>
+      <section className={`${styles.container}`}>
+        <div className={`${styles.containerFluid} container-fluid`}>
+          {showCardResult && (
+            <CardResult
+              title="Exame tal tal"
+              description="Deserunt adipisicing laborum amet tempor sint eu ut dolor."
+            />
+          )}
+        </div>
+      </section>
       <section className={styles.container}>
         <div className={`${styles.containerFluid} container-fluid`}>
           <div className={`${styles.containerCardOffers}`}>
