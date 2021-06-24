@@ -1,37 +1,36 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataPatient from '../../components/RowDataPatient';
 import style from '../../styles/AdminProfile.module.css';
-import axios from 'axios';
-import $ from 'jquery'
 import Head from 'next/head';
-import Image from 'next/image';
-import {
-    faFacebook,
-    faInstagram,
-    faWhatsapp
-} from '@fortawesome/free-brands-svg-icons';
+import { parseCookies } from "nookies";
+import { userProfile } from '../../service/apiConnect'
 
-const data = {
-    name: "Doas Urgouxei Zuygo",
-    cpf: "816.305.150-78",
-    email: "email@email.com",
-    link: "algumlink.com",
-    gender: "Masculino",
-    phone: "11987562145",
-    date: "1999-02-08"
+export const getServerSideProps = async (ctx) => {
+    const redirect = {
+        redirect: {
+            destination: '/',
+            permanent: false,
+        }
+    }
+    try {
+        const { ['PROFILE']: profile } = parseCookies(ctx)
+        if (!profile) return redirect
+        const data = await userProfile(ctx, profile)
+        return {
+            props: { data }
+        }
+    } catch (error) {
+        return redirect
+    }
 }
 
-
-
-const PatientProfile = () => {
-
+const PatientProfile = ({ data }) => {
     const [password, setPassword] = useState(false);
     const [dataCEP, setDataCEP] = useState({
         cep: '',
         bairro: '',
-        
+
     })
 
     const getInformacoes = (e) => {
@@ -39,11 +38,11 @@ const PatientProfile = () => {
 
         const cep = value?.replace(/[^0-9]/g, '');
 
-        if(cep?.length !== 8) {
+        if (cep?.length !== 8) {
             return;
         }
 
-        fetch(`http://viacep.com.br/ws/${cep}/json/`)
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
             .then(res => res.json())
             .then((data) => console.log(data));
     }
@@ -144,7 +143,7 @@ const PatientProfile = () => {
                         </div>
                         <div className="row">
                             <div className="col-12 col-md-3">
-                                <FloatingLabels name="cep" id="cep" onBlur={getInformacoes} type="text" maxlength="8" title="CEP" placeholder="CEP" />
+                                <FloatingLabels name="cep" id="cep" onBlur={getInformacoes} type="text" title="CEP" maxlength="9" placeholder="CEP" />
                             </div>
                             <div className="col-12 col-md-7">
                                 <FloatingLabels id="logradouro" type="text" title="Endereço" placeholder="Endereço" />
@@ -207,5 +206,6 @@ const PatientProfile = () => {
         </>
     )
 }
+
 
 export default PatientProfile

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'animate.css/animate.min.css';
 import { useEffect, useState } from 'react';
 import Loading from '../components/Loading';
+import { Auth } from '../contexts/auth'
 
 function MyApp({ Component, pageProps }) {
 
@@ -34,7 +35,9 @@ function MyApp({ Component, pageProps }) {
               href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             />
           </Head>
-          <Component {...pageProps} />
+          <Auth>
+            <Component {...pageProps} />
+          </Auth>
         </>
       }
     </>

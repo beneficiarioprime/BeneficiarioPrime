@@ -1,19 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import style from '../styles/components/LoginModal.module.css'
 import FloatingLabels from '../components/FloatingLabels'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import ButtonConvertApi from '../api/util/buttonConvertApi';
-import UserApi from '../api/user'
+import { AuthContext } from '../contexts/auth';
+import { useForm } from 'react-hook-form'
 
-const LoginModal = ({ id = "modal", onClose = () => { } }) => {
+const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } }) => {
 
-    let [login, setLogin] = useState("login");
+    let [login, setLogin] = useState(defaultState);
     let [erro, setErro] = useState(null);
+    const { handleSubmit, register } = useForm();
+
+    const { signIn, signUp } = useContext(AuthContext)
 
     const handleOutsideClick = (e) => {
         if (e.target.id === id) onClose();
+    }
+
+    async function handleLogin(data) {
+        try {
+            setErro(null)
+            await signIn(data)
+        } catch (error) {
+            setErro(error)
+        }
+    }
+
+    async function handleRegister(data) {
+        try {
+            setErro(null)
+            await signUp(data)
+        } catch (error) {
+            setErro(error)
+        }
     }
 
     return (
@@ -27,19 +48,11 @@ const LoginModal = ({ id = "modal", onClose = () => { } }) => {
                                 <Image src="/img/logos/logo-teste.png" width={210} height={49} />
                             </div>
                             {login === "login" ? (
-                                <div className="" onSubmit={event => {
-                                    const jsonData = ButtonConvertApi(event)
-                                    new UserApi(jsonData).login().then(response => {
-                                        alert("Cadastrou")
-                                    }).catch(erro => {
-                                        setErro(erro)
-                                        console.log(erro)
-                                    })
-                                }}>
+                                <form className="" onSubmit={handleSubmit(handleLogin)}>
                                     <h4 className="mb-4 text-center">Área do Paciente</h4>
                                     <div className="mb-1 text-center">{erro}</div>
-                                    <FloatingLabels title="Email" placeholder="Email" name="email" />
-                                    <FloatingLabels title="Senha" placeholder="Senha" name="password" />
+                                    <FloatingLabels title="Email" placeholder="Email" name="email" register={{ ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }} />
+                                    <FloatingLabels title="Senha" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
                                     <a>Esqueceu sua senha?</a>
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>
                                         <button className="btn btn-primary" type="submit">Entrar</button>
@@ -52,29 +65,23 @@ const LoginModal = ({ id = "modal", onClose = () => { } }) => {
                                         <button className="btn btn-primary mb-3"><FontAwesomeIcon icon={faGoogle} /> Entrar com Google</button>
                                     </div>
                                     <div className="">Não tem uma conta? <a className={``} onClick={() => setLogin("register")}>Registrar-se</a></div>
-                                </div>
+                                </form>
                             ) :
-                                <form className="" onSubmit={event => {
-                                    const jsonData = ButtonConvertApi(event)
-                                    new UserApi(jsonData).register().then(response => {
-                                        alert("Cadastrou")
-                                    }).catch(erro => {
-                                        setErro(erro)
-                                        console.log(erro)
-                                    })
-                                }}>
+                                <form className="" onSubmit={handleSubmit(handleRegister)}>
                                     <h4 className="mb-4 text-center">Área do Pacciente</h4>
                                     <div className="mb-1 text-center">{erro}</div>
-                                    <FloatingLabels title="Nome Completo" placeholder="Nome Completo" name="name" />
-                                    <FloatingLabels title="Email" placeholder="Email" name="email" />
-                                    <FloatingLabels title="Senha" placeholder="Senha" name="password" />
+                                    <FloatingLabels title="Nome Completo" placeholder="Nome Completo" name="name" register={{ ...register('name', { required: true }) }} />
+                                    <FloatingLabels title="Email" placeholder="Email" name="email" register={{ ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }} />
+                                    <FloatingLabels title="Senha" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
                                     <FloatingLabels title="Repetir Senha" placeholder="Repetir Senha" />
+                                    <FloatingLabels title="Genero" placeholder="Genero" register={{ ...register('gender', { required: true }) }} />
+                                    <FloatingLabels title="Data de Nascimento" placeholder="Data de Nascimento" register={{ ...register('birthDate', { required: true }) }} />
                                     <div className="row">
                                         <div className="col">
-                                            <FloatingLabels title="CPF" placeholder="CPF" name="cpf" />
+                                            <FloatingLabels title="CPF" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }} />
                                         </div>
                                         <div className="col">
-                                            <FloatingLabels title="Telefone" placeholder="Telefone" name="phone" />
+                                            <FloatingLabels title="Telefone" placeholder="Telefone" name="phone" register={{ ...register('phone', { required: true }) }} />
                                         </div>
                                     </div>
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>

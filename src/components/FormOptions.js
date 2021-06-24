@@ -7,7 +7,7 @@ const FormOptions = props => {
                 placeholder={props.placeholder}
                 id={props.for} />
             <label
-                for={props.for}
+                htmlFor={props.for}
             >{props.children}</label>
         </div>
     )
