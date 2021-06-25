@@ -103,7 +103,7 @@ export default function Home() {
       <Head>
         <title>Home - Beneficiário Prime</title>
       </Head>
-      <Navbar onClick={() => setIsModalVisible(true)} />
+      <Navbar onClick={() => setIsModalVisible(true)} onClickRegister={() => setIsModalVisible(true)} />
       {isModalVisible ? (
         <LoginModal onClose={() => setIsModalVisible(false)}>
         </LoginModal>

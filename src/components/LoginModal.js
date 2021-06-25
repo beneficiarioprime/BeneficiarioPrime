@@ -70,10 +70,10 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                 <form className="" onSubmit={handleSubmit(handleRegister)}>
                                     <h4 className="mb-4 text-center">Área do Pacciente</h4>
                                     <div className="mb-1 text-center">{erro}</div>
-                                    <FloatingLabels title="Nome Completo" placeholder="Nome Completo" name="name" register={{ ...register('name', { required: true }) }} />
+                                    <FloatingLabels title="Nome Completo" type="text" placeholder="Nome Completo" name="name" register={{ ...register('name', { required: true }) }} />
                                     <FloatingLabels title="Email" placeholder="Email" name="email" register={{ ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }} />
-                                    <FloatingLabels title="Senha" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
-                                    <FloatingLabels title="Repetir Senha" placeholder="Repetir Senha" />
+                                    <FloatingLabels title="Senha" type="password" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
+                                    <FloatingLabels title="Repetir Senha" type="password" placeholder="Repetir Senha" />
                                     <FloatingLabels title="Genero" placeholder="Genero" register={{ ...register('gender', { required: true }) }} />
                                     <FloatingLabels title="Data de Nascimento" placeholder="Data de Nascimento" register={{ ...register('birthDate', { required: true }) }} />
                                     <div className="row">
@@ -87,13 +87,13 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>
                                         <button className="btn btn-primary" type="submit">Registrar</button>
                                     </div>
-                                    <p className="mt-3 text-center">OU</p>
+                                    {/* <p className="mt-3 text-center">OU</p>
                                     <div className={`d-grid mt-3 ${style.btnLogin} ${style.btnFacebook}`}>
                                         <button className="btn btn-primary"><FontAwesomeIcon icon={faFacebook} /> Entrar com Facebook</button>
                                     </div>
                                     <div className={`d-grid mt-2 ${style.btnLogin} ${style.btnGoogle}`}>
                                         <button className="btn btn-primary mb-3"><FontAwesomeIcon icon={faGoogle} /> Entrar com Google</button>
-                                    </div>
+                                    </div> */}
                                     <div className="">Já tem uma conta? <a className={``} onClick={() => setLogin("login")}>Entrar</a></div>
                                 </form>
                             }

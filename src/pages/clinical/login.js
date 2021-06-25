@@ -89,14 +89,14 @@ const ClinicalLogin = () => {
 
                                                 <div className="col-12">
                                                     <div className="form-floating mb-3">
-                                                        <input name="password" type="email" className="form-control" id="floatingPassword" placeholder="Senha" />
+                                                        <input name="password" type="password" className="form-control" id="floatingPassword" placeholder="Senha" />
                                                         <label for="floatingPassword">Senha</label>
                                                     </div>
                                                 </div>
                                                 
                                                 <div className="col-12">
                                                     <div className="form-floating mb-3">
-                                                        <input name="password" type="email" className="form-control" id="floatingPassword" placeholder="Confirmar senha" />
+                                                        <input name="password" type="password" className="form-control" id="floatingPassword" placeholder="Confirmar senha" />
                                                         <label for="floatingPassword">Confirmar senha</label>
                                                     </div>
                                                 </div>
