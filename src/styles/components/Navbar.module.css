@@ -51,6 +51,25 @@
   transition: 0.25s;
 }
 
+.btnCart {
+  font-size: 25px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btnCart > .cartNumber {
+  z-index: 30;
+  font-size: 14px;
+  color: white;
+  background-color: #ed3358;
+  position: relative;
+  top: 6px;
+  left: -7px;
+  padding: 0 8px;
+  text-decoration: none!important;
+  border-radius: 50%;
+}
+
 @media (max-width: 1440px) {
   .container {
     padding: 0 60px;

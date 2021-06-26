@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/components/Navbar.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFileMedicalAlt } from '@fortawesome/free-solid-svg-icons'
+
+const data = {
+    name: "Roberto Camargo",
+}
+const cart = 1
 
 const Navbar = (props) => {
+
+    const [logged, setLogged] = useState(false);
+
     return (<>
         <nav className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}>
             <div className={`container-fluid ${styles.container}`}>
@@ -23,8 +33,15 @@ const Navbar = (props) => {
                             <a className={`nav-link ${styles.navLink}`} href="#">Planos para Empresas</a>
                         </li>
                     </ul>
-                    <a onClick={props.onClick} className={`me-5 ${styles.btnLogin}`}>Entrar</a>
-                    <a onClick={props.onClickRegister} className={`btn ${styles.btnRegister}`} type="submit">Cadastre-se</a>
+                    <Link href="/cart"><a className={`me-5 ${styles.btnCart}`}><FontAwesomeIcon icon={faFileMedicalAlt} />{cart > 0 && <span className={`${styles.cartNumber}`}>{cart}</span>}</a></Link>
+                    {logged ?
+                        <Link href="/patient/profile"><a className={`me-5 ${styles.btnLogin}`}>{data.name}</a></Link>
+                        :
+                        <>
+                            <a onClick={props.onClick} className={`me-5 ${styles.btnLogin}`}>Entrar</a>
+                            <a onClick={props.onClickRegister} className={`btn ${styles.btnRegister}`} type="submit">Cadastre-se</a>
+                        </>
+                    }
                 </div>
             </div>
         </nav>
