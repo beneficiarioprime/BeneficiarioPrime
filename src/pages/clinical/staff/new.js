@@ -86,9 +86,11 @@ const NewDoctor = () => {
                                     <input className="form-control" type="text" placeholder="Dia" aria-label="default input example" />
                                 </div>
                                 <div className="col d-flex">
-                                    <input className="form-control me-2" type="text" placeholder="00:00" aria-label="default input example" />
-                                    até
-                                    <input className="form-control ms-2" type="text" placeholder="00:00" aria-label="default input example" />
+                                    <input className="form-control me-2" type="time" placeholder="00:00" aria-label="default input example" />
+                                    <div className="mt-2">
+                                        até
+                                    </div>
+                                    <input className="form-control ms-2" type="time" placeholder="00:00" aria-label="default input example" />
                                 </div>
                                 <div className="col">
                                     <button className="btn btn-primary"><FontAwesomeIcon icon={faPlus} /></button>

@@ -60,6 +60,7 @@ const PatientYourPlan = () => {
                                 </tbody>
                             </table>
                         </div>
+                        Para adicionar ou remover dependentes, entre em contato via <a href="#">WhatsApp</a>
                     </RowDataPatient>
                 </div>
             </div>

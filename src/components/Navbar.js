@@ -29,17 +29,19 @@ const Navbar = (props) => {
                         <li className="me-3 ms-3 nav-item">
                             <Link href="/clinical/login"><a className={`nav-link ${styles.navLink}`} href="#">Área do Prestador</a></Link>
                         </li>
-                        <li className="me-3 ms-3 nav-item">
+                        {/* <li className="me-3 ms-3 nav-item">
                             <a className={`nav-link ${styles.navLink}`} href="#">Planos para Empresas</a>
-                        </li>
+                        </li> */}
                     </ul>
-                    <Link href="/cart"><a className={`me-5 ${styles.btnCart}`}><FontAwesomeIcon icon={faFileMedicalAlt} />{cart > 0 && <span className={`${styles.cartNumber}`}>{cart}</span>}</a></Link>
                     {logged ?
-                        <Link href="/patient/profile"><a className={`me-5 ${styles.btnLogin}`}>{data.name}</a></Link>
+                        <>
+                            <Link href="/cart"><a className={`me-5 ${styles.btnCart}`}><FontAwesomeIcon icon={faFileMedicalAlt} />{cart > 0 && <span className={`${styles.cartNumber}`}>{cart}</span>}</a></Link>
+                            <Link href="/patient/profile"><a className={`me-5 ${styles.btnLogin}`}>{data.name}</a></Link>
+                        </>
                         :
                         <>
                             <a onClick={props.onClick} className={`me-5 ${styles.btnLogin}`}>Entrar</a>
-                            <a onClick={props.onClickRegister} className={`btn ${styles.btnRegister}`} type="submit">Cadastre-se</a>
+                            <a onClick={props.onClickRegister} className={`btn ${styles.btnRegister}`} type="submit">Assine aqui</a>
                         </>
                     }
                 </div>

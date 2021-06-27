@@ -10,7 +10,7 @@ import {
     faInstagram,
     faWhatsapp
 } from '@fortawesome/free-brands-svg-icons';
-import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faCheck, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import FormOptions from '../../components/FormOptions';
 
@@ -69,9 +69,9 @@ const ClinicalValidation = () => {
                                                 <td>{users.appointment}</td>
                                                 <td>{users.token}</td>
                                                 <td>
-                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary me-2"><FontAwesomeIcon icon={faPencilAlt} /></a></Link>
-                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary me-2">V</a></Link>
-                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary">R</a></Link>
+                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-warning me-2" title="Ver detalhes"><FontAwesomeIcon icon={faPencilAlt} /></a></Link>
+                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-success me-2" title="Validar"><FontAwesomeIcon icon={faCheck} /></a></Link>
+                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary" title="Remarcar"><FontAwesomeIcon icon={faCalendarDay} /></a></Link>
                                                 </td>
                                             </tr>
                                         ))}

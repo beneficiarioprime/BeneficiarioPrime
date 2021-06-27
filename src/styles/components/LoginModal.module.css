@@ -39,6 +39,10 @@
     align-items: center;
 }
 
+.btnRegister {
+    cursor: pointer;
+}
+
 .buttonClose::before,.buttonClose::after {
     content: ' ';
     position: absolute;
