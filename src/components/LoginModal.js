@@ -23,17 +23,18 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
     async function handleLogin(data) {
         try {
             setErro(null)
-            await signIn(data)
+            await signIn(data, "patient")
+            window.location.reload()
         } catch (error) {
             setErro(error)
         }
     }
 
-
     async function handleRegister(data) {
         try {
             setErro(null)
             await signUp(data)
+            window.location.reload()
         } catch (error) {
             setErro(error)
         }

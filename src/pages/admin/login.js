@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
 import Link from 'next/link'
 import style from '../../styles/AdminLogin.module.css'
 import Navbar from '../../components/Navbar'
@@ -10,18 +11,21 @@ import { AuthContext } from '../../contexts/auth';
 
 const AdminLogin = () => {
     let [erro, setErro] = useState(null);
-    const { signIn, signUp } = useContext(AuthContext)
+    const { signIn, isLogged, user } = useContext(AuthContext)
     const { handleSubmit, register } = useForm();
 
     async function handleLogin(data) {
         try {
             setErro(null)
-            await signIn(data)
+            await signIn(data, "administrator", false)
         } catch (error) {
             setErro(error)
         }
     }
 
+    useEffect(() => {
+        if (isLogged) Router.push("/admin/profile")
+    }, [isLogged])
 
     return (
         <>
@@ -44,9 +48,9 @@ const AdminLogin = () => {
                                     <div className="text-center mb-3">
                                         <h5>Login</h5>
                                     </div>
-                                    <form className={`${style.formSignin}`}  onSubmit={handleSubmit(handleLogin)}>
+                                    <form className={`${style.formSignin}`} onSubmit={handleSubmit(handleLogin)}>
                                         <div className="form-floating mb-3">
-                                            <FloatingLabels title="Email" placeholder="name@example.com" name="email" type="email" id="email" register={{ ...register('email', { required: true }) }} />
+                                            <FloatingLabels title="Email" placeholder="name@example.com" name="email" type="string" id="email" register={{ ...register('email', { required: true }) }} />
                                         </div>
                                         <div className="form-floating mb-3">
                                             <FloatingLabels title="Senha" placeholder="Password" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />

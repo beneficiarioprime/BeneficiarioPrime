@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styles from '../styles/components/Navbar.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileMedicalAlt } from '@fortawesome/free-solid-svg-icons'
+import { AuthContext, AuthDashboard } from '../contexts/auth';
 
-const data = {
-    name: "Roberto Camargo",
-}
 const cart = 1
 
 const Navbar = (props) => {
 
+    const [data, setData] = useState({})
     const [logged, setLogged] = useState(false);
+    const { isLogged, user } = useContext(AuthContext)
 
     return (<>
         <nav className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}>
@@ -33,10 +33,10 @@ const Navbar = (props) => {
                             <a className={`nav-link ${styles.navLink}`} href="#">Planos para Empresas</a>
                         </li> */}
                     </ul>
-                    {logged ?
+                    {isLogged ?
                         <>
                             <Link href="/cart"><a className={`me-5 ${styles.btnCart}`}><FontAwesomeIcon icon={faFileMedicalAlt} />{cart > 0 && <span className={`${styles.cartNumber}`}>{cart}</span>}</a></Link>
-                            <Link href="/patient/profile"><a className={`me-5 ${styles.btnLogin}`}>{data.name}</a></Link>
+                            <Link href={AuthDashboard(user.role)}><a className={`me-5 ${styles.btnLogin}`}>{user.name}</a></Link>
                         </>
                         :
                         <>

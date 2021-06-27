@@ -18,7 +18,7 @@ const ConsultantLogin = () => {
     async function handleLogin(data) {
         try {
             setErro(null)
-            await signIn(data)
+            await signIn(data, "consultant")
         } catch (error) {
             setErro(error)
         }

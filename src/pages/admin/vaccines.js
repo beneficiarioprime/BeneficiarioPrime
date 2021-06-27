@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataClinical from '../../components/RowDataAdmin';
 import style from '../../styles/AdminVaccines.module.css';
@@ -13,13 +13,8 @@ import {
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import FormOptions from '../../components/FormOptions';
+import { AuthContext } from '../../contexts/auth';
 
-const data = {
-    name: "Doas Urgouxei Zuygo",
-    cpf: "816.305.150-78",
-    email: "email@email.com",
-    link: "algumlink.com"
-}
 
 const sales = [
     { exam: "Oftamologista", price: 15.00 },
@@ -32,6 +27,7 @@ const sales = [
 ]
 
 const AdminVaccines = () => {
+    const { isLogged, user } = useContext(AuthContext)
     return (
         <>
             <Head>
@@ -41,7 +37,7 @@ const AdminVaccines = () => {
                 <div className="container pt-5 mb-5">
                     <div className="card card-body mb-3">
                         <div className={`${style.title}`}>
-                            Olá, {data.name}
+                            Olá, {user.name}
                         </div>
                     </div>
                     <RowDataClinical>
@@ -51,7 +47,7 @@ const AdminVaccines = () => {
                             <FormOptions placeholder="Nome do exame">Nome da vacina</FormOptions>
                             <FormOptions placeholder="Sinônimo">Sinônimo</FormOptions>
                             <div className="form-floating">
-                                <textarea className="form-control" placeholder="Descreva o exame" id="floatingTextarea2" style={{height: "100px"}}></textarea>
+                                <textarea className="form-control" placeholder="Descreva o exame" id="floatingTextarea2" style={{ height: "100px" }}></textarea>
                                 <label for="floatingTextarea2">Descrição</label>
                             </div>
                             <div className="row">
@@ -83,12 +79,12 @@ const AdminVaccines = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            <tr>
-                                                <td>Hemorróida</td>
-                                                <td>Sangue</td>
-                                                <td>Alguma coisa</td>
-                                                <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link> <Link href="#"><a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></Link></td>
-                                            </tr>
+                                        <tr>
+                                            <td>Hemorróida</td>
+                                            <td>Sangue</td>
+                                            <td>Alguma coisa</td>
+                                            <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link> <Link href="#"><a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></Link></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

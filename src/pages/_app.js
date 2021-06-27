@@ -5,6 +5,7 @@ import 'animate.css/animate.min.css';
 import { useEffect, useState } from 'react';
 import Loading from '../components/Loading';
 import { Auth } from '../contexts/auth'
+import { User } from '../contexts/user'
 
 function MyApp({ Component, pageProps }) {
 
@@ -36,7 +37,9 @@ function MyApp({ Component, pageProps }) {
             />
           </Head>
           <Auth>
-            <Component {...pageProps} />
+            <User>
+              <Component {...pageProps} />
+            </User>
           </Auth>
         </>
       }

@@ -1,36 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataPatient from '../../components/RowDataPatient';
 import style from '../../styles/AdminProfile.module.css';
+import { AuthContext } from '../../contexts/auth';
+import { update } from '../../contexts/user';
+import { useForm } from 'react-hook-form'
 import Head from 'next/head';
-import { parseCookies } from "nookies";
-import { userProfile } from '../../service/apiConnect'
 
-export const getServerSideProps = async (ctx) => {
-    const redirect = {
-        redirect: {
-            destination: '/',
-            permanent: false,
-        }
-    }
-    try {
-        const { ['PROFILE']: profile } = parseCookies(ctx)
-        if (!profile) return redirect
-        const data = await userProfile(ctx, profile)
-        return {
-            props: { data }
-        }
-    } catch (error) {
-        return redirect
-    }
-}
 
 const PatientProfile = ({ data }) => {
     const [password, setPassword] = useState(false);
+    const { isLogged, user } = useContext(AuthContext)
+    const { update } = useContext(UserContext)
+
     const [dataCEP, setDataCEP] = useState({
         cep: '',
         bairro: '',
-
     })
 
     const getInformacoes = (e) => {
@@ -78,131 +63,135 @@ const PatientProfile = ({ data }) => {
 
     return (
         <>
-            <Head>
-                <title>Perfil - Beneficiário Prime</title>
-            </Head>
-            <div className={`${style.body} mb-5`}>
-                <div className="container pt-5">
-                    <div className="card card-body mb-3">
-                        <div className={`${style.title}`}>
-                            Olá, {data.name}
+            {isLogged && user.role == "patient" ?
+                <>
+                    <Head>
+                        <title>Perfil - Beneficiário Prime</title>
+                    </Head>
+                    <div className={`${style.body} mb-5`}>
+                        <div className="container pt-5">
+                            <div className="card card-body mb-3">
+                                <div className={`${style.title}`}>
+                                    Olá, {user.name}
+                                </div>
+                            </div>
+                            <RowDataPatient>
+                                <div className="row">
+                                    <div className="col-12 col-md-4">
+                                        <div className="d-flex justify-content-center">
+                                            <img src="https://network.grupoabril.com.br/wp-content/uploads/sites/4/2016/10/medico-duvidas2.jpg?quality=70&strip=all" width="200px" className="me-4 rounded float-start" alt={`Foto de ${user.name}`} />
+                                        </div>
+                                        <div className="text-center">
+                                            <a className="btn">Alterar imagem</a>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 col-md-8">
+                                        <FloatingLabels value={user.name} title="Nome completo" placeholder="Nome completo" />
+                                        <FloatingLabels defaultValue={user.email} title="Email" placeholder="Email" />
+                                        <div className="row">
+                                            <div className="col-12 col-md">
+                                                <FloatingLabels title="Gênero" placeholder="Gênero" defaultValue={user.gender} />
+                                                <FloatingLabels title="Data de Nascimento" type="date" placeholder="Data de Nascimento" value={user.date} />
+                                            </div>
+                                            <div className="col-12 col-md">
+                                                <FloatingLabels title="CPF" placeholder="CPF" defaultValue={user.cpf} />
+                                                <FloatingLabels title="Telefone" placeholder="Telefone" defaultValue={user.phone} />
+                                            </div>
+                                        </div>
+                                        <a className="btn mb-3" onClick={() => setPassword(!password)}>Alterar senha</a>
+                                    </div>
+                                    {password &&
+                                        <>
+                                            <div className="col-12 col-md-6">
+                                                <FloatingLabels title="Senha atual" />
+                                            </div>
+                                            <div className="col-12 col-md-6">
+                                                <FloatingLabels title="Alterar senha" />
+                                                <FloatingLabels title="Repetir senha" />
+                                            </div>
+                                        </>
+                                    }
+                                </div>
+                                <div className="row mb-5">
+                                    <div className="col-6 col-md-3">
+                                        <FloatingLabels type="text" title="Peso" placeholder="Peso" />
+                                    </div>
+                                    <div className="col-6 col-md-3">
+                                        <FloatingLabels type="text" title="Altura" placeholder="Altura" />
+                                    </div>
+                                    <div className="col col-md-12">
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="deficiencia" />
+                                            <label className="form-check-label" for="deficiencia">
+                                                Possui alguma deficiência?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-12 col-md-3">
+                                        <FloatingLabels name="cep" id="cep" onBlur={getInformacoes} type="text" title="CEP" maxlength="9" placeholder="CEP" />
+                                    </div>
+                                    <div className="col-12 col-md-7">
+                                        <FloatingLabels id="logradouro" type="text" title="Endereço" placeholder="Endereço" />
+                                    </div>
+                                    <div className="col-5 col-md-2">
+                                        <FloatingLabels id="numero" type="text" title="Nª" placeholder="Nª" />
+                                    </div>
+                                    <div className="col-7 col-md-3">
+                                        <FloatingLabels id="complemento" type="text" title="Complemento" placeholder="Complemento" />
+                                    </div>
+                                    <div className="col-12 col-md-5">
+                                        <FloatingLabels id="bairro" type="text" title="Bairro" placeholder="Bairro" />
+                                    </div>
+                                    <div className="col-12 col-md-4">
+                                        <FloatingLabels id="cidade" type="text" title="Cidade" placeholder="Cidade" />
+                                    </div>
+                                    <div className="col-12 col-md-4">
+                                        <div className="form-floating">
+                                            <select className="form-select" id="uf" aria-label="Estado">
+                                                <option selected>Selecione um deles</option>
+                                                <option value="AC">Acre</option>
+                                                <option value="AL">Alagoas</option>
+                                                <option value="AP">Amapá</option>
+                                                <option value="AM">Amazonas</option>
+                                                <option value="BA">Bahia</option>
+                                                <option value="CE">Ceará</option>
+                                                <option value="DF">Distrito Federal</option>
+                                                <option value="ES">Espírito Santo</option>
+                                                <option value="GO">Goiás</option>
+                                                <option value="MA">Maranhão</option>
+                                                <option value="MT">Mato Grosso</option>
+                                                <option value="MS">Mato Grosso do Sul</option>
+                                                <option value="MG">Minas Gerais</option>
+                                                <option value="PA">Pará</option>
+                                                <option value="PB">Paraíba</option>
+                                                <option value="PR">Paraná</option>
+                                                <option value="PE">Pernambuco</option>
+                                                <option value="PI">Piauí</option>
+                                                <option value="RJ">Rio de Janeiro</option>
+                                                <option value="RN">Rio Grande do Norte</option>
+                                                <option value="RS">Rio Grande do Sul</option>
+                                                <option value="RO">Rondônia</option>
+                                                <option value="RR">Roraima</option>
+                                                <option value="SC">Santa Catarina</option>
+                                                <option value="SP">São Paulo</option>
+                                                <option value="SE">Sergipe</option>
+                                                <option value="TO">Tocantins</option>
+                                            </select>
+                                            <label>Estado</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="d-flex justify-content-center mt-4">
+                                    <button className="btn btn-primary">Salvar</button>
+                                </div>
+                            </RowDataPatient>
+                            <div></div>
                         </div>
                     </div>
-                    <RowDataPatient>
-                        <div className="row">
-                            <div className="col-12 col-md-4">
-                                <div className="d-flex justify-content-center">
-                                    <img src="https://network.grupoabril.com.br/wp-content/uploads/sites/4/2016/10/medico-duvidas2.jpg?quality=70&strip=all" width="200px" className="me-4 rounded float-start" alt={`Foto de ${data.name}`} />
-                                </div>
-                                <div className="text-center">
-                                    <a className="btn">Alterar imagem</a>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-8">
-                                <FloatingLabels value={data.name} title="Nome completo" placeholder="Nome completo" />
-                                <FloatingLabels defaultValue={data.email} title="Email" placeholder="Email" />
-                                <div className="row">
-                                    <div className="col-12 col-md">
-                                        <FloatingLabels title="Gênero" placeholder="Gênero" defaultValue={data.gender} />
-                                        <FloatingLabels title="Data de Nascimento" type="date" placeholder="Data de Nascimento" value={data.date} />
-                                    </div>
-                                    <div className="col-12 col-md">
-                                        <FloatingLabels title="CPF" placeholder="CPF" defaultValue={data.cpf} />
-                                        <FloatingLabels title="Telefone" placeholder="Telefone" defaultValue={data.phone} />
-                                    </div>
-                                </div>
-                                <a className="btn mb-3" onClick={() => setPassword(!password)}>Alterar senha</a>
-                            </div>
-                            {password &&
-                                <>
-                                    <div className="col-12 col-md-6">
-                                        <FloatingLabels title="Senha atual" />
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        <FloatingLabels title="Alterar senha" />
-                                        <FloatingLabels title="Repetir senha" />
-                                    </div>
-                                </>
-                            }
-                        </div>
-                        <div className="row mb-5">
-                            <div className="col-6 col-md-3">
-                                <FloatingLabels type="text" title="Peso" placeholder="Peso" />
-                            </div>
-                            <div className="col-6 col-md-3">
-                                <FloatingLabels type="text" title="Altura" placeholder="Altura" />
-                            </div>
-                            <div className="col col-md-12">
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="deficiencia" />
-                                    <label className="form-check-label" for="deficiencia">
-                                        Possui alguma deficiência?
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12 col-md-3">
-                                <FloatingLabels name="cep" id="cep" onBlur={getInformacoes} type="text" title="CEP" maxlength="9" placeholder="CEP" />
-                            </div>
-                            <div className="col-12 col-md-7">
-                                <FloatingLabels id="logradouro" type="text" title="Endereço" placeholder="Endereço" />
-                            </div>
-                            <div className="col-5 col-md-2">
-                                <FloatingLabels id="numero" type="text" title="Nª" placeholder="Nª" />
-                            </div>
-                            <div className="col-7 col-md-3">
-                                <FloatingLabels id="complemento" type="text" title="Complemento" placeholder="Complemento" />
-                            </div>
-                            <div className="col-12 col-md-5">
-                                <FloatingLabels id="bairro" type="text" title="Bairro" placeholder="Bairro" />
-                            </div>
-                            <div className="col-12 col-md-4">
-                                <FloatingLabels id="cidade" type="text" title="Cidade" placeholder="Cidade" />
-                            </div>
-                            <div className="col-12 col-md-4">
-                                <div className="form-floating">
-                                    <select className="form-select" id="uf" aria-label="Estado">
-                                        <option selected>Selecione um deles</option>
-                                        <option value="AC">Acre</option>
-                                        <option value="AL">Alagoas</option>
-                                        <option value="AP">Amapá</option>
-                                        <option value="AM">Amazonas</option>
-                                        <option value="BA">Bahia</option>
-                                        <option value="CE">Ceará</option>
-                                        <option value="DF">Distrito Federal</option>
-                                        <option value="ES">Espírito Santo</option>
-                                        <option value="GO">Goiás</option>
-                                        <option value="MA">Maranhão</option>
-                                        <option value="MT">Mato Grosso</option>
-                                        <option value="MS">Mato Grosso do Sul</option>
-                                        <option value="MG">Minas Gerais</option>
-                                        <option value="PA">Pará</option>
-                                        <option value="PB">Paraíba</option>
-                                        <option value="PR">Paraná</option>
-                                        <option value="PE">Pernambuco</option>
-                                        <option value="PI">Piauí</option>
-                                        <option value="RJ">Rio de Janeiro</option>
-                                        <option value="RN">Rio Grande do Norte</option>
-                                        <option value="RS">Rio Grande do Sul</option>
-                                        <option value="RO">Rondônia</option>
-                                        <option value="RR">Roraima</option>
-                                        <option value="SC">Santa Catarina</option>
-                                        <option value="SP">São Paulo</option>
-                                        <option value="SE">Sergipe</option>
-                                        <option value="TO">Tocantins</option>
-                                    </select>
-                                    <label>Estado</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="d-flex justify-content-center mt-4">
-                            <button className="btn btn-primary">Salvar</button>
-                        </div>
-                    </RowDataPatient>
-                    <div></div>
-                </div>
-            </div>
+                </> : <> </>
+            }
         </>
     )
 }
