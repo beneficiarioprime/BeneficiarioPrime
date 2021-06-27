@@ -1,4 +1,4 @@
-const API_URL_BASE = "https://api-beneficiarioprime.herokuapp.com"
+const API_URL_BASE = "http://apibeneficiarioprime-com-br.umbler.net"
 module.exports = { 
     EXAM: {
         LIST: `${API_URL_BASE}/exam/`
