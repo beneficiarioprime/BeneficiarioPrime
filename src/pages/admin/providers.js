@@ -57,8 +57,8 @@ const AdminProviders = () => {
                                             <tbody>
                                                 {list.map(x => (
                                                     <tr>
-                                                        <td>Pedro Alvares</td>
-                                                        <td>56.364.066/0001-15</td>
+                                                        <td>{x.name}</td>
+                                                        <td>{x.cnpj}</td>
                                                         <td>Ativo</td>
                                                         <td><Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
                                                     </tr>

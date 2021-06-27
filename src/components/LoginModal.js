@@ -34,7 +34,6 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
     async function handleRegister(data) {
         try {
             setErro(null)
-            alert("Oi")
             await signUp(data)
             window.location.reload()
         } catch (error) {
