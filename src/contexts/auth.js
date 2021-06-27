@@ -20,7 +20,7 @@ export function Auth({ children }) {
             maxAge: 30 * 24 * 60 * 60 // 30 dias
         })
         setCookie(undefined, 'PROFILE', _id, {
-            maxAge: 30 * 24 * 60 * 60 //salvar dados simples no localStorage para o javaScript utilizar
+            maxAge: 30 * 24 * 60 * 60 //salvar dados simples (id)
         })
         setUser(user)
     }

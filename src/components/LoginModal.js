@@ -71,11 +71,11 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                     <h4 className="mb-4 text-center">Área do Pacciente</h4>
                                     <div className="mb-1 text-center">{erro}</div>
                                     <FloatingLabels title="Nome Completo" type="text" placeholder="Nome Completo" name="name" register={{ ...register('name', { required: true }) }} />
-                                    <FloatingLabels title="Email" placeholder="Email" name="email" register={{ ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }} />
+                                    <FloatingLabels title="Email" placeholder="Email" name="email" register={{ ...register('email', { required: true }) }} />
                                     <FloatingLabels title="Senha" type="password" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
                                     <FloatingLabels title="Repetir Senha" type="password" placeholder="Repetir Senha" />
-                                    <FloatingLabels title="Genero" placeholder="Genero" register={{ ...register('gender', { required: true }) }} />
-                                    <FloatingLabels title="Data de Nascimento" placeholder="Data de Nascimento" register={{ ...register('birthDate', { required: true }) }} />
+                                    <FloatingLabels title="Genero" placeholder="Genero" name="gender" register={{ ...register('gender', { required: true }) }} />
+                                    <FloatingLabels title="Data de Nascimento" placeholder="Data de Nascimento"  name="birthDate" register={{ ...register('birthDate', { required: true }) }} />
                                     <div className="row">
                                         <div className="col">
                                             <FloatingLabels title="CPF" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }} />
