@@ -1,19 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
-import FloatingLabels from '../../components/FloatingLabels';
 import RowDataClinical from '../../components/RowDataAdmin';
 import style from '../../styles/AdminVaccines.module.css';
 import Head from 'next/head';
-import Image from 'next/image';
-import {
-    faFacebook,
-    faInstagram,
-    faWhatsapp
-} from '@fortawesome/free-brands-svg-icons';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import FormOptions from '../../components/FormOptions';
 import { AuthContext } from '../../contexts/auth';
+import { VaccineContext, Vaccine } from '../../contexts/vaccine';
 
 
 const sales = [
@@ -28,6 +22,7 @@ const sales = [
 
 const AdminVaccines = () => {
     const { isLogged, user } = useContext(AuthContext)
+    const { list } = useContext(VaccineContext)
     return (
         <>
             <Head>
@@ -79,12 +74,17 @@ const AdminVaccines = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Hemorróida</td>
-                                            <td>Sangue</td>
-                                            <td>Alguma coisa</td>
-                                            <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link> <Link href="#"><a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></Link></td>
-                                        </tr>
+                                        {
+                                            list.map(x => (
+                                                <tr>
+                                                    <td>Hemorróida</td>
+                                                    <td>Sangue</td>
+                                                    <td>Alguma coisa</td>
+                                                    <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link> <Link href="#"><a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></Link></td>
+                                                </tr>
+                                            ))
+                                        }
+
                                     </tbody>
                                 </table>
                             </div>
@@ -96,4 +96,6 @@ const AdminVaccines = () => {
     )
 }
 
-export default AdminVaccines
+export default function renderVaccines() {
+    return (<> <Vaccine><AdminVaccines /></Vaccine> </>)
+}

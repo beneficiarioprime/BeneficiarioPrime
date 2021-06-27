@@ -15,8 +15,7 @@ export function Vaccine({ children }) {
 
     useEffect(() => {
         if (profile && token)
-            axios.get(VACCNINE.LIST, { headers: { Authorization: `Bearer ${token}` } }).then(x => setList(x.data.exam))
-
+            axios.get(VACCNINE.LIST, { headers: { Authorization: `Bearer ${token}` } }).then(x => setList(x.data.data))
     }, [])
 
     return (
