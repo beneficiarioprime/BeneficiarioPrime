@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthContext } from '../contexts/auth';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import FloatingLabelsMask from './FloatingLabelsMask';
 
 const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } }) => {
 
@@ -27,6 +28,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
             setErro(error)
         }
     }
+
 
     async function handleRegister(data) {
         try {
@@ -51,7 +53,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                 <form className="" onSubmit={handleSubmit(handleLogin)}>
                                     <h4 className="mb-4 text-center">Área do Paciente</h4>
                                     <div className="mb-1 text-center">{erro}</div>
-                                    <FloatingLabels title="Email" placeholder="Email" name="email"  type="email" id="email" register={{ ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }} />
+                                    <FloatingLabels title="Email" placeholder="Email" name="email" type="email" id="email" register={{ ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }} />
                                     <FloatingLabels title="Senha" placeholder="Senha" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />
                                     <a>Esqueceu sua senha?</a>
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>
@@ -64,24 +66,34 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                     <div className={`d-grid mt-2 ${style.btnLogin} ${style.btnGoogle}`}>
                                         <button className="btn btn-primary mb-3"><FontAwesomeIcon icon={faGoogle} /> Entrar com Google</button>
                                     </div> */}
-                                    <div className="">Não tem uma conta? <a className={``} onClick={() => setLogin("register")}>Registrar-se</a></div>
+                                    <div className="mt-3">Não tem uma conta? <a className={`${style.btnRegister}`} onClick={() => setLogin("register")}>Registrar-se</a></div>
                                 </form>
                             ) :
                                 <form className="" onSubmit={handleSubmit(handleRegister)}>
-                                    <h4 className="mb-4 text-center">Área do Pacciente</h4>
+                                    <h4 className="mb-4 text-center">Área do Paciente</h4>
                                     <div className="mb-1 text-center">{erro}</div>
                                     <FloatingLabels title="Nome Completo" type="text" placeholder="Nome Completo" name="name" register={{ ...register('name', { required: true }) }} />
                                     <FloatingLabels title="Email" placeholder="Email" name="email" register={{ ...register('email', { required: true }) }} />
                                     <FloatingLabels title="Senha" type="password" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
                                     <FloatingLabels title="Repetir Senha" type="password" placeholder="Repetir Senha" />
-                                    <FloatingLabels title="Genero" placeholder="Genero" name="gender" register={{ ...register('gender', { required: true }) }} />
-                                    <FloatingLabels title="Data de Nascimento" placeholder="Data de Nascimento"  name="birthDate" register={{ ...register('birthDate', { required: true }) }} />
+                                    <div className="form-floating mb-3">
+                                        <select className="form-select" name="gender" register={{ ...register('gender', { required: true }) }} id="floatingSelect" aria-label="Selecione o Gênero">
+                                            <option selected>Selecione</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Feminino</option>
+                                        </select>
+                                        <label for="floatingSelect">Gênero</label>
+                                    </div>
+                                    {/* <FloatingLabels title="Genero" placeholder="Genero" name="gender" register={{ ...register('gender', { required: true }) }} /> */}
+                                    <FloatingLabels title="Data de Nascimento" placeholder="Data de Nascimento" type="date" name="birthDate" register={{ ...register('birthDate', { required: true }) }} />
                                     <div className="row">
                                         <div className="col">
-                                            <FloatingLabels title="CPF" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }} />
+                                            {/* <FloatingLabels title="CPF" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }} /> */}
+                                            <FloatingLabelsMask title="CPF" mask="999.999.999-99" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }}  />
                                         </div>
                                         <div className="col">
-                                            <FloatingLabels title="Telefone" placeholder="Telefone" name="phone" register={{ ...register('phone', { required: true }) }} />
+                                            <FloatingLabelsMask title="Celular" mask="+55 (99) 99999-9999" placeholder="Celular" name="phone" register={{ ...register('phone', { required: true }) }}  />
+                                            {/* <FloatingLabels title="Celular" placeholder="Celular" name="phone" register={{ ...register('phone', { required: true }) }} /> */}
                                         </div>
                                     </div>
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>
@@ -94,7 +106,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                     <div className={`d-grid mt-2 ${style.btnLogin} ${style.btnGoogle}`}>
                                         <button className="btn btn-primary mb-3"><FontAwesomeIcon icon={faGoogle} /> Entrar com Google</button>
                                     </div> */}
-                                    <div className="">Já tem uma conta? <a className={``} onClick={() => setLogin("login")}>Entrar</a></div>
+                                    <div className="mt-3">Já tem uma conta? <a className={`${style.btnRegister}`} onClick={() => setLogin("login")}>Entrar</a></div>
                                 </form>
                             }
                         </div>

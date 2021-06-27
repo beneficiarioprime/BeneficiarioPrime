@@ -55,16 +55,16 @@ const ClinicalExams = () => {
                             </datalist>
                             <div className="row">
                                 <div className="col-6 col-md">
-                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Particular" placeholder="Preço Particular" />
+                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Seu preço" placeholder="Seu preço" />
                                 </div>
                                 <div className="col col-md">
-                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Plano 1" placeholder="Preço Plano 1" />
+                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" disabled="disabled" title="Preço Plano 1" placeholder="Preço Plano 1" />
                                 </div>
                                 <div className="col-6 col-md">
-                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Plano 2" placeholder="Preço Plano 2" />
+                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" disabled="disabled" title="Preço Plano 2" placeholder="Preço Plano 2" />
                                 </div>
                                 <div className="col col-md">
-                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Plano 3" placeholder="Preço Plano 3" />
+                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" disabled="disabled" title="Preço Plano 3" placeholder="Preço Plano 3" />
                                 </div>
                             </div>
                             <div className="d-grid gap-2 mt-3">

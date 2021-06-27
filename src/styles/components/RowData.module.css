@@ -27,3 +27,15 @@
     color: white;
     transition: .25s;
 }
+
+.btnWpp {
+    background-color: #25D366;
+    border: none;
+    border-radius: 50%;
+    padding: 5px 15px;
+    font-size: 30px;
+}
+
+.btnWpp:hover {
+    background-color: #2ae06d;
+}

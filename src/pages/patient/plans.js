@@ -42,7 +42,7 @@ const PatientPlans = () => {
                                             </ul>
                                             <p>Plano Família + R$ 5,00/mês por dependente adicional</p>
                                             <div className={`${style.btnPlan} ${style.btnFirst} d-flex flex-row-reverse`}>
-                                                <Link href="#"><a>ASSINE AGORA</a></Link>
+                                                <Link href="#"><a>Escolher este</a></Link>
                                             </div>
                                         </CardOffers>
                                     </a>
@@ -65,7 +65,7 @@ const PatientPlans = () => {
                                             </ul>
                                             <p>Plano Família + R$9,00/mês por dependente adicional</p>
                                             <div className={`${style.btnPlan} ${style.btnSecond} d-flex flex-row-reverse`}>
-                                                <Link href="#"><a>ASSINE AGORA</a></Link>
+                                                <Link href="#"><a>Escolher este</a></Link>
                                             </div>
                                         </CardOffers>
                                     </a>
@@ -90,7 +90,7 @@ const PatientPlans = () => {
                                             <p>Plano Família + R$ 12,00/mês por dependente adicional</p>
                                             <div className="d-flex flex-row-reverse ">
                                                 <div style={{ marginTop: "24px" }} className={`${style.btnPlan} ${style.btnSpotlight} animate__animated animate__pulse animate__slow animate__infinite`}>
-                                                    <Link href="#"><a className="">ASSINE AGORA</a></Link>
+                                                    <Link href="#"><a className="">Escolher este</a></Link>
                                                 </div>
                                             </div>
                                         </CardOffers>

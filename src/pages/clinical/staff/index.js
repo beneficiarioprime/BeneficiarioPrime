@@ -47,7 +47,7 @@ const ClinicalStaff = () => {
                         <form>
                             <h1 className="mb-5">Corpo Clínico</h1>
                             <div className="d-grid gap-2">
-                                <Link href="/clinical/staff/new"><a className="btn btn-primary mb-5" type="button">Adicionar</a></Link>
+                                <Link href="/clinical/staff/new"><a className="btn btn-primary mb-5" type="button">Adicionar novo médico</a></Link>
                             </div>
                             <input className="form-control mt-5" type="text" placeholder="Pesquise pelo nome, especialidade ou nº de CRM do profissional" />
                             <div className="table-responsive">
