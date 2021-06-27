@@ -51,7 +51,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                 <form className="" onSubmit={handleSubmit(handleLogin)}>
                                     <h4 className="mb-4 text-center">Área do Paciente</h4>
                                     <div className="mb-1 text-center">{erro}</div>
-                                    <FloatingLabels title="Email" placeholder="Email" name="email"  type="email" id="email" register={{ ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }} />
+                                    <FloatingLabels title="Email" placeholder="Email" name="email"  type="email" id="email" register={{ ...register('email', { required: true}) }} />
                                     <FloatingLabels title="Senha" placeholder="Senha" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />
                                     <a>Esqueceu sua senha?</a>
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>

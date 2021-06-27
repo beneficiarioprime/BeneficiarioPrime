@@ -1,10 +1,29 @@
+import React, { useState, useContext } from 'react'
+
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import Footer from '../components/Footer'
 import style from '../styles/Login.module.css'
+import FloatingLabels from '../components/FloatingLabels'
+import { useForm } from 'react-hook-form'
+import { AuthContext } from '../contexts/auth';
 
 const Login = () => {
+
+    let [erro, setErro] = useState(null);
+    const { signIn, signUp } = useContext(AuthContext)
+    const { handleSubmit, register } = useForm();
+
+    async function handleLogin(data) {
+        try {
+            setErro(null)
+            await signIn(data)
+        } catch (error) {
+            setErro(error)
+        }
+    }
+
     return (
         <>
             <Head>
@@ -20,21 +39,20 @@ const Login = () => {
                                         <p>Bem vindo a</p>
                                         <p>Área do Consultor</p>
                                     </div>
+                                    <div className="mb-1 text-center">{erro}</div>
                                 </div>
                                 <div className="card-body">
                                     <div className={`d-flex justify-content-center ${style.logo}`}>
                                         <img src="/img/logos/logo-grande.png" style={{ maxWidth: "100%" }} />
                                     </div>
-                                    <form className={`${style.formSignin}`}>
+                                    <form className={`${style.formSignin}`} onSubmit={handleSubmit(handleRegister)}>
                                         <div className="form-floating mb-3">
-                                            <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                            <label for="floatingInput">Email</label>
+                                            <FloatingLabels title="Email" placeholder="name@example.com" name="email" type="email" id="email" register={{ ...register('email', { required: true }) }} />
                                         </div>
 
 
                                         <div className="form-floating mb-3">
-                                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                            <label for="floatingPassword">Senha</label>
+                                            <FloatingLabels title="Senha" type="password" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
                                         </div>
 
                                         <div className="d-grid gap-2">

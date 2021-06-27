@@ -1,11 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+
 import Head from 'next/head'
 import Link from 'next/link'
 import style from '../../styles/ConsultantLogin.module.css'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import FloatingLabels from '../../components/FloatingLabels'
+import { useForm } from 'react-hook-form'
+import { AuthContext } from '../../contexts/auth';
 
 const ConsultantLogin = () => {
+
+    let [erro, setErro] = useState(null);
+    const { signIn, signUp } = useContext(AuthContext)
+    const { handleSubmit, register } = useForm();
+
+    async function handleLogin(data) {
+        try {
+            setErro(null)
+            await signIn(data)
+        } catch (error) {
+            setErro(error)
+        }
+    }
+
+    async function handleRegister(data) {
+        try {
+            setErro(null)
+            await signUp(data)
+        } catch (error) {
+            setErro(error)
+        }
+    }
+
 
     let [change, setChange] = useState('login')
 
@@ -35,14 +62,12 @@ const ConsultantLogin = () => {
                                         </div>
                                     </div>
                                     {change === 'login' ?
-                                        <form className={`${style.formSignin}`}>
+                                        <form className={`${style.formSignin}`} onSubmit={handleSubmit(handleLogin)}>
                                             <div className="form-floating mb-3">
-                                                <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                                <label for="floatingInput">Email ou CPF</label>
+                                                <FloatingLabels title="Email" placeholder="Email" name="email" type="email" id="email" register={{ ...register('email', { required: true }) }} />
                                             </div>
                                             <div className="form-floating mb-3">
-                                                <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                                <label for="floatingPassword">Senha</label>
+                                                <FloatingLabels title="Senha" placeholder="Senha" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />
                                             </div>
 
                                             <div className="d-grid gap-2">
@@ -53,48 +78,37 @@ const ConsultantLogin = () => {
                                             </div>
                                         </form>
                                         :
-                                        <form className={`${style.formSignin}`}>
+                                        <form className={`${style.formSignin}`} onSubmit={handleSubmit(handleRegister)}>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="name" type="text" className="form-control" id="floatingInput" placeholder="Nome" />
-                                                        <label for="floatingInput">Nome</label>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-floating mb-3">
-                                                        <input name="lastname" type="text" className="form-control" id="floatingInput" placeholder="Sobrenome" />
-                                                        <label for="floatingInput">Sobrenome</label>
+                                                        <FloatingLabels title="Nome Completo" type="text" placeholder="Nome Completo" name="name" register={{ ...register('name', { required: true }) }} />
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="cpf" type="text" className="form-control" id="floatingPassword" placeholder="CPF" />
-                                                        <label for="floatingPassword">CPF</label>
+                                                        <FloatingLabels title="CPF" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }} />
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="phone" type="text" className="form-control" id="floatingPassword" placeholder="Telefone" />
-                                                        <label for="floatingPassword">Telefone</label>
+                                                        <FloatingLabels title="Telefone" placeholder="Telefone" name="phone" register={{ ...register('phone', { required: true }) }} />
                                                     </div>
                                                 </div>
 
-                                                <div className="col-12">
+                                                <div className="col-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="email" type="email" className="form-control" id="floatingPassword" placeholder="Email" />
-                                                        <label for="floatingPassword">Email</label>
+                                                        <FloatingLabels title="Email" placeholder="Email" name="email" register={{ ...register('email', { required: true }) }} />
                                                     </div>
                                                 </div>
 
-                                                <div className="col-12">
+                                                <div className="col-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="password" type="password" className="form-control" id="floatingPassword" placeholder="Senha" />
-                                                        <label for="floatingPassword">Senha</label>
+                                                        <FloatingLabels title="Senha" type="password" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
                                                     </div>
                                                 </div>
-                                                
-                                                <div className="col-12">
+
+                                                <div className="col-6">
                                                     <div className="form-floating mb-3">
                                                         <input name="password" type="password" className="form-control" id="floatingPassword" placeholder="Confirmar senha" />
                                                         <label for="floatingPassword">Confirmar senha</label>
@@ -105,7 +119,7 @@ const ConsultantLogin = () => {
                                                     <button className="btn btn-lg btn-primary" type="submit">Inscrever-se</button>
                                                 </div>
                                             </div>
-                                        </form> }
+                                        </form>}
                                 </div>
                             </div>
                         </div>
