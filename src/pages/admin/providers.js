@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RowDataAdmin from '../../components/RowDataAdmin';
 import style from '../../styles/AdminProviders.module.css';
 import Head from 'next/head';
@@ -7,9 +7,16 @@ import FormOptions from '../../components/FormOptions';
 import Link from 'next/link'
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../contexts/auth';
+import { Unity, UnityContext } from '../../contexts/unity';
 
 const AdminProviders = () => {
     const { isLogged, user } = useContext(AuthContext)
+    const { list } = useContext(UnityContext)
+
+    useEffect(() => {
+        console.log(list)
+    }, [list])
+
     return (
         <>
             {isLogged && user.role == "administrator" ?
@@ -48,12 +55,14 @@ const AdminProviders = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Pedro Alvares</td>
-                                                    <td>56.364.066/0001-15</td>
-                                                    <td>Ativo</td>
-                                                    <td><Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
-                                                </tr>
+                                                {list.map(x => (
+                                                    <tr>
+                                                        <td>Pedro Alvares</td>
+                                                        <td>56.364.066/0001-15</td>
+                                                        <td>Ativo</td>
+                                                        <td><Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
+                                                    </tr>
+                                                ))}
                                             </tbody>
                                         </table>
                                     </div>
@@ -67,4 +76,6 @@ const AdminProviders = () => {
     )
 }
 
-export default AdminProviders
+export default function renderProviders() {
+    return (<> <Unity><AdminProviders /></Unity> </>)
+}

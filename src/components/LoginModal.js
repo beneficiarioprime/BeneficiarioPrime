@@ -5,14 +5,15 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthContext } from '../contexts/auth';
-import { useForm } from 'react-hook-form';
+import InputMask from "react-input-mask";
+import { useFormContext, useForm, Controller } from 'react-hook-form';
 import FloatingLabelsMask from './FloatingLabelsMask';
 
 const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } }) => {
 
     let [login, setLogin] = useState(defaultState);
     let [erro, setErro] = useState(null);
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, control } = useForm();
 
     const { signIn, signUp } = useContext(AuthContext)
 
@@ -33,6 +34,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
     async function handleRegister(data) {
         try {
             setErro(null)
+            alert("Oi")
             await signUp(data)
             window.location.reload()
         } catch (error) {
@@ -54,7 +56,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                 <form className="" onSubmit={handleSubmit(handleLogin)}>
                                     <h4 className="mb-4 text-center">Área do Paciente</h4>
                                     <div className="mb-1 text-center">{erro}</div>
-                                    <FloatingLabels title="Email" placeholder="Email" name="email"  type="email" id="email" register={{ ...register('email', { required: true}) }} />
+                                    <FloatingLabels title="Email" placeholder="Email" name="email" type="email" id="email" register={{ ...register('email', { required: true }) }} />
                                     <FloatingLabels title="Senha" placeholder="Senha" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />
                                     <a>Esqueceu sua senha?</a>
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>
@@ -76,25 +78,47 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                     <FloatingLabels title="Nome Completo" type="text" placeholder="Nome Completo" name="name" register={{ ...register('name', { required: true }) }} />
                                     <FloatingLabels title="Email" placeholder="Email" name="email" register={{ ...register('email', { required: true }) }} />
                                     <FloatingLabels title="Senha" type="password" placeholder="Senha" name="password" register={{ ...register('password', { required: true }) }} />
-                                    <FloatingLabels title="Repetir Senha" type="password" placeholder="Repetir Senha" />
-                                    <div className="form-floating mb-3">
-                                        <select className="form-select" name="gender" register={{ ...register('gender', { required: true }) }} id="floatingSelect" aria-label="Selecione o Gênero">
-                                            <option selected>Selecione</option>
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Feminino</option>
-                                        </select>
-                                        <label for="floatingSelect">Gênero</label>
-                                    </div>
-                                    {/* <FloatingLabels title="Genero" placeholder="Genero" name="gender" register={{ ...register('gender', { required: true }) }} /> */}
+                                    <FloatingLabels title="Repetir Senha" type="password" placeholder="Repetir Senha" name="checkpassword" />
+                                    <Controller
+                                        name="gender"
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) => <div className="form-floating mb-3">
+                                            <select {...field} className="form-select" id="floatingSelect" aria-label="Selecione o Gênero">
+                                                <option selected>Selecione</option>
+                                                <option value="M">Masculino</option>
+                                                <option value="F">Feminino</option>
+                                            </select>
+                                            <label for="floatingSelect">Gênero</label>
+                                        </div>}
+                                    />
                                     <FloatingLabels title="Data de Nascimento" placeholder="Data de Nascimento" type="date" name="birthDate" register={{ ...register('birthDate', { required: true }) }} />
                                     <div className="row">
                                         <div className="col">
-                                            {/* <FloatingLabels title="CPF" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }} /> */}
-                                            <FloatingLabelsMask title="CPF" mask="999.999.999-99" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }}  />
+                                            <Controller
+                                                render={({ field }) =>
+                                                    <div className="form-floating mb-3">
+                                                        <InputMask id="cpf" mask="999.999.999-99" {...field} className="form-control" />
+                                                        <label for="cpf">CPF</label>
+                                                    </div>
+                                                }
+                                                control={control}
+                                                name="cpf"
+                                                rules={{ required: true }}
+                                            />
                                         </div>
                                         <div className="col">
-                                            <FloatingLabelsMask title="Celular" mask="+55 (99) 99999-9999" placeholder="Celular" name="phone" register={{ ...register('phone', { required: true }) }}  />
-                                            {/* <FloatingLabels title="Celular" placeholder="Celular" name="phone" register={{ ...register('phone', { required: true }) }} /> */}
+                                            <Controller
+                                                render={({ field }) =>
+                                                    <div className="form-floating mb-3">
+                                                        <InputMask id="phone" mask="+55 (99) 99999-9999" {...field} className="form-control" />
+                                                        <label for="phone">Celular</label>
+                                                    </div>
+                                                }
+                                                control={control}
+                                                name="phone"
+                                                rules={{ required: true }}
+                                            />
                                         </div>
                                     </div>
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>
