@@ -1,10 +1,14 @@
 const API_URL_BASE = "http://apibeneficiarioprime-com-br.umbler.net"
 module.exports = { 
     EXAM: {
-        LIST: `${API_URL_BASE}/exam/`
+        LIST: `${API_URL_BASE}/exam/`,
+        CREATE: `${API_URL_BASE}/exam/`,
+        REMOVE: `${API_URL_BASE}/exam/:id`
     },
     VACCNINE: {
-        LIST: `${API_URL_BASE}/vaccine/`
+        LIST: `${API_URL_BASE}/vaccine/`,
+        CREATE: `${API_URL_BASE}/vaccine/`,
+        REMOVE: `${API_URL_BASE}/vaccine/:id`
     },
     UNITY: {
         LIST: `${API_URL_BASE}/unity/`

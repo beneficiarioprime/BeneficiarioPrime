@@ -15,11 +15,40 @@ export function Vaccine({ children }) {
 
     useEffect(() => {
         if (profile && token)
-            axios.get(VACCNINE.LIST, { headers: { Authorization: `Bearer ${token}` } }).then(x => setList(x.data.data))
+            getList().then(x => console.log('loading VACCNINE...'))
     }, [])
 
+    async function getList() {
+        try {
+            axios.get(VACCNINE.LIST, { headers: { Authorization: `Bearer ${token}` } }).then(x => setList(x.data.data))
+        } catch (error) {
+            if (error.response === undefined) throw "Fatal error"
+            throw error.response.data.message || error.response.data.error
+        }
+    }
+
+    async function remove(id) {
+        try {
+            const json = await axios.delete(VACCNINE.REMOVE.replace(/:id/gi, id), { headers: { Authorization: `Bearer ${token}` } })
+            await getList()
+        } catch (error) {
+            if (error.response === undefined) throw "Fatal error"
+            throw error.response.data.message || error.response.data.error
+        }
+    }
+
+    async function create(params) {
+        try {
+            const json = await axios.post(VACCNINE.CREATE, params, { headers: { Authorization: `Bearer ${token}` } })
+            await getList()
+        } catch (error) {
+            if (error.response === undefined) throw "Fatal error"
+            throw error.response.data.message || error.response.data.error
+        }
+    }
+
     return (
-        <VaccineContext.Provider value={{ list }}>
+        <VaccineContext.Provider value={{ list, create, remove }}>
             {children}
         </VaccineContext.Provider>
     )

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataClinical from '../../components/RowDataAdmin';
 import style from '../../styles/AdminExams.module.css';
@@ -15,20 +15,23 @@ import Link from 'next/link';
 import FormOptions from '../../components/FormOptions';
 import { AuthContext } from '../../contexts/auth';
 import { ExamContext, Exam } from '../../contexts/exam';
-
-const sales = [
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 }
-]
+import { useFormContext, useForm, Controller } from 'react-hook-form';
 
 const AdminExams = () => {
     const { isLogged, user } = useContext(AuthContext)
-    const { list } = useContext(ExamContext)
+    let [erro, setErro] = useState(null);
+    const { list, create, remove } = useContext(ExamContext)
+    const { handleSubmit, register, control } = useForm();
+
+    async function handleCreate(data) {
+        try {
+            setErro(null)
+            await create(data)
+            setErro("Criado")
+        } catch (error) {
+            setErro(error)
+        }
+    }
 
     return (
         <>
@@ -45,15 +48,14 @@ const AdminExams = () => {
                                 </div>
                             </div>
                             <RowDataClinical>
-                                <form>
+                                <form onSubmit={handleSubmit(handleCreate)}>
                                     <h1 className="mb-5">Exames</h1>
                                     <h6>Adicionar novo exame</h6>
-                                    <FormOptions placeholder="Nome do exame">Nome do exame</FormOptions>
-                                    <FormOptions placeholder="Sinônimo">Sinônimo</FormOptions>
-                                    <div className="form-floating">
-                                        <textarea className="form-control" placeholder="Descreva o exame" id="floatingTextarea2" style={{ height: "100px" }}></textarea>
-                                        <label for="floatingTextarea2">Descrição</label>
-                                    </div>
+                                    <div className="mb-1 text-center">{erro}</div>
+                                    <FloatingLabels title="Nome do exame" placeholder="Nome do exame" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
+                                    <FloatingLabels title="Descrição" placeholder="Descrição" name="description" type="text" id="description" register={{ ...register('description', { required: true }) }} />
+                                    <FloatingLabels title="Sinônimos" placeholder="Sinônimos" name="synonyms" type="text" id="synonyms" register={{ ...register('synonyms', { required: true }) }} />
+                                    <FloatingLabels title="Preço" placeholder="Preço" name="price" type="text" id="price" register={{ ...register('price', { required: true }) }} />
                                     <div className="row">
                                         {/* <div className="col-6 col-md">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Particular" placeholder="Preço Particular" />
@@ -69,7 +71,7 @@ const AdminExams = () => {
                                 </div> */}
                                     </div>
                                     <div className="d-grid gap-2 mt-3">
-                                        <button className="btn btn-primary" type="button">Adicionar</button>
+                                        <button className="btn btn-primary" type="submit">Adicionar</button>
                                     </div>
                                     <input className="form-control mt-5" type="text" placeholder="Pesquise pelo exame" />
                                     <div className="table-responsive">
@@ -88,7 +90,7 @@ const AdminExams = () => {
                                                         <td>{x.name}</td>
                                                         <td>{x.synonyms.toString()}</td>
                                                         <td>{x.description}</td>
-                                                        <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link> <Link href="#"><a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></Link></td>
+                                                        <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link> <span onClick={async () => await remove(x._id)}><a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></span></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
