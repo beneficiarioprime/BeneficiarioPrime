@@ -48,15 +48,17 @@ const PatientSchedules = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Exame</td>
-                                                <td>Tomografia</td>
-                                                <td>11/02/2021</td>
-                                                <td>10H45</td>
-                                                <td>Consulta Prime</td>
-                                                <td>Realizado</td>
-                                                <td><Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
-                                            </tr>
+                                            {user.schedules.map(schedule => (
+                                                <tr>
+                                                    <td>{schedule.procedure}</td>
+                                                    <td>{schedule.specification}</td>
+                                                    <td>{schedule.date}</td>
+                                                    <td>{schedule.hour}</td>
+                                                    <td>{schedule.place}</td>
+                                                    <td>{schedule.status}</td>
+                                                    <td><Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
+                                                </tr>
+                                            ))}
                                         </tbody>
                                     </table>
                                 </div>
