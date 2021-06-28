@@ -15,6 +15,7 @@ module.exports = {
     },
     USER: {
         REGISTER: `${API_URL_BASE}/user`,
+        LIST: `${API_URL_BASE}/user`,
         LOGIN: `${API_URL_BASE}/user/authenticate/:role`,
         UPDATE: `${API_URL_BASE}/user/:id`,
         PROFILE: `${API_URL_BASE}/user/:id`

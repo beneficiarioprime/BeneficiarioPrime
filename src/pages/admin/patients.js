@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataClinical from '../../components/RowDataAdmin';
 import style from '../../styles/AdminPatients.module.css';
@@ -14,19 +14,18 @@ import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import FormOptions from '../../components/FormOptions';
 import { AuthContext } from '../../contexts/auth';
-
-const sales = [
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 }
-]
+import { useFormContext, useForm, Controller } from 'react-hook-form';
+import { UserContext, update } from '../../contexts/user';
 
 const AdminPatients = () => {
     const { isLogged, user } = useContext(AuthContext)
+    const { handleSubmit, register, control } = useForm();
+    const { getList, list } = useContext(UserContext)
+
+    useEffect(async () => {
+        await getList()
+    }, [list])
+
     return (
         <>
             {isLogged && user.role == "administrator" ?
@@ -80,12 +79,15 @@ const AdminPatients = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Marcos Alves</td>
-                                                    <td>221.009.190-08</td>
-                                                    <td>Ativo</td>
-                                                    <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
-                                                </tr>
+                                                {list.map(x => (
+                                                    <tr>
+                                                        <td>{x.name}</td>
+                                                        <td>{x.cpf}</td>
+                                                        <td>Ativo</td>
+                                                        <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
+                                                    </tr>
+                                                ))}
+
                                             </tbody>
                                         </table>
                                     </div>
