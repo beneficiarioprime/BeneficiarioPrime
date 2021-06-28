@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataPatient from '../../components/RowDataPatient';
 import style from '../../styles/AdminProfile.module.css';
@@ -10,8 +10,19 @@ import Head from 'next/head';
 
 const PatientProfile = ({ data }) => {
     const [password, setPassword] = useState(false);
+    const [formattedBirthDate, setFormattedBirthDate] = useState("0000-00-00")
     const { isLogged, user } = useContext(AuthContext)
-    const { update } = useContext(UserContext)
+    // const { update } = useContext(UserContext)
+    
+    useEffect(function() {
+
+        console.log(user)
+
+        if (user.birthDate) {
+            let currentDate = user.birthDate.substring(0,10)
+            setFormattedBirthDate(currentDate)
+        }
+    }, [user])
 
     const [dataCEP, setDataCEP] = useState({
         cep: '',
@@ -91,7 +102,7 @@ const PatientProfile = ({ data }) => {
                                         <div className="row">
                                             <div className="col-12 col-md">
                                                 <FloatingLabels title="Gênero" placeholder="Gênero" defaultValue={user.gender} />
-                                                <FloatingLabels title="Data de Nascimento" type="date" placeholder="Data de Nascimento" value={user.date} />
+                                                <FloatingLabels title="Data de Nascimento" type="date" placeholder="Data de Nascimento" value={formattedBirthDate} />
                                             </div>
                                             <div className="col-12 col-md">
                                                 <FloatingLabels title="CPF" placeholder="CPF" defaultValue={user.cpf} />
@@ -114,14 +125,14 @@ const PatientProfile = ({ data }) => {
                                 </div>
                                 <div className="row mb-5">
                                     <div className="col-6 col-md-3">
-                                        <FloatingLabels type="text" title="Peso" placeholder="Peso" />
+                                        <FloatingLabels type="text" title="Peso" placeholder="Peso" defaultValue={user.weight} />
                                     </div>
                                     <div className="col-6 col-md-3">
-                                        <FloatingLabels type="text" title="Altura" placeholder="Altura" />
+                                        <FloatingLabels type="text" title="Altura" placeholder="Altura" defaultValue={user.height} />
                                     </div>
                                     <div className="col col-md-12">
                                         <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="" id="deficiencia" />
+                                            <input className="form-check-input" type="checkbox" value="" id="deficiencia" checked={user.disabledPerson} />
                                             <label className="form-check-label" for="deficiencia">
                                                 Possui alguma deficiência?
                                             </label>
@@ -130,26 +141,26 @@ const PatientProfile = ({ data }) => {
                                 </div>
                                 <div className="row">
                                     <div className="col-12 col-md-3">
-                                        <FloatingLabels name="cep" id="cep" onBlur={getInformacoes} type="text" title="CEP" maxlength="9" placeholder="CEP" />
+                                        <FloatingLabels name="cep" id="cep" onBlur={getInformacoes} type="text" title="CEP" maxlength="9" placeholder="CEP" defaultValue={user.zipCode} />
                                     </div>
                                     <div className="col-12 col-md-7">
-                                        <FloatingLabels id="logradouro" type="text" title="Endereço" placeholder="Endereço" />
+                                        <FloatingLabels id="logradouro" type="text" title="Endereço" placeholder="Endereço" defaultValue={user.street} />
                                     </div>
                                     <div className="col-5 col-md-2">
-                                        <FloatingLabels id="numero" type="text" title="Nª" placeholder="Nª" />
+                                        <FloatingLabels id="numero" type="text" title="Nª" placeholder="Nª" defaultValue={user.number} />
                                     </div>
                                     <div className="col-7 col-md-3">
                                         <FloatingLabels id="complemento" type="text" title="Complemento" placeholder="Complemento" />
                                     </div>
                                     <div className="col-12 col-md-5">
-                                        <FloatingLabels id="bairro" type="text" title="Bairro" placeholder="Bairro" />
+                                        <FloatingLabels id="bairro" type="text" title="Bairro" placeholder="Bairro" defaultValue={user.district} />
                                     </div>
                                     <div className="col-12 col-md-4">
-                                        <FloatingLabels id="cidade" type="text" title="Cidade" placeholder="Cidade" />
+                                        <FloatingLabels id="cidade" type="text" title="Cidade" placeholder="Cidade" defaultValue={user.city} />
                                     </div>
                                     <div className="col-12 col-md-4">
                                         <div className="form-floating">
-                                            <select className="form-select" id="uf" aria-label="Estado">
+                                            <select className="form-select" id="uf" aria-label="Estado" defaultValue={user.state}>
                                                 <option selected>Selecione um deles</option>
                                                 <option value="AC">Acre</option>
                                                 <option value="AL">Alagoas</option>
