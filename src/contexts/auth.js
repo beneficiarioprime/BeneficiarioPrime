@@ -51,7 +51,7 @@ export function Auth({ children }) {
             saveUserLogged(json.data)
         } catch (error) {
             if (error.response === undefined || error.response.data.message === undefined) throw "Fatal error"
-            throw error.response.data.message
+            throw error.response.data.message || error.response.data.error
         }
     }
 
@@ -61,7 +61,7 @@ export function Auth({ children }) {
             userLogged(json.data)
         } catch (error) {
             if (error.response === undefined) throw "Fatal error"
-            throw error.response.data
+            throw error.response.data.message || error.response.data.error
         }
     }
 

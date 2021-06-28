@@ -18,7 +18,7 @@ export function User({ children }) {
             return json
         } catch (error) {
             if (error.response === undefined) throw "Fatal error"
-            throw error.response.data
+            throw error.response.data.message || error.response.data.error
         }
     }
 
