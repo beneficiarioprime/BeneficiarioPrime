@@ -18,7 +18,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
     const { signIn, signUp } = useContext(AuthContext)
 
     const handleOutsideClick = (e) => {
-        if (e.target.id === id) onClose();
+        // if (e.target.id === id) onClose();
     }
 
     async function handleLogin(data) {

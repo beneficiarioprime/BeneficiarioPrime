@@ -50,6 +50,7 @@ export function Auth({ children }) {
             const json = await axios.post(USER.LOGIN.replace(/:role/gi, role), params)
             saveUserLogged(json.data)
         } catch (error) {
+            console.log(error)
             if (error.response === undefined || error.response.data.message === undefined) throw "Fatal error"
             throw error.response.data.message || error.response.data.error
         }
@@ -58,8 +59,9 @@ export function Auth({ children }) {
     async function signUp(params) {
         try {
             const json = await axios.post(USER.REGISTER, params)
-            userLogged(json.data)
+            saveUserLogged(json.data)
         } catch (error) {
+            console.log(error)
             if (error.response === undefined) throw "Fatal error"
             throw error.response.data.message || error.response.data.error
         }
