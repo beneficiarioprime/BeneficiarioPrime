@@ -51,7 +51,7 @@ export function Auth({ children }) {
             saveUserLogged(json.data)
         } catch (error) {
             console.log(error)
-            if (error.response === undefined || error.response.data.message === undefined) throw "Fatal error"
+            if (error.response === undefined) throw "Fatal error"
             throw error.response.data.message || error.response.data.error
         }
     }
