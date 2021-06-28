@@ -37,14 +37,14 @@ const AdminProfile = ({ data }) => {
                             <RowDataAdmin>
                                 <form onSubmit={handleSubmit(handleUpdate)}>
                                     <div className="row">
-                                        <div className="col-12 col-md-4">
+                                        {/* <div className="col-12 col-md-4">
                                             <div className="d-flex justify-content-center">
                                                 <img src="https://network.grupoabril.com.br/wp-content/uploads/sites/4/2016/10/medico-duvidas2.jpg?quality=70&strip=all" width="200px" className="me-4 rounded float-start" alt={`Foto de ${user.name}`} />
                                             </div>
                                             <div className="text-center">
                                                 <a className="btn">Alterar imagem</a>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="col-12 col-md-8">
                                             <FloatingLabels value={user.name} title="Nome completo" placeholder="Nome completo" name="name" register={{ ...register('name') }} />
                                             <FloatingLabels defaultValue={user.email} title="Email" placeholder="Email" name="email" register={{ ...register('email') }} />
@@ -56,7 +56,7 @@ const AdminProfile = ({ data }) => {
                                                     <FloatingLabels title="Telefone" placeholder="Telefone" defaultValue={user.phone} name="phone" register={{ ...register('phone') }} />
                                                 </div>
                                             </div>
-                                            <a className="btn mb-3" onClick={() => setPassword(!password)}>Alterar senha</a>
+                                            <a className={`btn mb-3 ${style.btnPassword} ${password && style.btnPasswordClick}`} onClick={() => setPassword(!password)}>Alterar senha</a>
                                         </div>
                                         {password &&
                                             <>
@@ -64,7 +64,7 @@ const AdminProfile = ({ data }) => {
                                                     <FloatingLabels title="Senha atual" />
                                                 </div>
                                                 <div className="col-12 col-md-6">
-                                                    <FloatingLabels title="Alterar senha" name="password" register={{ ...register('password') }} />
+                                                    <FloatingLabels title="Alterar senha" />
                                                     <FloatingLabels title="Repetir senha" />
                                                 </div>
                                             </>

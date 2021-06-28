@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataClinical from '../../components/RowDataClinical';
 import style from '../../styles/PersonalData.module.css';
@@ -19,10 +19,16 @@ const data = {
 }
 
 const ClinicalDocuments = () => {
+
+    const [hasPix, setHasPix] = useState(false)
+
+    const handleClick = () => {
+        setHasPix(!hasPix)
+    }
     return (
         <>
             <Head>
-                <title>Documentos da clínica - Beneficiário Prime</title>
+                <title>Documentos do Prestador - Beneficiário Prime</title>
             </Head>
             <div className={`${style.body}`}>
                 <div className="container pt-5 mb-5">
@@ -33,11 +39,12 @@ const ClinicalDocuments = () => {
                     </div>
                     <RowDataClinical>
                         <form>
-                            <h3 className="mb-5">Documentos da clínica</h3>
+                            <h3 className="mb-5">Documentos do Prestador</h3>
                             <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Nome da clínica" disabled="true" defaultValue={data.name} />
                             <FloatingLabels className={`${style.floatingLabel}`} type="email" title="Email" disabled="disabled" defaultValue={data.email} />
                             <div className="mb-3">
                                 <label for="cnpj" className="form-label">CNPJ</label>
+                                <FloatingLabels className={`${style.floatingLabel}`} type="CPNJ" title="CNPJ" disabled="disabled" defaultValue={data.email} />
                                 <input className={`${style.floatingLabel} form-control`} type="file" id="cnpj" />
                             </div>
                             <div className="mb-3">
@@ -124,10 +131,14 @@ const ClinicalDocuments = () => {
                                 </div>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="pix" />
+                                <input class="form-check-input" checked={hasPix} onClick={handleClick} type="checkbox" value="" id="hasPix" />
                                 <label class="form-check-label" for="pix">Possui pix?</label>
                             </div>
-                            <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Chave Pix" placeholder="pix" />
+                            {hasPix && (
+                                <div className="mt-3">
+                                    <FloatingLabels className={`${style.floatingLabel}`} placeholder="Pix" type="text" title="Chave Pix" />
+                                </div>
+                            )}
                         </form>
                         <div className="d-flex justify-content-center mt-4">
                             <button className="btn btn-primary">Salvar e enviar</button>

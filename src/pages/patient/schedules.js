@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../contexts/auth';
+import Modal from '../../components/Modal';
 
 const PatientSchedules = () => {
     const { isLogged, user } = useContext(AuthContext)
@@ -56,7 +57,18 @@ const PatientSchedules = () => {
                                                     <td>{schedule.hour}</td>
                                                     <td>{schedule.place}</td>
                                                     <td>{schedule.status}</td>
-                                                    <td><Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
+                                                    <td><button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarcar" title="Remarcar"><FontAwesomeIcon icon={faPencilAlt} /></button></td>
+                                                    <Modal title="Remarcar consulta" id="remarcar">
+                                                        <FloatingLabels title="Doutor" placeholder="Doutor" />
+                                                        <div className="row">
+                                                            <div className="col">
+                                                                <FloatingLabels title="Data que deseja" placeholder="Data que deseja" type="date" />
+                                                            </div>
+                                                            <div className="col">
+                                                                <FloatingLabels title="Horário" type="time" />
+                                                            </div>
+                                                        </div>
+                                                    </Modal>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -65,6 +77,7 @@ const PatientSchedules = () => {
                             </RowDataPatient>
                         </div>
                     </div>
+
                 </> : <> </>}
         </>
     )

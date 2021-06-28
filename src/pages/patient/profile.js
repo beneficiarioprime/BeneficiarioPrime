@@ -4,7 +4,7 @@ import RowDataPatient from '../../components/RowDataPatient';
 import style from '../../styles/AdminProfile.module.css';
 import { AuthContext } from '../../contexts/auth';
 import { update } from '../../contexts/user';
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import Head from 'next/head';
 
 
@@ -12,14 +12,15 @@ const PatientProfile = ({ data }) => {
     const [password, setPassword] = useState(false);
     const [formattedBirthDate, setFormattedBirthDate] = useState("0000-00-00")
     const { isLogged, user } = useContext(AuthContext)
+    const { handleSubmit, register, control } = useForm();
     // const { update } = useContext(UserContext)
-    
-    useEffect(function() {
+
+    useEffect(function () {
 
         console.log(user)
 
         if (user.birthDate) {
-            let currentDate = user.birthDate.substring(0,10)
+            let currentDate = user.birthDate.substring(0, 10)
             setFormattedBirthDate(currentDate)
         }
     }, [user])
@@ -88,28 +89,40 @@ const PatientProfile = ({ data }) => {
                             </div>
                             <RowDataPatient>
                                 <div className="row">
-                                    <div className="col-12 col-md-4">
+                                    {/* <div className="col-12 col-md-4">
                                         <div className="d-flex justify-content-center">
                                             <img src="https://network.grupoabril.com.br/wp-content/uploads/sites/4/2016/10/medico-duvidas2.jpg?quality=70&strip=all" width="200px" className="me-4 rounded float-start" alt={`Foto de ${user.name}`} />
                                         </div>
                                         <div className="text-center">
                                             <a className="btn">Alterar imagem</a>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-12 col-md-8">
                                         <FloatingLabels value={user.name} title="Nome completo" placeholder="Nome completo" />
                                         <FloatingLabels defaultValue={user.email} title="Email" placeholder="Email" />
                                         <div className="row">
                                             <div className="col-12 col-md">
-                                                <FloatingLabels title="Gênero" placeholder="Gênero" defaultValue={user.gender} />
+                                                <Controller
+                                                    name="gender"
+                                                    control={control}
+                                                    rules={{ required: true }}
+                                                    render={({ field }) => <div className="form-floating mb-3">
+                                                        <select {...field} className="form-select" id="floatingSelect" aria-label="Selecione o Gênero">
+                                                            <option selected>Selecione</option>
+                                                            <option value="M">Masculino</option>
+                                                            <option value="F">Feminino</option>
+                                                        </select>
+                                                        <label for="floatingSelect">Gênero</label>
+                                                    </div>}
+                                                />
                                                 <FloatingLabels title="Data de Nascimento" type="date" placeholder="Data de Nascimento" value={formattedBirthDate} />
                                             </div>
                                             <div className="col-12 col-md">
                                                 <FloatingLabels title="CPF" placeholder="CPF" defaultValue={user.cpf} />
-                                                <FloatingLabels title="Telefone" placeholder="Telefone" defaultValue={user.phone} />
+                                                <FloatingLabels title="Celular" placeholder="Celular" defaultValue={user.phone} />
                                             </div>
                                         </div>
-                                        <a className="btn mb-3" onClick={() => setPassword(!password)}>Alterar senha</a>
+                                        <a className={`btn mb-3 ${style.btnPassword} ${password && style.btnPasswordClick}`} onClick={() => setPassword(!password)}>Alterar senha</a>
                                     </div>
                                     {password &&
                                         <>

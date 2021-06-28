@@ -15,7 +15,7 @@ const RowDataPatient = (props) => {
                         <div className="col-md-3">
                             <div className={style.menu}>
                                 <Link href="/patient/profile"><div className={`p-3`}>Perfil</div></Link>
-                                <Link href="/patient/#"><div className={`p-3`}>2ª Via</div></Link>
+                                {/* <Link href="/patient/#"><div className={`p-3`}>2ª Via</div></Link> */}
                                 <Link href="/patient/yourplan"><div className={`p-3`}>Seu plano</div></Link>
                                 <Link href="/patient/schedules"><div className={`p-3`}>Agendamentos</div></Link>
                                 <div className={`p-3`} onClick={() => {
