@@ -13,6 +13,11 @@ module.exports = {
     UNITY: {
         LIST: `${API_URL_BASE}/unity/`
     },
+    APPOINTMENT: {
+        LIST: `${API_URL_BASE}/appointment/`,
+        CREATE: `${API_URL_BASE}/appointment/`,
+        REMOVE: `${API_URL_BASE}/appointment/:id`
+    },
     USER: {
         REGISTER: `${API_URL_BASE}/user`,
         LIST: `${API_URL_BASE}/user`,
