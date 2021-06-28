@@ -41,10 +41,11 @@ const AdminAppointments = () => {
                                     <h1 className="mb-5">Consultas</h1>
                                     <h6>Adicionar novo</h6>
                                     <FormOptions placeholder="Nome do exame">Nome da consulta</FormOptions>
-                                    <div className="form-floating">
+                                    <div className="form-floating mb-3">
                                         <textarea className="form-control" placeholder="Descreva a consulta" id="floatingTextarea2" style={{ height: "100px" }}></textarea>
                                         <label for="floatingTextarea2">Descrição</label>
                                     </div>
+                                    <FloatingLabels title="Sinônimos" placeholder="Sinônimos" name="synonyms" type="text" id="synonyms" showHelpText={true} helpText={`Separe cada sinônimo com um ponto e vírgula (;).`}/>
                                     <div className="row">
                                         {/* <div className="col-6 col-md">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Particular" placeholder="Preço Particular" />
