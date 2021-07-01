@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileMedicalAlt } from '@fortawesome/free-solid-svg-icons'
 import { AuthContext, AuthDashboard } from '../contexts/auth';
+import LoginModal from './LoginModal';
 
 const cart = 1
 
@@ -13,6 +14,7 @@ const Navbar = (props) => {
     const [data, setData] = useState({})
     const [logged, setLogged] = useState(false);
     const { isLogged, user } = useContext(AuthContext)
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     return (<>
         <nav className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}>
@@ -40,8 +42,8 @@ const Navbar = (props) => {
                         </>
                         :
                         <>
-                            <a onClick={props.onClick} className={`me-5 ${styles.btnLogin}`}>Entrar</a>
-                            <a onClick={props.onClickRegister} className={`btn ${styles.btnRegister}`} type="submit">Assine aqui</a>
+                            <a onClick={() => setIsModalVisible(true)} className={`me-5 ${styles.btnLogin}`}>Entrar</a>
+                            <a onClick={() => setIsModalVisible(true)} className={`btn ${styles.btnRegister}`} type="submit">Assine aqui</a>
                         </>
                     }
                 </div>
@@ -83,6 +85,11 @@ const Navbar = (props) => {
                 </div>
             </div>
         </nav> */}
+        {isModalVisible ? (
+            <LoginModal onClose={() => setIsModalVisible(false)}>
+            </LoginModal>
+        ) : null}
+
     </>
     )
 }

@@ -6,14 +6,15 @@ import style from '../../styles/ConsultantLogin.module.css'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import FloatingLabels from '../../components/FloatingLabels'
-import { useForm } from 'react-hook-form'
+import { useFormContext, useForm, Controller } from 'react-hook-form';
+import InputMask from "react-input-mask";
 import { AuthContext } from '../../contexts/auth';
 
 const ConsultantLogin = () => {
 
     let [erro, setErro] = useState(null);
     const { signIn, signUp } = useContext(AuthContext)
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, control } = useForm();
 
     async function handleLogin(data) {
         try {
@@ -53,6 +54,7 @@ const ConsultantLogin = () => {
                                         <img src="/img/logos/logo-grande.png" style={{ maxWidth: "100%" }} />
                                     </div>
                                     <h1 className="text-center mb-5">Área do Consultor</h1>
+                                    <div className="mb-1 text-center">{erro}</div>
                                     <div className={`${style.row} row mb-5`}>
                                         <div className="col-lg-6 text-center">
                                             <button onClick={() => { setChange('login') }}>Login</button>
@@ -85,14 +87,36 @@ const ConsultantLogin = () => {
                                                         <FloatingLabels title="Nome Completo" type="text" placeholder="Nome Completo" name="name" register={{ ...register('name', { required: true }) }} />
                                                     </div>
                                                 </div>
+
+
                                                 <div className="col-6">
-                                                    <div className="form-floating mb-3">
-                                                        <FloatingLabels title="CPF" placeholder="CPF" name="cpf" register={{ ...register('cpf', { required: true }) }} />
+                                                    <div className="col">
+                                                        <Controller
+                                                            render={({ field }) =>
+                                                                <div className="form-floating mb-3">
+                                                                    <InputMask id="cpf" mask="999.999.999-99" {...field} className="form-control" />
+                                                                    <label for="cpf">CPF</label>
+                                                                </div>
+                                                            }
+                                                            control={control}
+                                                            name="cpf"
+                                                            rules={{ required: true }}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
-                                                    <div className="form-floating mb-3">
-                                                        <FloatingLabels title="Telefone" placeholder="Telefone" name="phone" register={{ ...register('phone', { required: true }) }} />
+                                                    <div className="col">
+                                                        <Controller
+                                                            render={({ field }) =>
+                                                                <div className="form-floating mb-3">
+                                                                    <InputMask id="phone" mask="+55 (99) 99999-9999" {...field} className="form-control" />
+                                                                    <label for="phone">Celular</label>
+                                                                </div>
+                                                            }
+                                                            control={control}
+                                                            name="phone"
+                                                            rules={{ required: true }}
+                                                        />
                                                     </div>
                                                 </div>
 

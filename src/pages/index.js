@@ -80,7 +80,6 @@ const FaTimes = () => {
 export default function Home() {
 
   let [option, setOption] = useState('consulta');
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
   const [showCardResult, setShowCardResult] = useState(false);
 
@@ -103,11 +102,7 @@ export default function Home() {
       <Head>
         <title>Home - Beneficiário Prime</title>
       </Head>
-      <Navbar onClick={() => setIsModalVisible(true)} onClickRegister={() => setIsModalVisible(true)} />
-      {isModalVisible ? (
-        <LoginModal onClose={() => setIsModalVisible(false)}>
-        </LoginModal>
-      ) : null}
+      <Navbar />
 
       <header className={styles.container}>
         <div className={`container-fluid flex-row-reverse ${styles.containerFluid} ${styles.displayFlexCard}`} style={{ maxHeight: "700px" }}>
