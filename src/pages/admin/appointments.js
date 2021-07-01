@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataClinical from '../../components/RowDataAdmin';
 import style from '../../styles/AdminAppointments.module.css';
@@ -15,8 +15,9 @@ import { useFormContext, useForm, Controller } from 'react-hook-form';
 const AdminAppointments = () => {
     const { isLogged, user } = useContext(AuthContext)
     let [erro, setErro] = useState(null);
-    const { list, remove, create } = useContext(AppointmentContext)
+    const { list, remove, create, getList, pagination } = useContext(AppointmentContext)
     const { handleSubmit, register, control } = useForm();
+    const [page, setPage] = useState(1)
 
     async function handleCreate(data) {
         try {
@@ -27,6 +28,14 @@ const AdminAppointments = () => {
             setErro(error)
         }
     }
+
+    async function addPage(number) {
+        setPage(page + number)
+    }
+
+    useEffect(() => {
+        getList(page)
+    }, [page])
 
     return (
         <>
@@ -90,6 +99,19 @@ const AdminAppointments = () => {
                                             </tbody>
                                         </table>
                                     </div>
+                                    {page && (
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-end">
+                        
+                                                <li class={`page-item ${page == 1 && "disabled"}`}>
+                                                    <a class="page-link" tabindex="-1" onClick={() => addPage(-1)}>Voltar</a>
+                                                </li>
+                                                <li class={`page-item ${page == pagination.maxPage && "disabled"}`}>
+                                                    <a class="page-link" onClick={() => addPage(1)}>Próximo</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    )}
                                 </form>
                             </RowDataClinical>
                         </div>

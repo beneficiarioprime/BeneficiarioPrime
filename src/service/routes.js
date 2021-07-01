@@ -14,7 +14,7 @@ module.exports = {
         LIST: `${API_URL_BASE}/unity/`
     },
     APPOINTMENT: {
-        LIST: `${API_URL_BASE}/appointment/`,
+        LIST: `${API_URL_BASE}/appointment/page/:number?limit=:limit`,
         CREATE: `${API_URL_BASE}/appointment/`,
         REMOVE: `${API_URL_BASE}/appointment/:id`
     },
