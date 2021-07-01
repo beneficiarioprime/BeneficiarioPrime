@@ -101,8 +101,7 @@ const AdminAppointments = () => {
                                     </div>
                                     {page && (
                                         <nav aria-label="Page navigation example">
-                                            <ul class="pagination justify-content-end">
-                        
+                                            <ul class="pagination justify-content-end align-items-center">
                                                 <li class={`page-item ${page == 1 && "disabled"}`}>
                                                     <a class="page-link" tabindex="-1" onClick={() => addPage(-1)}>Voltar</a>
                                                 </li>

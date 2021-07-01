@@ -26,7 +26,7 @@ export function Appointment({ children }) {
             getList().then(x => console.log('loading Appointment...'))
     }, [])
 
-    async function getList(page = 1, limit = 1) {
+    async function getList(page = 1, limit = 10) {
         try {
             axios.get(APPOINTMENT.LIST.replace(/:number/gi, page).replace(/:limit/gi, limit), { headers: { Authorization: `Bearer ${token}` } }).then(x => {
                 try {

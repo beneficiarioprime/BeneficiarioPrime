@@ -20,8 +20,9 @@ import { useFormContext, useForm, Controller } from 'react-hook-form';
 const AdminExams = () => {
     const { isLogged, user } = useContext(AuthContext)
     let [erro, setErro] = useState(null);
-    const { list, create, remove } = useContext(ExamContext)
+    const { list, create, remove, getList, pagination } = useContext(ExamContext)
     const { handleSubmit, register, control } = useForm();
+    const [page, setPage] = useState(1)
 
     async function handleCreate(data) {
         try {
@@ -32,6 +33,14 @@ const AdminExams = () => {
             setErro(error)
         }
     }
+
+    async function addPage(number) {
+        setPage(page + number)
+    }
+
+    useEffect(() => {
+        getList(page)
+    }, [page])
 
     return (
         <>
@@ -54,8 +63,8 @@ const AdminExams = () => {
                                     <div className="mb-1 text-center">{erro}</div>
                                     <FloatingLabels title="Nome do exame" placeholder="Nome do exame" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
                                     <FloatingLabels title="Descrição" placeholder="Descrição" name="description" type="text" id="description" register={{ ...register('description', { required: true }) }} />
-                                    <FloatingLabels title="Sinônimos" placeholder="Sinônimos" name="synonyms" type="text" id="synonyms" register={{ ...register('synonyms', { required: true }) }} 
-                                    showHelpText={true} helpText={`Separe cada sinônimo com um ponto e vírgula (;).`} />
+                                    <FloatingLabels title="Sinônimos" placeholder="Sinônimos" name="synonyms" type="text" id="synonyms" register={{ ...register('synonyms', { required: true }) }}
+                                        showHelpText={true} helpText={`Separe cada sinônimo com um ponto e vírgula (;).`} />
                                     <FloatingLabels title="Preço" placeholder="Preço" name="price" type="text" id="price" register={{ ...register('price', { required: true }) }} />
                                     <div className="row">
                                         {/* <div className="col-6 col-md">
@@ -97,6 +106,18 @@ const AdminExams = () => {
                                             </tbody>
                                         </table>
                                     </div>
+                                    {page && (
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-end align-items-center">
+                                                <li class={`page-item ${page == 1 && "disabled"}`}>
+                                                    <a class="page-link" tabindex="-1" onClick={() => addPage(-1)}>Voltar</a>
+                                                </li>
+                                                <li class={`page-item ${page == pagination.maxPage && "disabled"}`}>
+                                                    <a class="page-link" onClick={() => addPage(1)}>Próximo</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    )}
                                 </form>
                             </RowDataClinical>
                         </div>

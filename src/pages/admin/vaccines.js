@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import RowDataClinical from '../../components/RowDataAdmin';
 import style from '../../styles/AdminVaccines.module.css';
 import Head from 'next/head';
@@ -13,9 +13,10 @@ import { useFormContext, useForm, Controller } from 'react-hook-form';
 
 const AdminVaccines = () => {
     const { isLogged, user } = useContext(AuthContext)
-    const { list, create, remove } = useContext(VaccineContext)
+    const { list, create, remove, getList, pagination  } = useContext(VaccineContext)
     let [erro, setErro] = useState(null);
     const { handleSubmit, register, control } = useForm();
+    const [page, setPage] = useState(1)
 
     async function handleCreate(data) {
         try {
@@ -27,6 +28,13 @@ const AdminVaccines = () => {
         }
     }
 
+    async function addPage(number) {
+        setPage(page + number)
+    }
+
+    useEffect(() => {
+        getList(page)
+    }, [page])
 
     return (
         <>
@@ -47,8 +55,8 @@ const AdminVaccines = () => {
                             <div className="mb-1 text-center">{erro}</div>
                             <FloatingLabels title="Nome da Vacina" placeholder="Nome do Vacina" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
                             <FloatingLabels title="Descrição" placeholder="Descrição" name="description" type="text" id="description" register={{ ...register('description', { required: true }) }} />
-                            <FloatingLabels title="Sinônimos" placeholder="Sinônimos" name="synonyms" type="text" id="synonyms" register={{ ...register('synonyms', { required: true }) }} 
-                            showHelpText={true} helpText={`Separe cada sinônimo com um ponto e vírgula (;).`}/>
+                            <FloatingLabels title="Sinônimos" placeholder="Sinônimos" name="synonyms" type="text" id="synonyms" register={{ ...register('synonyms', { required: true }) }}
+                                showHelpText={true} helpText={`Separe cada sinônimo com um ponto e vírgula (;).`} />
                             <FloatingLabels title="Preço" placeholder="Preço" name="price" type="text" id="price" register={{ ...register('price', { required: true }) }} />
                             <div className="row">
                                 {/* <div className="col-6 col-md">
@@ -93,6 +101,18 @@ const AdminVaccines = () => {
                                     </tbody>
                                 </table>
                             </div>
+                            {page && (
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-end align-items-center">
+                                        <li class={`page-item ${page == 1 && "disabled"}`}>
+                                            <a class="page-link" tabindex="-1" onClick={() => addPage(-1)}>Voltar</a>
+                                        </li>
+                                        <li class={`page-item ${page == pagination.maxPage && "disabled"}`}>
+                                            <a class="page-link" onClick={() => addPage(1)}>Próximo</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            )}
                         </form>
                     </RowDataClinical>
                 </div>
