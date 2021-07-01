@@ -49,7 +49,7 @@ const AdminExams = () => {
                     <Head>
                         <title>Exames - Beneficiário Prime</title>
                     </Head>
-                    <div className={`${style.body}`}>
+                    <div>
                         <div className="container pt-5 mb-5">
                             <div className="card card-body mb-3">
                                 <div className={`${style.title}`}>
@@ -95,8 +95,8 @@ const AdminExams = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {list.map(x => (
-                                                    <tr>
+                                                {list.map((x, i) => (
+                                                    <tr key={i}>
                                                         <td>{x.name}</td>
                                                         <td>{x.synonyms.toString()}</td>
                                                         <td>{x.description}</td>
@@ -108,12 +108,12 @@ const AdminExams = () => {
                                     </div>
                                     {page && (
                                         <nav aria-label="Page navigation example">
-                                            <ul class="pagination justify-content-end align-items-center">
-                                                <li class={`page-item ${page == 1 && "disabled"}`}>
-                                                    <a class="page-link" tabindex="-1" onClick={() => addPage(-1)}>Voltar</a>
+                                            <ul className="pagination justify-content-end align-items-center">
+                                                <li className={`page-item ${page == 1 && "disabled"}`} key="voltar">
+                                                    <a className="page-link" tabIndex="-1" onClick={() => addPage(-1)}>Voltar</a>
                                                 </li>
-                                                <li class={`page-item ${page == pagination.maxPage && "disabled"}`}>
-                                                    <a class="page-link" onClick={() => addPage(1)}>Próximo</a>
+                                                <li className={`page-item ${page >= pagination.maxPage && "disabled"}`} key="proximo">
+                                                    <a className="page-link" onClick={() => addPage(1)}>Próximo</a>
                                                 </li>
                                             </ul>
                                         </nav>

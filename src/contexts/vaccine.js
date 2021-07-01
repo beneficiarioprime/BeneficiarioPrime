@@ -29,7 +29,7 @@ export function Vaccine({ children }) {
 
     async function getList(page = 1, limit = 10) {
         try {
-            axios.get(VACCNINE.LIST, { headers: { Authorization: `Bearer ${token}` } }).then(x => {
+            axios.get(VACCNINE.LIST.replace(/:number/gi, page).replace(/:limit/gi, limit), { headers: { Authorization: `Bearer ${token}` } }).then(x => {
                 try {
                     const { quantity, page, vaccine } = x.data.data
                     setPagination({
@@ -38,6 +38,7 @@ export function Vaccine({ children }) {
                         maxPage: ~~quantity / limit
                     })
                     setList(vaccine)
+                    console.log(pagination.maxPage)
                 } catch (e) {
                     setList([])
                 }

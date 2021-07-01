@@ -66,7 +66,7 @@ const AdminConsultants = () => {
                                             </tbody>
                                         </table>
                                     </div>
-                                    {page && (
+                                    {/* {page && (
                                         <nav aria-label="Page navigation example">
                                             <ul class="pagination justify-content-end align-items-center">
                                                 <li class={`page-item ${page == 1 && "disabled"}`}>
@@ -77,7 +77,7 @@ const AdminConsultants = () => {
                                                 </li>
                                             </ul>
                                         </nav>
-                                    )}
+                                    )} */}
                                 </form>
                             </RowDataClinical>
                         </div>

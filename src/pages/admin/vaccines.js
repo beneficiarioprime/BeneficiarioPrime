@@ -32,9 +32,9 @@ const AdminVaccines = () => {
         setPage(page + number)
     }
 
-    useEffect(() => {
-        getList(page)
-    }, [page])
+    // useEffect(() => {
+    //     getList(page)
+    // }, [page])
 
     return (
         <>
@@ -107,7 +107,7 @@ const AdminVaccines = () => {
                                         <li class={`page-item ${page == 1 && "disabled"}`}>
                                             <a class="page-link" tabindex="-1" onClick={() => addPage(-1)}>Voltar</a>
                                         </li>
-                                        <li class={`page-item ${page == pagination.maxPage && "disabled"}`}>
+                                        <li class={`page-item ${page >= pagination.maxPage && "disabled"}`}>
                                             <a class="page-link" onClick={() => addPage(1)}>Próximo</a>
                                         </li>
                                     </ul>
