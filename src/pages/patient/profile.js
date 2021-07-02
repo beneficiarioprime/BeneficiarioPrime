@@ -129,7 +129,7 @@ const PatientProfile = ({ data }) => {
                                                     <FloatingLabels title="Senha atual" />
                                                 </div>
                                                 <div className="col-12 col-md-6">
-                                                    <FloatingLabels title="Alterar senha" />
+                                                    <FloatingLabels title="Alterar senha" name="password" register={{ ...register('password') }} />
                                                     <FloatingLabels title="Repetir senha" />
                                                 </div>
                                             </>
