@@ -18,7 +18,10 @@ const PatientProfile = ({ data }) => {
 
     async function handleUpdate(data) {
         try {
-            await update(user._id, data).then(json => console.log(json))
+            await update(user._id, data).then(json => {
+                console.log(json)
+                location.reload()
+            })
         } catch (error) {
             console.log(error)
         }
@@ -71,14 +74,15 @@ const PatientProfile = ({ data }) => {
                                 <form onSubmit={handleSubmit(handleUpdate)}>
                                     <div className="row">
                                         <div className="col-12 col-md-8">
-                                            <FloatingLabels value={user.name} title="Nome completo" placeholder="Nome completo" name="name" />
-                                            <FloatingLabels defaultValue={user.email} title="Email" placeholder="Email" name="email" />
+                                            <FloatingLabels defaultValue={user.name} title="Nome completo" placeholder="Nome completo" name="name" register={{ ...register('name') }} />
+                                            <FloatingLabels defaultValue={user.email} title="Email" placeholder="Email" name="email" register={{ ...register('email') }} />
                                             <div className="row">
                                                 <div className="col-12 col-md">
                                                     <Controller
                                                         name="gender"
                                                         control={control}
                                                         rules={{ required: true }}
+                                                        defaultValue={user.gender}
                                                         render={({ field }) => <div className="form-floating mb-3">
                                                             <select {...field} className="form-select" id="floatingSelect" aria-label="Selecione o Gênero">
                                                                 <option selected>Selecione</option>
@@ -88,13 +92,13 @@ const PatientProfile = ({ data }) => {
                                                             <label for="floatingSelect">Gênero</label>
                                                         </div>}
                                                     />
-                                                    <FloatingLabels title="Data de Nascimento" type="date" placeholder="Data de Nascimento" value={formattedBirthDate} name="birthdate" />
+                                                    <FloatingLabels title="Data de Nascimento" type="date" placeholder="Data de Nascimento" defaultValue={formattedBirthDate} name="birthDate" register={{ ...register('birthDate') }} />
                                                 </div>
                                                 <div className="col-12 col-md">
                                                     <Controller
                                                         render={({ field }) =>
                                                             <div className="form-floating mb-3">
-                                                                <InputMask id="cpf" mask="999.999.999-99" {...field} className="form-control" />
+                                                                <InputMask id="cpf" mask="999.999.999-99" {...field} className="form-control" disabled />
                                                                 <label for="cpf">CPF</label>
                                                             </div>
                                                         }
@@ -133,14 +137,14 @@ const PatientProfile = ({ data }) => {
                                     </div>
                                     <div className="row mb-5">
                                         <div className="col-6 col-md-3">
-                                            <FloatingLabels type="text" title="Peso" placeholder="Peso" defaultValue={user.weight} />
+                                            <FloatingLabels type="text" title="Peso" placeholder="Peso" name="weight" defaultValue={user.weight} register={{ ...register('weight') }} />
                                         </div>
                                         <div className="col-6 col-md-3">
-                                            <FloatingLabels type="text" title="Altura" placeholder="Altura" defaultValue={user.height} />
+                                            <FloatingLabels type="text" title="Altura" placeholder="Altura" name="height" defaultValue={user.height} register={{ ...register('height') }} />
                                         </div>
                                         <div className="col col-md-12">
                                             <div className="form-check">
-                                                <input className="form-check-input" type="checkbox" value="" id="deficiencia" checked={user.disabledPerson} />
+                                                <input className="form-check-input" type="checkbox" name="disabledPerson" id="deficiencia" defaultChecked={user.disabledPerson}  {...register('disabledPerson')} />
                                                 <label className="form-check-label" for="deficiencia">
                                                     Possui alguma deficiência?
                                                 </label>
@@ -149,61 +153,77 @@ const PatientProfile = ({ data }) => {
                                     </div>
                                     <div className="row">
                                         <div className="col-12 col-md-3">
-                                            <FloatingLabels name="cep" id="cep" onBlur={getInformacoes} type="text" title="CEP" maxlength="9" placeholder="CEP" defaultValue={user.zipCode} />
+                                            <Controller
+                                                render={({ field }) =>
+                                                    <div className="form-floating mb-3">
+                                                        <InputMask id="cep" mask="99999-999" {...field} className="form-control" />
+                                                        <label for="cep">CEP</label>
+                                                    </div>
+                                                }
+                                                control={control}
+                                                defaultValue={user.zipCode}
+                                                name="zipCode"
+                                            />
                                         </div>
                                         <div className="col-12 col-md-7">
-                                            <FloatingLabels id="logradouro" type="text" title="Endereço" placeholder="Endereço" defaultValue={user.street} />
+                                            <FloatingLabels name="street" id="logradouro" type="text" title="Endereço" placeholder="Endereço" defaultValue={user.street} register={{ ...register('street') }} />
                                         </div>
                                         <div className="col-5 col-md-2">
-                                            <FloatingLabels id="numero" type="text" title="Nª" placeholder="Nª" defaultValue={user.number} />
+                                            <FloatingLabels name="number" id="numero" type="text" title="Nª" placeholder="Nª" defaultValue={user.number} register={{ ...register('number') }} />
                                         </div>
                                         <div className="col-7 col-md-3">
                                             <FloatingLabels id="complemento" type="text" title="Complemento" placeholder="Complemento" />
                                         </div>
                                         <div className="col-12 col-md-5">
-                                            <FloatingLabels id="bairro" type="text" title="Bairro" placeholder="Bairro" defaultValue={user.district} />
+                                            <FloatingLabels name="district" id="bairro" type="text" title="Bairro" placeholder="Bairro" defaultValue={user.district} register={{ ...register('district') }} />
                                         </div>
                                         <div className="col-12 col-md-4">
-                                            <FloatingLabels id="cidade" type="text" title="Cidade" placeholder="Cidade" defaultValue={user.city} />
+                                            <FloatingLabels name="city" id="cidade" type="text" title="Cidade" placeholder="Cidade" defaultValue={user.city} register={{ ...register('city') }} />
                                         </div>
-                                        <div className="col-12 col-md-4">
-                                            <div className="form-floating">
-                                                <select className="form-select" id="uf" aria-label="Estado" defaultValue={user.state}>
-                                                    <option selected>Selecione um deles</option>
-                                                    <option value="AC">Acre</option>
-                                                    <option value="AL">Alagoas</option>
-                                                    <option value="AP">Amapá</option>
-                                                    <option value="AM">Amazonas</option>
-                                                    <option value="BA">Bahia</option>
-                                                    <option value="CE">Ceará</option>
-                                                    <option value="DF">Distrito Federal</option>
-                                                    <option value="ES">Espírito Santo</option>
-                                                    <option value="GO">Goiás</option>
-                                                    <option value="MA">Maranhão</option>
-                                                    <option value="MT">Mato Grosso</option>
-                                                    <option value="MS">Mato Grosso do Sul</option>
-                                                    <option value="MG">Minas Gerais</option>
-                                                    <option value="PA">Pará</option>
-                                                    <option value="PB">Paraíba</option>
-                                                    <option value="PR">Paraná</option>
-                                                    <option value="PE">Pernambuco</option>
-                                                    <option value="PI">Piauí</option>
-                                                    <option value="RJ">Rio de Janeiro</option>
-                                                    <option value="RN">Rio Grande do Norte</option>
-                                                    <option value="RS">Rio Grande do Sul</option>
-                                                    <option value="RO">Rondônia</option>
-                                                    <option value="RR">Roraima</option>
-                                                    <option value="SC">Santa Catarina</option>
-                                                    <option value="SP">São Paulo</option>
-                                                    <option value="SE">Sergipe</option>
-                                                    <option value="TO">Tocantins</option>
-                                                </select>
-                                                <label>Estado</label>
-                                            </div>
+                                        <div className="col-12 col-md-3">
+                                            <Controller
+                                                name="state"
+                                                control={control}
+                                                rules={{ required: true }}
+                                                defaultValue={user.state}
+                                                render={({ field }) => <div className="form-floating mb-3">
+                                                    <select {...field} className="form-select" id="uf" aria-label="Estado" defaultValue={user.state} >
+                                                        <option selected>Estado</option>
+                                                        <option value="AC">Acre</option>
+                                                        <option value="AL">Alagoas</option>
+                                                        <option value="AP">Amapá</option>
+                                                        <option value="AM">Amazonas</option>
+                                                        <option value="BA">Bahia</option>
+                                                        <option value="CE">Ceará</option>
+                                                        <option value="DF">Distrito Federal</option>
+                                                        <option value="ES">Espírito Santo</option>
+                                                        <option value="GO">Goiás</option>
+                                                        <option value="MA">Maranhão</option>
+                                                        <option value="MT">Mato Grosso</option>
+                                                        <option value="MS">Mato Grosso do Sul</option>
+                                                        <option value="MG">Minas Gerais</option>
+                                                        <option value="PA">Pará</option>
+                                                        <option value="PB">Paraíba</option>
+                                                        <option value="PR">Paraná</option>
+                                                        <option value="PE">Pernambuco</option>
+                                                        <option value="PI">Piauí</option>
+                                                        <option value="RJ">Rio de Janeiro</option>
+                                                        <option value="RN">Rio Grande do Norte</option>
+                                                        <option value="RS">Rio Grande do Sul</option>
+                                                        <option value="RO">Rondônia</option>
+                                                        <option value="RR">Roraima</option>
+                                                        <option value="SC">Santa Catarina</option>
+                                                        <option value="SP">São Paulo</option>
+                                                        <option value="SE">Sergipe</option>
+                                                        <option value="TO">Tocantins</option>
+                                                    </select>
+                                                    <label>Estado</label>
+                                                </div>}
+                                            />
                                         </div>
                                     </div>
                                     <div className="d-flex justify-content-center mt-4">
-                                        <button className="btn btn-primary">Salvar</button>
+                                        <button className="btn btn-primary" type="submit">Salvar</button>
                                     </div>
                                 </form>
                             </RowDataPatient>

@@ -15,7 +15,10 @@ const AdminProfile = ({ data }) => {
 
     async function handleUpdate(data) {
         try {
-            await update(user._id, data).then(json => console.log(json))
+            await update(user._id, data).then(json => {
+                console.log(json)
+                location.reload()
+            })
         } catch (error) {
             console.log(error)
         }
@@ -46,11 +49,11 @@ const AdminProfile = ({ data }) => {
                                             </div>
                                         </div> */}
                                         <div className="col-12 col-md-8">
-                                            <FloatingLabels value={user.name} title="Nome completo" placeholder="Nome completo" name="name" register={{ ...register('name') }} />
+                                            <FloatingLabels defaultValue={user.name} title="Nome completo" placeholder="Nome completo" name="name" register={{ ...register('name') }} />
                                             <FloatingLabels defaultValue={user.email} title="Email" placeholder="Email" name="email" register={{ ...register('email') }} />
                                             <div className="row">
                                                 <div className="col-12 col-md">
-                                                    <FloatingLabels title="Cargo" placeholder="Cargo" defaultValue={user.role} name="role" register={{ ...register('role') }} />
+                                                    <FloatingLabels title="Cargo" placeholder="Cargo" disabled defaultValue={user.role} name="role" register={{ ...register('role') }} />
                                                 </div>
                                                 <div className="col">
                                                     <FloatingLabels title="Telefone" placeholder="Telefone" defaultValue={user.phone} name="phone" register={{ ...register('phone') }} />
@@ -64,7 +67,7 @@ const AdminProfile = ({ data }) => {
                                                     <FloatingLabels title="Senha atual" />
                                                 </div>
                                                 <div className="col-12 col-md-6">
-                                                    <FloatingLabels title="Alterar senha" />
+                                                    <FloatingLabels title="Alterar senha" name="password" register={{ ...register('password') }} />
                                                     <FloatingLabels title="Repetir senha" />
                                                 </div>
                                             </>

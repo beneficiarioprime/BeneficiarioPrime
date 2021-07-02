@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataPatient from '../../components/RowDataPatient';
 import style from '../../styles/AdminProfile.module.css';
@@ -34,7 +34,7 @@ const PatientSchedules = () => {
                                 </div>
                             </div>
                             <RowDataPatient>
-                                <h5>Olá {user.name}, fique atento às consultas marcadas:</h5>
+                                <h5>Fique atento às consultas marcadas:</h5>
                                 <div className="table-responsive">
                                     <table className="table mt-3">
                                         <thead>

@@ -25,6 +25,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
         try {
             setErro(null)
             await signIn(data, "patient")
+            location.reload()
         } catch (error) {
             setErro(error)
         }
@@ -34,6 +35,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
         try {
             setErro(null)
             await signUp(data)
+            location.reload()
         } catch (error) {
             setErro(error)
         }
