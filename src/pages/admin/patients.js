@@ -79,8 +79,8 @@ const AdminPatients = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {list.map(x => (
-                                                    <tr>
+                                                {list.map((x,i) => (
+                                                    <tr key={i}>
                                                         <td>{x.name}</td>
                                                         <td>{x.cpf}</td>
                                                         <td>Ativo</td>

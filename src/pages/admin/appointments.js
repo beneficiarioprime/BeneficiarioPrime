@@ -89,8 +89,8 @@ const AdminAppointments = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {list.map(x => (
-                                                    <tr>
+                                                {list.map((x,i) => (
+                                                    <tr key={i}>
                                                         <td>{x.name}</td>
                                                         <td>{x.description}</td>
                                                         <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link> <span onClick={async () => await remove(x._id)}><a className="btn btn-danger"><FontAwesomeIcon icon={faTrash} /></a></span></td>
@@ -103,7 +103,7 @@ const AdminAppointments = () => {
                                         <nav aria-label="Page navigation example">
                                             <ul class="pagination justify-content-end align-items-center">
                                                 <li class={`page-item ${page == 1 && "disabled"}`}>
-                                                    <a class="page-link" tabindex="-1" onClick={() => addPage(-1)}>Voltar</a>
+                                                    <a class="page-link" tabIndex="-1" onClick={() => addPage(-1)}>Voltar</a>
                                                 </li>
                                                 <li class={`page-item ${page >= pagination.maxPage && "disabled"}`}>
                                                     <a class="page-link" onClick={() => addPage(1)}>Próximo</a>

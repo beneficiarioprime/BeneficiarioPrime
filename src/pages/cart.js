@@ -1,7 +1,7 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, userState, useState } from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import style from '../styles/cart.module.css'
@@ -17,13 +17,22 @@ const data = [
 ]
 
 const Cart = () => {
+    const [cart, setCart] = useState(data)
+    const [value, setValue] = useState(0)
 
-    const valueTotal = () => {
-        let total = 0
-        data.map(data => data.value).forEach(value => total += value)
 
-        return total.toLocaleString('pt-br', { minimumFractionDigits: 2 })
+    function handleRemove(index) {
+        const temp = [...cart];
+        temp.splice(index, 1);
+        setCart(temp)
     }
+
+    useEffect(() => {
+        let temp = ~~value
+        cart.map(data => temp += data.value)
+        
+        setValue(temp.toLocaleString('pt-br', { minimumFractionDigits: 2 }))
+    }, [cart])
 
     return (
         <>
@@ -49,21 +58,21 @@ const Cart = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {data.map(data => (
-                                                <tr>
+                                            {cart.map((data, i) => (
+                                                <tr key={i}>
                                                     <td>{data.procedure}</td>
                                                     <td>{data.local}</td>
                                                     <td>{data.date}</td>
                                                     <td>{data.hour}</td>
                                                     <td>{data.value.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</td>
-                                                    <td><a className="btn btn-primary"><FontAwesomeIcon icon={faTimes} /></a></td>
+                                                    <td><a className="btn btn-primary" onClick={() => handleRemove(i)}><FontAwesomeIcon icon={faTimes} /></a></td>
                                                 </tr>
                                             ))}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div className="text-center mb-3 fs-3">
-                                    Total: {valueTotal()}
+                                    Total: {value}
                                 </div>
                                 <div className="text-center">
                                     <Link href="#">

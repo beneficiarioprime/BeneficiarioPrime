@@ -13,7 +13,7 @@ import { useFormContext, useForm, Controller } from 'react-hook-form';
 
 const AdminVaccines = () => {
     const { isLogged, user } = useContext(AuthContext)
-    const { list, create, remove, getList, pagination  } = useContext(VaccineContext)
+    const { list, create, remove, getList, pagination } = useContext(VaccineContext)
     let [erro, setErro] = useState(null);
     const { handleSubmit, register, control } = useForm();
     const [page, setPage] = useState(1)
@@ -88,8 +88,8 @@ const AdminVaccines = () => {
                                     </thead>
                                     <tbody>
                                         {
-                                            list.map(x => (
-                                                <tr>
+                                            list.map((x, i) => (
+                                                <tr key={i}>
                                                     <td>{x.name}</td>
                                                     <td>{x.synonyms.toString()}</td>
                                                     <td>{x.description}</td>
@@ -105,7 +105,7 @@ const AdminVaccines = () => {
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination justify-content-end align-items-center">
                                         <li class={`page-item ${page == 1 && "disabled"}`}>
-                                            <a class="page-link" tabindex="-1" onClick={() => addPage(-1)}>Voltar</a>
+                                            <a class="page-link" tabIndex="-1" onClick={() => addPage(-1)}>Voltar</a>
                                         </li>
                                         <li class={`page-item ${page >= pagination.maxPage && "disabled"}`}>
                                             <a class="page-link" onClick={() => addPage(1)}>Próximo</a>

@@ -135,7 +135,7 @@ const PatientProfile = ({ data }) => {
                                             </>
                                         }
                                     </div>
-                                    <div className="row mb-5">
+                                    <div className="row mb-v ">
                                         <div className="col-6 col-md-3">
                                             <FloatingLabels type="text" title="Peso" placeholder="Peso" name="weight" defaultValue={user.weight} register={{ ...register('weight') }} />
                                         </div>

@@ -55,8 +55,8 @@ const AdminProviders = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {list.map(x => (
-                                                    <tr>
+                                                {list.map((x, i) => (
+                                                    <tr key={i}>
                                                         <td>{x.name}</td>
                                                         <td>{x.cnpj}</td>
                                                         <td>Ativo</td>

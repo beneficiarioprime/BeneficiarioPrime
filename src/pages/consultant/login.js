@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import Head from 'next/head'
 import Link from 'next/link'
@@ -34,6 +34,9 @@ const ConsultantLogin = () => {
         }
     }
 
+    useEffect(() => {
+        if (isLogged) Router.push("/consultant/wallet")
+    }, [isLogged])
 
     let [change, setChange] = useState('login')
 
