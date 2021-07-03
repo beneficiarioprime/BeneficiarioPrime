@@ -28,10 +28,9 @@ const Cart = () => {
     }
 
     useEffect(() => {
-        let temp = ~~value
+        let temp = 0
         cart.map(data => temp += data.value)
-        
-        setValue(temp.toLocaleString('pt-br', { minimumFractionDigits: 2 }))
+        setValue(temp.toFixed(2).toLocaleString('pt-br', { minimumFractionDigits: 2 }))
     }, [cart])
 
     return (
