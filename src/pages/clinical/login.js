@@ -53,6 +53,7 @@ const ClinicalLogin = () => {
                                         <img src="/img/logos/logo-grande.png" style={{ maxWidth: "100%" }} />
                                     </div>
                                     <h1 className="text-center mb-5">Área do Prestador</h1>
+                                    <div className="mb-1 text-center">{erro}</div>
                                     <div className={`${style.row} row mb-5`}>
                                         <div className="col-lg-6 text-center">
                                             <button onClick={() => { setChange('login') }}>Login</button>
