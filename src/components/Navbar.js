@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileMedicalAlt } from '@fortawesome/free-solid-svg-icons'
 import { AuthContext, AuthDashboard } from '../contexts/auth';
 import LoginModal from './LoginModal';
+import { IBGEContext } from '../contexts/ibge'
 
 const cart = 1
 

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCommentMedical,
@@ -30,6 +30,7 @@ import LoginModal from '../components/LoginModal';
 import FormOptions from '../components/FormOptions';
 import CardResult from '../components/CardResult';
 import Loading from '../components/Loading';
+import { IBGEContext, IBGE } from '../contexts/ibge';
 
 const ButtonOptions = props => {
   return (
@@ -82,6 +83,7 @@ export default function Home() {
   let [option, setOption] = useState('consulta');
   const [showScroll, setShowScroll] = useState(false);
   const [showCardResult, setShowCardResult] = useState(false);
+  const { estado } = useContext(IBGEContext)
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 400) {
@@ -131,11 +133,15 @@ export default function Home() {
                     </>
                   ) : (
                     <>
-                      <FormOptions placeholder="São Paulo" list="cidades" htmlFor="estado">Selecione seu estado</FormOptions>
-                      <datalist id="cidades">
-                        <option>Cidade 1</option>
-                        <option>Cidade 2</option>
-                      </datalist>
+                      <div className="form-floating mb-3">
+                        <select className="form-select mb-3" id="cidades" aria-label="Selecione seu estado">
+                          <option selected>Selecione</option>
+                          {estado.map((x, i) => <option key={i} value={x.nome}>{x.sigla} - {x.nome}</option>)}
+
+                        </select>
+                        <label for="floatingSelect">Selecione seu estado</label>
+                      </div>
+
                       <FormOptions placeholder="Dentista" htmlFor="especialidade">Digite ou escolha uma especialidade</FormOptions>
                       <div className={`${styles.cardBtnCenter}`}>
                         <FormOptions placeholder="Jardim" className="flex-grow-1" htmlFor="cidade">Escolha o bairro</FormOptions>

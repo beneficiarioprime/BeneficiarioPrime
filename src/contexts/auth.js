@@ -56,9 +56,9 @@ export function Auth({ children }) {
         }
     }
 
-    async function signUp(params) {
+    async function signUp(params, role = "patient") {
         try {
-            const json = await axios.post(USER.REGISTER, params)
+            const json = await axios.post(USER.REGISTER.replace(/:role/gi, role), params)
             saveUserLogged(json.data)
         } catch (error) {
             console.log(error)

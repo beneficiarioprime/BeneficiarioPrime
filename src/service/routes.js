@@ -19,9 +19,9 @@ module.exports = {
         REMOVE: `${API_URL_BASE}/appointment/:id`
     },
     USER: {
-        REGISTER: `${API_URL_BASE}/user`,
+        REGISTER: `${API_URL_BASE}/user?role=:role`,
         LIST: `${API_URL_BASE}/user`,
-        LOGIN: `${API_URL_BASE}/user/authenticate/:role`,
+        LOGIN: `${API_URL_BASE}/user/authenticate?role=:role`,
         UPDATE: `${API_URL_BASE}/user/:id`,
         PROFILE: `${API_URL_BASE}/user/:id`
     }

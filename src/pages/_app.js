@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Loading from '../components/Loading';
 import { Auth } from '../contexts/auth'
 import { User } from '../contexts/user'
+import { IBGE } from '../contexts/ibge';
 
 function MyApp({ Component, pageProps }) {
 
@@ -35,11 +36,13 @@ function MyApp({ Component, pageProps }) {
               href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             />
           </Head>
-          <Auth>
-            <User>
-              <Component {...pageProps} />
-            </User>
-          </Auth>
+          <IBGE>
+            <Auth>
+              <User>
+                <Component {...pageProps} />
+              </User>
+            </Auth>
+          </IBGE>
         </>
       }
     </>
