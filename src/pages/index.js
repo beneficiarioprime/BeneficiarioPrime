@@ -83,7 +83,7 @@ export default function Home() {
   let [option, setOption] = useState('consulta');
   const [showScroll, setShowScroll] = useState(false);
   const [showCardResult, setShowCardResult] = useState(false);
-  const { estado } = useContext(IBGEContext)
+  const { estado, cidade, getCidade, distrito, getDistrito } = useContext(IBGEContext)
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 400) {
@@ -134,17 +134,31 @@ export default function Home() {
                   ) : (
                     <>
                       <div className="form-floating mb-3">
-                        <select className="form-select mb-3" id="cidades" aria-label="Selecione seu estado">
+                        <select className="form-select mb-3" id="estados" aria-label="Selecione seu estado" onChange={(x) => getCidade(x.target.value)}>
                           <option selected>Selecione</option>
-                          {estado.map((x, i) => <option key={i} value={x.nome}>{x.sigla} - {x.nome}</option>)}
+                          {estado.map((x, i) => <option key={i} value={x.sigla}>{x.sigla} - {x.nome}</option>)}
 
                         </select>
                         <label for="floatingSelect">Selecione seu estado</label>
                       </div>
 
+                      <div className="form-floating mb-3">
+                        <select className="form-select mb-3" id="cidades" aria-label="Selecione sua cidade" disabled={cidade.length == 0} onChange={(x) => getDistrito(x.target.value)}>
+                          <option selected>Selecione</option>
+                          {cidade.map((x, i) => <option key={i} value={x.id}>{x.nome}</option>)}
+                        </select>
+                        <label for="floatingSelect">Selecione sua cidade</label>
+                      </div>
+
                       <FormOptions placeholder="Dentista" htmlFor="especialidade">Digite ou escolha uma especialidade</FormOptions>
                       <div className={`${styles.cardBtnCenter}`}>
-                        <FormOptions placeholder="Jardim" className="flex-grow-1" htmlFor="cidade">Escolha o bairro</FormOptions>
+                        <div className="form-floating flex-grow-1">
+                          <select className="form-select flex-grow-1" id="bairros" aria-label="Selecione um bairro" disabled={distrito.length == 0}>
+                            <option selected>Selecione</option>
+                            {distrito.map((x, i) => <option key={i} value={x.id}>{x.nome}</option>)}
+                          </select>
+                          <label for="floatingSelect">Selecione um bairro</label>
+                        </div>
                         <div className={`d-flex align-items-center ${styles.buttonSend}`}>
                           <button className={`ms-3`} onClick={() => setShowCardResult(true)}>Buscar</button>
                         </div>
