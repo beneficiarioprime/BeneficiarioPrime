@@ -13,7 +13,7 @@ import { AuthContext } from '../../contexts/auth';
 const ConsultantLogin = () => {
 
     let [erro, setErro] = useState(null);
-    const { signIn, signUp } = useContext(AuthContext)
+    const { signIn, signUp, isLogged } = useContext(AuthContext)
     const { handleSubmit, register, control } = useForm();
 
     async function handleLogin(data) {
@@ -157,5 +157,6 @@ const ConsultantLogin = () => {
         </>
     )
 }
+
 
 export default ConsultantLogin

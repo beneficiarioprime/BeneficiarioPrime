@@ -11,6 +11,7 @@ module.exports = {
         REMOVE: `${API_URL_BASE}/vaccine/:id`
     },
     UNITY: {
+        CREATE: `${API_URL_BASE}/unity/`,
         LIST: `${API_URL_BASE}/unity/`
     },
     APPOINTMENT: {
@@ -19,9 +20,9 @@ module.exports = {
         REMOVE: `${API_URL_BASE}/appointment/:id`
     },
     USER: {
-        REGISTER: `${API_URL_BASE}/user?role=:role`,
+        REGISTER: `${API_URL_BASE}/user/:role`,
         LIST: `${API_URL_BASE}/user`,
-        LOGIN: `${API_URL_BASE}/user/authenticate?role=:role`,
+        LOGIN: `${API_URL_BASE}/user/authenticate/:role`,
         UPDATE: `${API_URL_BASE}/user/:id`,
         PROFILE: `${API_URL_BASE}/user/:id`
     }

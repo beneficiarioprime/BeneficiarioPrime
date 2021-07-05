@@ -5,7 +5,9 @@ import { UNITY } from '../service/routes'
 import { settings } from "./auth";
 
 export const UnityContext = createContext({
-    list: []
+    list: [],
+    signUp: () => {},
+    listUnity: () => {}
 })
 
 
@@ -13,13 +15,22 @@ export function Unity({ children }) {
     const { [settings.token.profileId]: profile, [settings.token.auth]: token } = parseCookies()
     const [list, setList] = useState([])
 
-    useEffect(() => {
-        if (profile && token)
-            axios.get(UNITY.LIST, { headers: { Authorization: `Bearer ${token}` } }).then(x => setList(x.data.unity))
-    }, [])
+    async function listUnity() {
+        axios.get(UNITY.LIST, { headers: { Authorization: `Bearer ${token}` } }).then(x => setList(x.data.unity))
+    }
+
+    async function signUp(params) {
+        try {
+            const apiUnity = await axios.post(UNITY.CREATE, params, { headers: { Authorization: `Bearer ${token}` } })
+            return apiUnity
+        } catch (error) {
+            if (error.response === undefined) throw "Fatal error"
+            throw error.response.data.message || error.response.data.error
+        }
+    }
 
     return (
-        <UnityContext.Provider value={{ list }}>
+        <UnityContext.Provider value={{ list, signUp, listUnity }}>
             {children}
         </UnityContext.Provider>
     )

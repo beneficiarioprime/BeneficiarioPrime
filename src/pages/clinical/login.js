@@ -7,12 +7,13 @@ import Footer from '../../components/Footer'
 import FloatingLabels from '../../components/FloatingLabels'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../contexts/auth';
-
+import { Unity, UnityContext } from '../../contexts/unity';
 
 const ClinicalLogin = () => {
 
     let [erro, setErro] = useState(null);
-    const { signIn, signUp } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
+    const { signUp } = useContext(UnityContext)
     const { handleSubmit, register } = useForm();
 
     async function handleLogin(data) {
@@ -138,4 +139,6 @@ const ClinicalLogin = () => {
     )
 }
 
-export default ClinicalLogin
+export default function ClinicalLoginContext() {
+    return (<> <Unity><ClinicalLogin /></Unity> </>)
+}

@@ -11,8 +11,12 @@ import { Unity, UnityContext } from '../../contexts/unity';
 
 const AdminProviders = () => {
     const { isLogged, user } = useContext(AuthContext)
-    const { list } = useContext(UnityContext)
+    const { list, listUnity } = useContext(UnityContext)
 
+    useEffect(() => {
+        listUnity()
+    }, [])
+    
     useEffect(() => {
         console.log(list)
     }, [list])
