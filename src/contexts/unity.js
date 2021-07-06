@@ -2,12 +2,12 @@ import { createContext, useEffect, useState } from "react";
 import { setCookie, parseCookies } from 'nookies'
 import axios from 'axios'
 import { UNITY } from '../service/routes'
-import { settings } from "./auth";
+import { settings, saveCookie } from "./auth";
 
 export const UnityContext = createContext({
     list: [],
-    signUp: () => {},
-    listUnity: () => {}
+    signUp: () => { },
+    listUnity: () => { }
 })
 
 
@@ -22,7 +22,7 @@ export function Unity({ children }) {
     async function signUp(params) {
         try {
             const apiUnity = await axios.post(UNITY.CREATE, params, { headers: { Authorization: `Bearer ${token}` } })
-            return apiUnity
+            saveCookie(apiUnity.data.data.user)
         } catch (error) {
             if (error.response === undefined) throw "Fatal error"
             throw error.response.data.message || error.response.data.error

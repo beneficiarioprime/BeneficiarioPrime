@@ -11,7 +11,7 @@ export const settings = {
 }
 const newCookie = (...params) => params.map(x => setCookie(undefined, x.name, x.value || null, { path: "/", maxAge: x.age || 30 * 24 * 60 * 60 }))
 const destroyCookie = () => newCookie({ name: settings.token.auth, age: -1 }, { name: settings.token.profileId, age: -1 })
-const saveCookie = data => newCookie({ name: settings.token.auth, value: data.token }, { name: settings.token.profileId, value: data.user._id })
+export const saveCookie = data => newCookie({ name: settings.token.auth, value: data.token }, { name: settings.token.profileId, value: data.user._id })
 
 
 export const AuthContext = createContext({
