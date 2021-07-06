@@ -12,12 +12,14 @@ import {
     faInstagram,
     faWhatsapp
 } from '@fortawesome/free-brands-svg-icons';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../contexts/auth';
 import Modal from '../../components/Modal';
 
 const PatientSchedules = () => {
-    const { isLogged, user } = useContext(AuthContext)
+
+    const { isLogged, user } = useContext(AuthContext);
+    const { isOpen, setIsOpen } = useState(false);
 
     return (
         <>
@@ -57,8 +59,24 @@ const PatientSchedules = () => {
                                                     <td>{schedule.hour}</td>
                                                     <td>{schedule.place}</td>
                                                     <td>{schedule.status}</td>
-                                                    <td><button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarcar" title="Remarcar"><FontAwesomeIcon icon={faPencilAlt} /></button></td>
-                                                    <Modal title="Remarcar consulta" id="remarcar">
+                                                    <td><button className="btn btn-primary" data-bs-toggle="modal" onClick={() => setIsOpen(!isOpen)} data-bs-target="#remarcar" title="Remarcar"><FontAwesomeIcon icon={faChevronDown} /></button></td>
+                                                    {isOpen &&
+                                                        <>
+                                                            <div className="row">
+                                                                <div className="col-12 col-md-6">
+                                                                    <h6>Descrição</h6>
+                                                                    <span>Consequat deserunt tempor ex amet elit sunt irure id dolor nisi dolor exercitation voluptate.</span>
+                                                                </div>
+                                                                <div className="col-12 col-md-6">
+                                                                    <h6>Endereço</h6>
+                                                                    <span>{schedule.place}</span>
+                                                                    <h6>Telefone</h6>
+                                                                    <span>{schedule.phone}</span>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    }
+                                                    {/* <Modal title="Remarcar consulta" id="remarcar">
                                                         <FloatingLabels title="Doutor" placeholder="Doutor" />
                                                         <div className="row">
                                                             <div className="col">
@@ -68,7 +86,7 @@ const PatientSchedules = () => {
                                                                 <FloatingLabels title="Horário" type="time" />
                                                             </div>
                                                         </div>
-                                                    </Modal>
+                                                    </Modal> */}
                                                 </tr>
                                             ))}
                                         </tbody>

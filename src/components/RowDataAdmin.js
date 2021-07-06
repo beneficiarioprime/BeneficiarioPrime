@@ -3,6 +3,8 @@ import style from '../styles/components/RowDataAdmin.module.css';
 import Link from 'next/link';
 import { AuthContext } from '../contexts/auth';
 import Router from 'next/router'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
 const RowData = (props) => {
     const { isLogged, user, logout } = useContext(AuthContext)
@@ -18,7 +20,7 @@ const RowData = (props) => {
                             <Link href="/admin/vaccines"><div className={`p-3`}>Vacinas</div></Link>
                             <Link href="/admin/patients"><div className={`p-3`}>Pacientes</div></Link>
                             <Link href="/admin/appointments"><div className={`p-3`}>Consultas</div></Link>
-                            <Link href="/admin/consultants"><div className={`p-3`}>Consultores</div></Link>
+                            <Link href="/admin/consultants"><div className={`p-3`}><FontAwesomeIcon icon={faWrench} /> Consultores</div></Link>
                             <div className={`p-3`} onClick={() => {
                                 logout()
                                 window.location.href = "/"

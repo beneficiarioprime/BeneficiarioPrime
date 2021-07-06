@@ -5,6 +5,7 @@ import style from '../../styles/AdminProfile.module.css';
 import { AuthContext } from '../../contexts/auth';
 import { update, UserContext } from '../../contexts/user';
 import { useForm, Controller } from 'react-hook-form'
+import InputMask from "react-input-mask";
 import Head from 'next/head';
 import InputMask from "react-input-mask";
 

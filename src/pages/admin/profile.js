@@ -56,7 +56,17 @@ const AdminProfile = ({ data }) => {
                                                     <FloatingLabels title="Cargo" placeholder="Cargo" disabled defaultValue={user.role} name="role" register={{ ...register('role') }} />
                                                 </div>
                                                 <div className="col">
-                                                    <FloatingLabels title="Telefone" placeholder="Telefone" defaultValue={user.phone} name="phone" register={{ ...register('phone') }} />
+                                                    <Controller
+                                                        render={({ field }) =>
+                                                            <div className="form-floating mb-3">
+                                                                <InputMask id="phone" mask="+55 (99) 99999-9999" defaultValue={user.phone} {...field} className="form-control" />
+                                                                <label for="phone">Celular</label>
+                                                            </div>
+                                                        }
+                                                        control={control}
+                                                        name="phone"
+                                                        rules={{ required: true }}
+                                                    />
                                                 </div>
                                             </div>
                                             <a className={`btn mb-3 ${style.btnPassword} ${password && style.btnPasswordClick}`} onClick={() => setPassword(!password)}>Alterar senha</a>
@@ -64,7 +74,7 @@ const AdminProfile = ({ data }) => {
                                         {password &&
                                             <>
                                                 <div className="col-12 col-md-6">
-                                                    <FloatingLabels title="Senha atual" />
+                                                    <FloatingLabels title="Senha atual" type="password" />
                                                 </div>
                                                 <div className="col-12 col-md-6">
                                                     <FloatingLabels title="Alterar senha" name="password" register={{ ...register('password') }} />

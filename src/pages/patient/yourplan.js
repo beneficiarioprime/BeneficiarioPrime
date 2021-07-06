@@ -36,11 +36,6 @@ const PatientYourPlan = () => {
                                     <div className="col col-md mb-3">
                                         <h4>Plano {user.plan}</h4>
                                     </div>
-                                    <div className="col col-md">
-                                        <div className="d-flex flex-row-reverse">
-                                            <Link href="/patient/plans"><a className="btn btn-primary">Trocar plano</a></Link>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div className="table-responsive">
                                     <table className="table mt-3">

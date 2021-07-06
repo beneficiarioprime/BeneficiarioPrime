@@ -5,7 +5,7 @@ import style from '../../styles/ConsultantLogin.module.css'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import FloatingLabels from '../../components/FloatingLabels'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { AuthContext } from '../../contexts/auth';
 import { Unity, UnityContext } from '../../contexts/unity';
 
@@ -85,7 +85,7 @@ const ClinicalLogin = () => {
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-floating mb-3">
-                                                        <FloatingLabels title="Nome da Clínica" placeholder="Nome da Clínica" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
+                                                        <FloatingLabels title="Nome do Prestador" placeholder="Nome da Clínica" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
@@ -95,12 +95,32 @@ const ClinicalLogin = () => {
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="form-floating mb-3">
-                                                        <FloatingLabels title="CNPJ" placeholder="CNPJ" name="cpnj" type="text" id="cpnj" register={{ ...register('cpnj', { required: true }) }} />
+                                                        <Controller
+                                                            render={({ field }) =>
+                                                                <div className="form-floating mb-3">
+                                                                    <InputMask id="cpnj" mask="99.999.999/9999-9" value={user.cnpj} {...field} className="form-control" />
+                                                                    <label for="cnpj">CNPJ</label>
+                                                                </div>
+                                                            }
+                                                            control={control}
+                                                            name="cnpj"
+                                                            rules={{ required: true }}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="form-floating mb-3">
-                                                        <FloatingLabels title="Telefone" placeholder="Telefone" name="phone" type="text" id="phone" register={{ ...register('phone', { required: true }) }} />
+                                                        <Controller
+                                                            render={({ field }) =>
+                                                                <div className="form-floating mb-3">
+                                                                    <InputMask id="phone" mask="+55 (99) 99999-9999" defaultValue={user.phone} {...field} className="form-control" />
+                                                                    <label for="phone">Celular</label>
+                                                                </div>
+                                                            }
+                                                            control={control}
+                                                            name="phone"
+                                                            rules={{ required: true }}
+                                                        />
                                                     </div>
                                                 </div>
 

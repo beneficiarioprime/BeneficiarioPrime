@@ -16,6 +16,10 @@ function MyApp({ Component, pageProps }) {
     if (typeof window !== "undefined") {
       setLoading(false);
     }
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
   });
 
   return (

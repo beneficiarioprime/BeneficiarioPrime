@@ -69,9 +69,9 @@ const ClinicalValidation = () => {
                                                 <td>{users.appointment}</td>
                                                 <td>{users.token}</td>
                                                 <td>
-                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-warning me-2" title="Ver detalhes"><FontAwesomeIcon icon={faPencilAlt} /></a></Link>
-                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-success me-2" title="Validar"><FontAwesomeIcon icon={faCheck} /></a></Link>
-                                                    <Link href="/clinical/staff/oaisfjoisafj/edit"><a className="btn btn-primary" title="Remarcar"><FontAwesomeIcon icon={faCalendarDay} /></a></Link>
+                                                    <button className="btn btn-warning me-2" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver detalhes"><FontAwesomeIcon icon={faPencilAlt} /></button>
+                                                    <button className="btn btn-success me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Validar"><FontAwesomeIcon icon={faCheck} /></button>
+                                                    <button className="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Remarcar"><FontAwesomeIcon icon={faCalendarDay} /></button>
                                                 </td>
                                             </tr>
                                         ))}
