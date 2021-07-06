@@ -10,7 +10,7 @@ import {
     faInstagram,
     faWhatsapp
 } from '@fortawesome/free-brands-svg-icons';
-import { faCalendarDay, faCheck, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faCheck, faEye, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import FormOptions from '../../components/FormOptions';
 
@@ -35,7 +35,7 @@ const ClinicalValidation = () => {
     return (
         <>
             <Head>
-                <title>Usuários - Beneficiário Prime</title>
+                <title>Agendamentos - Beneficiário Prime</title>
             </Head>
             <div className={`${style.body}`}>
                 <div className="container pt-5 mb-5">
@@ -67,9 +67,11 @@ const ClinicalValidation = () => {
                                                 <td>{users.date}</td>
                                                 <td>{users.hour}</td>
                                                 <td>{users.appointment}</td>
-                                                <td>{users.token}</td>
                                                 <td>
-                                                    <button className="btn btn-warning me-2" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver detalhes"><FontAwesomeIcon icon={faPencilAlt} /></button>
+                                                    <input type="text" className="form-control" style={{width: "65px"}} value={users?.token} id="exampleFormControlInput1" placeholder="0000" />
+                                                </td>
+                                                <td>
+                                                    <button className="btn btn-warning me-2" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver detalhes"><FontAwesomeIcon icon={faEye} /></button>
                                                     <button className="btn btn-success me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Validar"><FontAwesomeIcon icon={faCheck} /></button>
                                                     <button className="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Remarcar"><FontAwesomeIcon icon={faCalendarDay} /></button>
                                                 </td>

@@ -62,7 +62,11 @@ const AdminExams = () => {
                                     <h6>Adicionar novo exame</h6>
                                     <div className="mb-1 text-center">{erro}</div>
                                     <FloatingLabels title="Nome do exame" placeholder="Nome do exame" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
-                                    <FloatingLabels title="Descrição" placeholder="Descrição" name="description" type="text" id="description" register={{ ...register('description', { required: true }) }} />
+                                    {/* <FloatingLabels title="Descrição" placeholder="Descrição" name="description" type="text" id="description" register={{ ...register('description', { required: true }) }} /> */}
+                                    <div className="form-floating">
+                                        <textarea className="form-control" name="description" type="text" placeholder="Descrição" id="description" style={{ height: "100px" }} register={{ ...register('description', { required: true }) }}></textarea>
+                                        <label for="description">Descrição</label>
+                                    </div>
                                     <FloatingLabels title="Sinônimos" placeholder="Sinônimos" name="synonyms" type="text" id="synonyms" register={{ ...register('synonyms', { required: true }) }}
                                         showHelpText={true} helpText={`Separe cada sinônimo com um ponto e vírgula (;).`} />
                                     <FloatingLabels title="Preço" placeholder="Preço" name="price" type="text" id="price" register={{ ...register('price', { required: true }) }} />

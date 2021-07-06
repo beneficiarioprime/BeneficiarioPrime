@@ -53,11 +53,15 @@ const AdminAppointments = () => {
                             </div>
                             <RowDataClinical>
                                 <form onSubmit={handleSubmit(handleCreate)}>
-                                    <h1 className="mb-5">Consultas</h1>
+                                    <h1 className="mb-5">Especialidades</h1>
                                     <h6>Adicionar novo</h6>
                                     <div className="mb-1 text-center">{erro}</div>
-                                    <FloatingLabels title="Nome da Consulta" placeholder="Nome do Consulta" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
-                                    <FloatingLabels title="Descrição" placeholder="Descrição" name="description" type="text" id="description" register={{ ...register('description', { required: true }) }} />
+                                    <FloatingLabels title="Nome da Especialidade" placeholder="Nome da Especialidade" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
+                                    {/* <FloatingLabels title="Descrição" placeholder="Descrição" name="description" type="text" id="description" register={{ ...register('description', { required: true }) }} /> */}
+                                    <div className="form-floating">
+                                        <textarea className="form-control" name="description" type="text" placeholder="Descrição" id="description" style={{ height: "100px" }} register={{ ...register('description', { required: true }) }}></textarea>
+                                        <label for="description">Descrição</label>
+                                    </div>
                                     <FloatingLabels title="Sinônimos" placeholder="Sinônimos" name="synonyms" type="text" id="synonyms" register={{ ...register('synonyms', { required: true }) }}
                                         showHelpText={true} helpText={`Separe cada sinônimo com um ponto e vírgula (;).`} />
                                     <FloatingLabels title="Preço" placeholder="Preço" name="price" type="text" id="price" register={{ ...register('price', { required: true }) }} />
@@ -83,13 +87,13 @@ const AdminAppointments = () => {
                                         <table className="table mt-3">
                                             <thead>
                                                 <tr>
-                                                    <th>Consulta</th>
+                                                    <th>Especialidade</th>
                                                     <th>Descrição</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {list.map((x,i) => (
+                                                {list.map((x, i) => (
                                                     <tr key={i}>
                                                         <td>{x.name}</td>
                                                         <td>{x.description}</td>

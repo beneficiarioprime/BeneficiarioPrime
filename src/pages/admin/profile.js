@@ -5,13 +5,14 @@ import style from '../../styles/AdminProfile.module.css';
 import Head from 'next/head';
 import { AuthContext } from '../../contexts/auth';
 import { UserContext, update } from '../../contexts/user';
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
+import InputMask from "react-input-mask";
 
 const AdminProfile = ({ data }) => {
     const [password, setPassword] = useState(false);
     const { isLogged, user } = useContext(AuthContext)
     const { update } = useContext(UserContext)
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, control } = useForm();
 
     async function handleUpdate(data) {
         try {

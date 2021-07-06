@@ -8,13 +8,14 @@ import FloatingLabels from '../../components/FloatingLabels'
 import { Controller, useForm } from 'react-hook-form'
 import { AuthContext } from '../../contexts/auth';
 import { Unity, UnityContext } from '../../contexts/unity';
+import InputMask from "react-input-mask";
 
 const ClinicalLogin = () => {
 
     let [erro, setErro] = useState(null);
     const { signIn } = useContext(AuthContext)
     const { signUp } = useContext(UnityContext)
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, control } = useForm();
 
     async function handleLogin(data) {
         try {
@@ -67,7 +68,7 @@ const ClinicalLogin = () => {
                                         <form className={`${style.formSignin}`} onSubmit={handleSubmit(handleLogin)}>
 
                                             <div className="form-floating mb-3">
-                                                <FloatingLabels title="Email" placeholder="Email" name="email" type="email" id="email" register={{ ...register('email', { required: true }) }} />
+                                                <FloatingLabels title="Email" placeholder="Email" maxLength="256" name="email" type="email" id="email" register={{ ...register('email', { required: true }) }} />
                                             </div>
                                             <div className="form-floating mb-3">
                                                 <FloatingLabels title="Senha" placeholder="Senha" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />
@@ -85,12 +86,12 @@ const ClinicalLogin = () => {
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-floating mb-3">
-                                                        <FloatingLabels title="Nome do Prestador" placeholder="Nome da Clínica" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
+                                                        <FloatingLabels title="Nome do Prestador" placeholder="Nome da Clínica" maxLength="256" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-floating mb-3">
-                                                        <FloatingLabels title="Nome do Responsável" placeholder="Nome do Responsável" name="nameResponsible" type="text" id="nameResponsible" register={{ ...register('nameResponsible', { required: true }) }} />
+                                                        <FloatingLabels title="Nome do Responsável" placeholder="Nome do Responsável" maxLength="120" name="nameResponsible" type="text" id="nameResponsible" register={{ ...register('nameResponsible', { required: true }) }} />
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
@@ -98,7 +99,7 @@ const ClinicalLogin = () => {
                                                         <Controller
                                                             render={({ field }) =>
                                                                 <div className="form-floating mb-3">
-                                                                    <InputMask id="cpnj" mask="99.999.999/9999-9" value={user.cnpj} {...field} className="form-control" />
+                                                                    <InputMask id="cpnj" mask="99.999.999/9999-9" {...field} className="form-control" />
                                                                     <label for="cnpj">CNPJ</label>
                                                                 </div>
                                                             }
@@ -113,7 +114,7 @@ const ClinicalLogin = () => {
                                                         <Controller
                                                             render={({ field }) =>
                                                                 <div className="form-floating mb-3">
-                                                                    <InputMask id="phone" mask="+55 (99) 99999-9999" defaultValue={user.phone} {...field} className="form-control" />
+                                                                    <InputMask id="phone" mask="+55 (99) 99999-9999" {...field} className="form-control" />
                                                                     <label for="phone">Celular</label>
                                                                 </div>
                                                             }
@@ -126,7 +127,7 @@ const ClinicalLogin = () => {
 
                                                 <div className="col-12">
                                                     <div className="form-floating mb-3">
-                                                        <FloatingLabels title="Email" placeholder="E-Mail" name="email" type="text" id="email" register={{ ...register('email', { required: true }) }} />
+                                                        <FloatingLabels title="Email" placeholder="E-Mail" maxLength="256" name="email" type="text" id="email" register={{ ...register('email', { required: true }) }} />
                                                     </div>
                                                 </div>
 

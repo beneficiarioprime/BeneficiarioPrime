@@ -7,7 +7,6 @@ import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthContext } from '../contexts/auth';
 import InputMask from "react-input-mask";
 import { useFormContext, useForm, Controller } from 'react-hook-form';
-import FloatingLabelsMask from './FloatingLabelsMask';
 
 const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } }) => {
 
@@ -87,6 +86,7 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                                 <option selected>Selecione</option>
                                                 <option value="M">Masculino</option>
                                                 <option value="F">Feminino</option>
+                                                <option value="indeterminado">Indeterminado</option>
                                             </select>
                                             <label for="floatingSelect">Gênero</label>
                                         </div>}
@@ -119,6 +119,12 @@ const LoginModal = ({ id = "modal", defaultState = "login", onClose = () => { } 
                                                 rules={{ required: true }}
                                             />
                                         </div>
+                                    </div>
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                        <label className="form-check-label" for="flexCheckDefault">
+                                            Aceito os termos de serviço
+                                        </label>
                                     </div>
                                     <div className={`d-grid mt-4 ${style.btnLogin}`}>
                                         <button className="btn btn-primary" type="submit">Registrar</button>

@@ -7,12 +7,12 @@ import { update, UserContext } from '../../contexts/user';
 import { useForm, Controller } from 'react-hook-form'
 import InputMask from "react-input-mask";
 import Head from 'next/head';
-import InputMask from "react-input-mask";
 
 
 const PatientProfile = ({ data }) => {
     const [password, setPassword] = useState(false);
     const [formattedBirthDate, setFormattedBirthDate] = useState("0000-00-00")
+    const [isDisabledPerson, setIsDisabledPerson] = useState(false)
     const { isLogged, user } = useContext(AuthContext)
     const { handleSubmit, register, control } = useForm();
     const { update } = useContext(UserContext)
@@ -42,6 +42,10 @@ const PatientProfile = ({ data }) => {
         cep: '',
         bairro: '',
     })
+
+    const handleClickDP = () => {
+        setIsDisabledPerson(!isDisabledPerson)
+    }
 
     const getInformacoes = (e) => {
         const { value } = e.target;
@@ -89,6 +93,7 @@ const PatientProfile = ({ data }) => {
                                                                 <option selected>Selecione</option>
                                                                 <option value="M">Masculino</option>
                                                                 <option value="F">Feminino</option>
+                                                                <option value="indeterminado">Indeterminado</option>
                                                             </select>
                                                             <label for="floatingSelect">Gênero</label>
                                                         </div>}
@@ -136,20 +141,49 @@ const PatientProfile = ({ data }) => {
                                             </>
                                         }
                                     </div>
-                                    <div className="row mb-v ">
+                                    <div className="row mb-v">
                                         <div className="col-6 col-md-3">
-                                            <FloatingLabels type="text" title="Peso" placeholder="Peso" name="weight" defaultValue={user.weight} register={{ ...register('weight') }} />
+                                            {/* <FloatingLabels type="text" title="Peso" placeholder="Peso" name="weight" defaultValue={user.weight} register={{ ...register('weight') }} /> */}
+                                            <Controller
+                                                        render={({ field }) =>
+                                                            <div className="form-floating mb-3">
+                                                                <InputMask id="weight" placeholder="Peso" mask="KG 99,99" {...field} className="form-control" />
+                                                                <label for="weight">Peso</label>
+                                                            </div>
+                                                        }
+                                                        control={control}
+                                                        defaultValue={user.weight}
+                                                        name="weight"
+                                                        rules={{ required: true }}
+                                                    />
                                         </div>
                                         <div className="col-6 col-md-3">
-                                            <FloatingLabels type="text" title="Altura" placeholder="Altura" name="height" defaultValue={user.height} register={{ ...register('height') }} />
+                                            {/* <FloatingLabels type="text" title="Altura" placeholder="Altura" name="height" defaultValue={user.height} register={{ ...register('height') }} /> */}
+                                            <Controller
+                                                        render={({ field }) =>
+                                                            <div className="form-floating mb-3">
+                                                                <InputMask id="height" placeholder="Altura" mask="9,99" {...field} className="form-control" />
+                                                                <label for="height">Altura</label>
+                                                            </div>
+                                                        }
+                                                        control={control}
+                                                        defaultValue={user.height}
+                                                        name="height"
+                                                        rules={{ required: true }}
+                                                    />
                                         </div>
-                                        <div className="col col-md-12">
-                                            <div className="form-check">
-                                                <input className="form-check-input" type="checkbox" name="disabledPerson" id="deficiencia" defaultChecked={user.disabledPerson}  {...register('disabledPerson')} />
+                                        <div className="col col-md-12 mb-5">
+                                            <div className="form-check mb-3">
+                                                <input className="form-check-input" type="checkbox" checked={isDisabledPerson} onClick={handleClickDP} name="disabledPerson" id="deficiencia" defaultChecked={user.disabledPerson}  {...register('disabledPerson')} />
                                                 <label className="form-check-label" for="deficiencia">
                                                     Possui alguma deficiência?
                                                 </label>
                                             </div>
+                                            {isDisabledPerson &&
+                                                <FloatingLabels type="text" title="Qual?" placeholder="Qual?" name="" defaultValue=""
+                                                // register={{ ...register('weight') }}
+                                                />
+                                            }
                                         </div>
                                     </div>
                                     <div className="row">
@@ -167,19 +201,19 @@ const PatientProfile = ({ data }) => {
                                             />
                                         </div>
                                         <div className="col-12 col-md-7">
-                                            <FloatingLabels name="street" id="logradouro" type="text" title="Endereço" placeholder="Endereço" defaultValue={user.street} register={{ ...register('street') }} />
+                                            <FloatingLabels name="street" id="logradouro" maxLength="120" type="text" title="Endereço" placeholder="Endereço" defaultValue={user.street} register={{ ...register('street') }} />
                                         </div>
                                         <div className="col-5 col-md-2">
-                                            <FloatingLabels name="number" id="numero" type="text" title="Nª" placeholder="Nª" defaultValue={user.number} register={{ ...register('number') }} />
+                                            <FloatingLabels name="number" id="numero" type="text" maxLength="8" title="Nª" placeholder="Nª" defaultValue={user.number} register={{ ...register('number') }} />
                                         </div>
                                         <div className="col-7 col-md-3">
-                                            <FloatingLabels id="complemento" type="text" title="Complemento" placeholder="Complemento" />
+                                            <FloatingLabels id="complemento" type="text" maxLength="40" title="Complemento" placeholder="Complemento" />
                                         </div>
                                         <div className="col-12 col-md-5">
-                                            <FloatingLabels name="district" id="bairro" type="text" title="Bairro" placeholder="Bairro" defaultValue={user.district} register={{ ...register('district') }} />
+                                            <FloatingLabels name="district" maxLength="120" id="bairro" type="text" title="Bairro" placeholder="Bairro" defaultValue={user.district} register={{ ...register('district') }} />
                                         </div>
                                         <div className="col-12 col-md-4">
-                                            <FloatingLabels name="city" id="cidade" type="text" title="Cidade" placeholder="Cidade" defaultValue={user.city} register={{ ...register('city') }} />
+                                            <FloatingLabels name="city" id="cidade" maxLength="30" type="text" title="Cidade" placeholder="Cidade" defaultValue={user.city} register={{ ...register('city') }} />
                                         </div>
                                         <div className="col-12 col-md-3">
                                             <Controller

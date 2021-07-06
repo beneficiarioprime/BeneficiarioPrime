@@ -56,7 +56,7 @@ const ClinicalStaff = () => {
                                         <tr>
                                             <th>Doutor(a)</th>
                                             <th>Especialidade</th>
-                                            <th>N° CRM</th>
+                                            <th>N° Inscrição</th>
                                             <th>Ação</th>
                                         </tr>
                                     </thead>
