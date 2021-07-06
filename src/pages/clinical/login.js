@@ -19,7 +19,7 @@ const ClinicalLogin = () => {
     async function handleLogin(data) {
         try {
             setErro(null)
-            await signIn(data)
+            await signIn(data, 'provider')
         } catch (error) {
             setErro(error)
         }
