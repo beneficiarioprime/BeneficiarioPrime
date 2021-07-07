@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useContext } from "react";
 import FloatingLabels from "../../components/FloatingLabels";
 import RowDataClinical from "../../components/RowDataClinical";
 import style from "../../styles/PersonalData.module.css";

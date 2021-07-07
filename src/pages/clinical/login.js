@@ -7,7 +7,8 @@ import Footer from "../../components/Footer";
 import FloatingLabels from "../../components/FloatingLabels";
 import { Controller, useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/auth";
-import { Unity, UnityContext } from "../../contexts/unity";
+import { Unity } from "../../contexts/unity";
+import Router from "next/router";
 import InputMask from "react-input-mask";
 
 const ClinicalLogin = () => {
