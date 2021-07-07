@@ -22,7 +22,7 @@ export function Unity({ children }) {
     async function signUp(params) {
         try {
             const apiUnity = await axios.post(UNITY.CREATE, params, { headers: { Authorization: `Bearer ${token}` } })
-            saveCookie(apiUnity.data.data.user)
+            saveCookie(apiUnity.data.data)
         } catch (error) {
             if (error.response === undefined) throw "Fatal error"
             throw error.response.data.message || error.response.data.error
