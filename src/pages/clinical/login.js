@@ -1,11 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import style from '../../styles/ConsultantLogin.module.css'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import FloatingLabels from '../../components/FloatingLabels'
+import { Controller, useForm } from 'react-hook-form'
+import { AuthContext } from '../../contexts/auth';
+import { Unity, UnityContext } from '../../contexts/unity';
+import InputMask from "react-input-mask";
 
 const ClinicalLogin = () => {
+
+    let [erro, setErro] = useState(null);
+    const { signIn } = useContext(AuthContext)
+    const { signUp } = useContext(UnityContext)
+    const { handleSubmit, register, control } = useForm();
+
+    async function handleLogin(data) {
+        try {
+            setErro(null)
+            await signIn(data, 'provider')
+        } catch (error) {
+            setErro(error)
+        }
+    }
+
+    async function handleRegister(data) {
+        try {
+            setErro(null)
+            await signUp(data)
+        } catch (error) {
+            setErro(error)
+        }
+    }
+
 
     let [change, setChange] = useState('login')
 
@@ -26,6 +55,7 @@ const ClinicalLogin = () => {
                                         <img src="/img/logos/logo-grande.png" style={{ maxWidth: "100%" }} />
                                     </div>
                                     <h1 className="text-center mb-5">Área do Prestador</h1>
+                                    <div className="mb-1 text-center">{erro}</div>
                                     <div className={`${style.row} row mb-5`}>
                                         <div className="col-lg-6 text-center">
                                             <button onClick={() => { setChange('login') }}>Login</button>
@@ -35,14 +65,13 @@ const ClinicalLogin = () => {
                                         </div>
                                     </div>
                                     {change === 'login' ?
-                                        <form className={`${style.formSignin}`}>
+                                        <form className={`${style.formSignin}`} onSubmit={handleSubmit(handleLogin)}>
+
                                             <div className="form-floating mb-3">
-                                                <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                                <label for="floatingInput">Email ou CNPJ</label>
+                                                <FloatingLabels title="Email" placeholder="Email" maxLength="256" name="email" type="email" id="email" register={{ ...register('email', { required: true }) }} />
                                             </div>
                                             <div className="form-floating mb-3">
-                                                <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                                <label for="floatingPassword">Senha</label>
+                                                <FloatingLabels title="Senha" placeholder="Senha" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />
                                             </div>
 
                                             <div className="d-grid gap-2">
@@ -53,47 +82,61 @@ const ClinicalLogin = () => {
                                             </div>
                                         </form>
                                         :
-                                        <form className={`${style.formSignin}`}>
+                                        <form className={`${style.formSignin}`} onSubmit={handleSubmit(handleRegister)}>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="name" type="text" className="form-control" id="floatingInput" placeholder="Nome" />
-                                                        <label for="floatingInput">Nome da Clínica</label>
+                                                        <FloatingLabels title="Nome do Prestador" placeholder="Nome da Clínica" maxLength="256" name="name" type="text" id="name" register={{ ...register('name', { required: true }) }} />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="lastname" type="text" className="form-control" id="floatingInput" placeholder="Sobrenome" />
-                                                        <label for="floatingInput">Nome do responsável</label>
+                                                        <FloatingLabels title="Nome do Responsável" placeholder="Nome do Responsável" maxLength="120" name="nameResponsible" type="text" id="nameResponsible" register={{ ...register('nameResponsible', { required: true }) }} />
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="cpf" type="text" className="form-control" id="floatingPassword" placeholder="CPF" />
-                                                        <label for="floatingPassword">CNPJ</label>
+                                                        <Controller
+                                                            render={({ field }) =>
+                                                                <div className="form-floating mb-3">
+                                                                    <InputMask id="cpnj" mask="99.999.999/9999-9" {...field} className="form-control" />
+                                                                    <label for="cnpj">CNPJ</label>
+                                                                </div>
+                                                            }
+                                                            control={control}
+                                                            name="cnpj"
+                                                            rules={{ required: true }}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="form-floating mb-3">
-                                                        <input name="phone" type="text" className="form-control" id="floatingPassword" placeholder="Telefone" />
-                                                        <label for="floatingPassword">Telefone</label>
+                                                        <Controller
+                                                            render={({ field }) =>
+                                                                <div className="form-floating mb-3">
+                                                                    <InputMask id="phone" mask="+55 (99) 99999-9999" {...field} className="form-control" />
+                                                                    <label for="phone">Celular</label>
+                                                                </div>
+                                                            }
+                                                            control={control}
+                                                            name="phone"
+                                                            rules={{ required: true }}
+                                                        />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-12">
                                                     <div className="form-floating mb-3">
-                                                        <input name="email" type="email" className="form-control" id="floatingPassword" placeholder="Email" />
-                                                        <label for="floatingPassword">Email</label>
+                                                        <FloatingLabels title="Email" placeholder="E-Mail" maxLength="256" name="email" type="text" id="email" register={{ ...register('email', { required: true }) }} />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-12">
                                                     <div className="form-floating mb-3">
-                                                        <input name="password" type="password" className="form-control" id="floatingPassword" placeholder="Senha" />
-                                                        <label for="floatingPassword">Senha</label>
+                                                        <FloatingLabels title="Senha" placeholder="Senha" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div className="col-12">
                                                     <div className="form-floating mb-3">
                                                         <input name="password" type="password" className="form-control" id="floatingPassword" placeholder="Confirmar senha" />
@@ -105,7 +148,7 @@ const ClinicalLogin = () => {
                                                     <button className="btn btn-lg btn-primary" type="submit">Inscrever-se</button>
                                                 </div>
                                             </div>
-                                        </form> }
+                                        </form>}
                                 </div>
                             </div>
                         </div>
@@ -117,4 +160,6 @@ const ClinicalLogin = () => {
     )
 }
 
-export default ClinicalLogin
+export default function ClinicalLoginContext() {
+    return (<> <Unity><ClinicalLogin /></Unity> </>)
+}

@@ -205,6 +205,16 @@
   transition: .25s;
 }
 
+.buttonOptionsSelected {
+  background-color: #3174B4;
+  border: 1px solid #3174B4;
+  color: white;
+}
+
+.buttonOptionsSelected span {
+  color: white;
+}
+
 .title {
   font-size: 37px;
 }

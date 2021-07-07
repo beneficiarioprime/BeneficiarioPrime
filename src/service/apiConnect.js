@@ -22,7 +22,10 @@ export async function userProfile(ctx, id) {
                         throw "Usuário não existe"
                 }
                 break
+            case 401:
+                throw data.error
             default:
+                console.log(error.response)
                 throw "Erro desconhecido"
         }
     }

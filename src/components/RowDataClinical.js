@@ -33,7 +33,7 @@ const RowDataClinical = (props) => {
                         Algo de errado? Fale conosco.
                     </div>
                     <div className="d-flex justify-content-center">
-                        <a className="btn btn-primary btn-lg"><FontAwesomeIcon icon={faWhatsapp} /></a>
+                        <a className={`btn btn-primary btn-lg ${style.btnWpp}`}><FontAwesomeIcon icon={faWhatsapp} /></a>
                     </div>
                 </div>
             </div>

@@ -2,16 +2,19 @@
 import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowData from '../../components/RowData';
 import style from '../../styles/PersonalData.module.css';
 import Footer from '../../components/Footer';
 import Head from 'next/head';
 import Image from 'next/image';
+import { update, UserContext } from '../../contexts/user';
+import { AuthContext } from '../../contexts/auth';
+import InputMask from "react-input-mask";
+import { useForm, Controller } from 'react-hook-form'
 
 const data = {
-    name: "Doas Urgouxei Zuygo",
     saldo: 60000.00,
     link: "algumlink.com"
 }
@@ -27,67 +30,75 @@ const sales = [
 ]
 
 const Wallet = () => {
+    const { isLogged, user } = useContext(AuthContext)
+    const { handleSubmit, register, control } = useForm();
+    const { update } = useContext(UserContext)
 
 
     return (
         <>
-        <Head>
-            <title>Carteira - Beneficiário Prime</title>
-        </Head>
-            <div className={`${style.body}`}>
-                <div className="container pt-5 mb-5">
-                    <div className="card card-body mb-3">
-                        <div className={`${style.title}`}>
-                            Olá, {data.name}
-                        </div>
-                    </div>
-                    <RowData>
-                        <form>
-                            <h3 className="mb-5">Carteira</h3>
-                            <h1 className="text-center" style={{ fontSize: "60px" }}>R$ {data.saldo.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</h1>
-                            <div className="mb-3">
-                                <label for="exampleFormControlInput1" className="form-label">Link de compartilhamento</label>
-                                <div className="d-flex">
-                                    <input type="text" className={`${style.floatingLabel} form-control me-3`} id="exampleFormControlInput1" value={data.link} />
-                                    <button className="btn btn-primary" onClick={() => { navigator.clipboard.writeText(data.link) }}>Copiar</button>
+            {isLogged && user.role == "consultant" ?
+                <>
+                    <Head>
+                        <title>Carteira - Beneficiário Prime</title>
+                    </Head>
+                    <div className={`${style.body}`}>
+                        <div className="container pt-5 mb-5">
+                            <div className="card card-body mb-3">
+                                <div className={`${style.title}`}>
+                                    Olá, {user.name}
                                 </div>
                             </div>
-                            <div className="d-flex mb-4">
-                                <button className="btn btn-primary me-3"><FontAwesomeIcon icon={faWhatsapp} /></button>
-                                <button className="btn btn-primary me-3"><FontAwesomeIcon icon={faFacebook} /></button>
-                                <button className="btn btn-primary me-3"><FontAwesomeIcon icon={faInstagram} /></button>
+                            <RowData>
+                                <form>
+                                    <h3 className="mb-5">Carteira</h3>
+                                    <h1 className="text-center" style={{ fontSize: "60px" }}>R$ {data.saldo.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</h1>
+                                    <div className="mb-3">
+                                        <label for="exampleFormControlInput1" className="form-label">Link de compartilhamento</label>
+                                        <div className="d-flex">
+                                            <input type="text" className={`${style.floatingLabel} form-control me-3`} id="exampleFormControlInput1" value={data.link} />
+                                            <button className="btn btn-primary" onClick={() => { navigator.clipboard.writeText(data.link) }}>Copiar</button>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex mb-4">
+                                        <button className="btn btn-primary me-3"><FontAwesomeIcon icon={faWhatsapp} /></button>
+                                        <button className="btn btn-primary me-3"><FontAwesomeIcon icon={faFacebook} /></button>
+                                        <button className="btn btn-primary me-3"><FontAwesomeIcon icon={faInstagram} /></button>
+                                    </div>
+                                    <Link href="/consultant/bankdata"><a className="btn btn-success">Solicitar Saque</a></Link>
+                                </form>
+                            </RowData>
+                            <div className="card card-body mt-4">
+                                <div className="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Paciente</th>
+                                                <th>Data</th>
+                                                <th>Valor de comissão</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {sales.map(sale => (
+                                                <tr>
+                                                    <td>{sale.id}</td>
+                                                    <td>{sale.name}</td>
+                                                    <td>{sale.date}</td>
+                                                    <td>{sale.price.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <Link href="/consultant/bankdata"><a className="btn btn-success">Solicitar Saque</a></Link>
-                        </form>
-                    </RowData>
-                    <div className="card card-body mt-4">
-                        <div className="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Paciente</th>
-                                        <th>Data</th>
-                                        <th>Valor de comissão</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {sales.map(sale => (
-                                        <tr>
-                                            <td>{sale.id}</td>
-                                            <td>{sale.name}</td>
-                                            <td>{sale.date}</td>
-                                            <td>{sale.price.toLocaleString('pt-br', { minimumFractionDigits: 2 })}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
                         </div>
+                        <Footer />
                     </div>
-                </div>
-                <Footer />
-            </div>
+                </> : <> </>
+            }
         </>
+
     )
 }
 

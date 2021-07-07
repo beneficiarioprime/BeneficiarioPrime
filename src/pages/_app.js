@@ -5,6 +5,8 @@ import 'animate.css/animate.min.css';
 import { useEffect, useState } from 'react';
 import Loading from '../components/Loading';
 import { Auth } from '../contexts/auth'
+import { User } from '../contexts/user'
+import { IBGE } from '../contexts/ibge';
 
 function MyApp({ Component, pageProps }) {
 
@@ -14,6 +16,10 @@ function MyApp({ Component, pageProps }) {
     if (typeof window !== "undefined") {
       setLoading(false);
     }
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
   });
 
   return (
@@ -21,8 +27,7 @@ function MyApp({ Component, pageProps }) {
       {loading ?
         <>
           <Loading />
-          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossOrigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossOrigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossOrigin="anonymous"></script>
         </>
         :
         <>
@@ -35,9 +40,13 @@ function MyApp({ Component, pageProps }) {
               href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             />
           </Head>
-          <Auth>
-            <Component {...pageProps} />
-          </Auth>
+          <IBGE>
+            <Auth>
+              <User>
+                <Component {...pageProps} />
+              </User>
+            </Auth>
+          </IBGE>
         </>
       }
     </>

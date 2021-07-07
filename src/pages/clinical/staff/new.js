@@ -6,6 +6,7 @@ import style from '../../../styles/PersonalData.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
 import { faPencilAlt, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useForm, Controller } from 'react-hook-form'
 
 const data = {
     name: "Doas Urgouxei Zuygo",
@@ -25,6 +26,7 @@ const sales = [
 ]
 
 const NewDoctor = () => {
+    const { handleSubmit, register, control } = useForm();
     return (
         <>
             <Head>
@@ -51,7 +53,7 @@ const NewDoctor = () => {
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Orgão de classe" placeholder="orgão" />
                                 </div>
                                 <div className="col-5 col-md-4">
-                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="N° CRM" placeholder="crm" />
+                                    <FloatingLabels className={`${style.floatingLabel}`} type="text" title="N° de Inscrição" placeholder="crm" />
                                 </div>
                                 <div className="col col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Estado" placeholder="Estado" />
@@ -60,7 +62,7 @@ const NewDoctor = () => {
 
                             <h5 className="mt-3 mb-4">Horários de atendimento</h5>
                             <div className="row mb-4">
-                                <div className="col-12 col-md">
+                                <div className="col-12 col-md-6">
                                     <div className="form-check mb-3">
                                         <input className="form-check-input" type="checkbox" value="" id="childish" />
                                         <label className="form-check-label" for="childish">Atendimento Infantil</label>
@@ -70,7 +72,7 @@ const NewDoctor = () => {
                                         <label className="form-check-label" for="adults">Atendimento Adultos</label>
                                     </div>
                                 </div>
-                                <div className="col">
+                                <div className="col col-md-6">
                                     <div className="form-check mb-3">
                                         <input className="form-check-input" type="checkbox" value="" id="telemedicin" />
                                         <label className="form-check-label" for="telemedicin">Atendimento Telemedicina</label>
@@ -81,14 +83,32 @@ const NewDoctor = () => {
                                     </div>
                                 </div>
                             </div>
+                            <h5>Selecione horários de atendimento</h5>
                             <div className="row">
                                 <div className="col-3">
-                                    <input className="form-control" type="text" placeholder="Dia" aria-label="default input example" />
+                                    <Controller
+                                        name="state"
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) =>
+                                            <select {...field} className="form-select" aria-label="Estado" >
+                                                <option selected>Dia da semana</option>
+                                                <option value="Segunda">Segunda</option>
+                                                <option value="Terça">Terça</option>
+                                                <option value="Quarta">Quarta</option>
+                                                <option value="Quinta">Quinta</option>
+                                                <option value="Sexta">Sexta</option>
+                                                <option value="Sábado">Sábado</option>
+                                                <option value="Domingo">Domingo</option>
+                                            </select>}
+                                    />
                                 </div>
                                 <div className="col d-flex">
-                                    <input className="form-control me-2" type="text" placeholder="00:00" aria-label="default input example" />
-                                    até
-                                    <input className="form-control ms-2" type="text" placeholder="00:00" aria-label="default input example" />
+                                    <input className="form-control me-2" type="time" placeholder="00:00" aria-label="default input example" />
+                                    <div className="mt-2">
+                                        até
+                                    </div>
+                                    <input className="form-control ms-2" type="time" placeholder="00:00" aria-label="default input example" />
                                 </div>
                                 <div className="col">
                                     <button className="btn btn-primary"><FontAwesomeIcon icon={faPlus} /></button>

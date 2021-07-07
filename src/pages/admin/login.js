@@ -1,11 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
 import Link from 'next/link'
 import style from '../../styles/AdminLogin.module.css'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import FloatingLabels from '../../components/FloatingLabels'
+import { useForm } from 'react-hook-form'
+import { AuthContext } from '../../contexts/auth';
 
 const AdminLogin = () => {
+    let [erro, setErro] = useState(null);
+    const { signIn, isLogged, user } = useContext(AuthContext)
+    const { handleSubmit, register } = useForm();
+
+    async function handleLogin(data) {
+        try {
+            setErro(null)
+            await signIn(data, "administrator", false)
+        } catch (error) {
+            setErro(error)
+        }
+    }
+
+    useEffect(() => {
+        if (isLogged) Router.push("/admin/profile")
+    }, [isLogged])
 
     return (
         <>
@@ -24,17 +44,16 @@ const AdminLogin = () => {
                                         <img src="/img/logos/logo-grande.png" style={{ maxWidth: "100%" }} />
                                     </div>
                                     <h3 className="text-center mb-4">Área de Administração</h3>
+                                    <div className="mb-1 text-center">{erro}</div>
                                     <div className="text-center mb-3">
                                         <h5>Login</h5>
                                     </div>
-                                    <form className={`${style.formSignin}`}>
+                                    <form className={`${style.formSignin}`} onSubmit={handleSubmit(handleLogin)}>
                                         <div className="form-floating mb-3">
-                                            <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                            <label for="floatingInput">Email ou CNPJ</label>
+                                            <FloatingLabels title="Email" placeholder="name@example.com" name="email" type="string" id="email" register={{ ...register('email', { required: true }) }} />
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                            <label for="floatingPassword">Senha</label>
+                                            <FloatingLabels title="Senha" placeholder="Password" name="password" type="password" id="password" register={{ ...register('password', { required: true }) }} />
                                         </div>
 
                                         <div className="d-grid gap-2">

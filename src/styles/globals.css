@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Poppins', sans-serif !important;
-  background-color: #F4F4F4 !important;
+  font-family: "Poppins", sans-serif !important;
+  background-color: #f4f4f4 !important;
 }
 
 a {
@@ -44,7 +44,7 @@ a {
 .circle {
   width: 20px;
   height: 20px;
-  background: #3174B4;
+  background: #3174b4;
   border-radius: 50%;
   animation: jump 1s linear infinite;
   margin: 0 5px;
@@ -71,6 +71,10 @@ a {
 
 #c {
   animation-delay: 0.4s;
+}
+
+.page-link {
+  cursor: pointer;
 }
 
 @keyframes jump {

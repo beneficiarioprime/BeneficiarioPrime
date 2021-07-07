@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FloatingLabels from '../../components/FloatingLabels';
 import RowDataClinical from '../../components/RowDataAdmin';
 import style from '../../styles/AdminPatients.module.css';
@@ -13,49 +13,45 @@ import {
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import FormOptions from '../../components/FormOptions';
-
-const data = {
-    name: "Doas Urgouxei Zuygo",
-    cpf: "816.305.150-78",
-    email: "email@email.com",
-    link: "algumlink.com"
-}
-
-const sales = [
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 },
-    { exam: "Oftamologista", price: 15.00 }
-]
+import { AuthContext } from '../../contexts/auth';
+import { useFormContext, useForm, Controller } from 'react-hook-form';
+import { UserContext, update } from '../../contexts/user';
 
 const AdminPatients = () => {
+    const { isLogged, user } = useContext(AuthContext)
+    const { handleSubmit, register, control } = useForm();
+    const { getList, list } = useContext(UserContext)
+
+    useEffect(async () => {
+        await getList()
+    }, [list])
+
     return (
         <>
-            <Head>
-                <title>Pacientes - Beneficiário Prime</title>
-            </Head>
-            <div className={`${style.body}`}>
-                <div className="container pt-5 mb-5">
-                    <div className="card card-body mb-3">
-                        <div className={`${style.title}`}>
-                            Olá, {data.name}
-                        </div>
-                    </div>
-                    <RowDataClinical>
-                        <form>
-                            <h1 className="mb-5">Pacientes</h1>
-                            {/* <h6>Adicionar novo</h6>
+            {isLogged && user.role == "administrator" ?
+                <>
+                    <Head>
+                        <title>Pacientes - Beneficiário Prime</title>
+                    </Head>
+                    <div className={`${style.body}`}>
+                        <div className="container pt-5 mb-5">
+                            <div className="card card-body mb-3">
+                                <div className={`${style.title}`}>
+                                    Olá, {user.name}
+                                </div>
+                            </div>
+                            <RowDataClinical>
+                                <form>
+                                    <h1 className="mb-5">Pacientes</h1>
+                                    {/* <h6>Adicionar novo</h6>
                             <FormOptions placeholder="Nome do exame">Nome da vacina</FormOptions>
                             <FormOptions placeholder="Sinônimo">Sinônimo</FormOptions>
                             <div className="form-floating">
                                 <textarea className="form-control" placeholder="Descreva o exame" id="floatingTextarea2" style={{height: "100px"}}></textarea>
                                 <label for="floatingTextarea2">Descrição</label>
                             </div> */}
-                            <div className="row">
-                                {/* <div className="col-6 col-md">
+                                    <div className="row">
+                                        {/* <div className="col-6 col-md">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Particular" placeholder="Preço Particular" />
                                 </div>
                                 <div className="col col-md">
@@ -67,35 +63,39 @@ const AdminPatients = () => {
                                 <div className="col col-md">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Preço Plano 3" placeholder="Preço Plano 3" />
                                 </div> */}
-                            </div>
-                            {/* <div className="d-grid gap-2 mt-3">
+                                    </div>
+                                    {/* <div className="d-grid gap-2 mt-3">
                                 <button className="btn btn-primary" type="button">Adicionar</button>
                             </div> */}
-                            <input className="form-control mt-5" type="text" placeholder="Pesquisar" />
-                            <div className="table-responsive">
-                                <table className="table mt-3">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>CPF</th>
-                                            <th>Validação</th>
-                                            <th>Ativo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr>
-                                                <td>Marcos Alves</td>
-                                                <td>221.009.190-08</td>
-                                                <td>Ativo</td>
-                                                <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
-                                            </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </form>
-                    </RowDataClinical>
-                </div>
-            </div>
+                                    <input className="form-control mt-5" type="text" placeholder="Pesquisar" />
+                                    <div className="table-responsive">
+                                        <table className="table mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>CPF</th>
+                                                    <th>Validação</th>
+                                                    <th>Ativo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {list.map((x,i) => (
+                                                    <tr key={i}>
+                                                        <td>{x.name}</td>
+                                                        <td>{x.cpf}</td>
+                                                        <td>Ativo</td>
+                                                        <td><Link href="#"><a className="btn btn-primary"><FontAwesomeIcon icon={faPencilAlt} /></a></Link></td>
+                                                    </tr>
+                                                ))}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </RowDataClinical>
+                        </div>
+                    </div>
+                </> : <> </>}
         </>
     )
 }

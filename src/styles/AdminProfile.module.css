@@ -19,3 +19,12 @@
 .borderRight {
     border-right: 1px solid #000;
 }
+
+.btnPassword {
+    font-weight: 600;
+    color: #3174b4;
+}
+
+.btnPasswordClick {
+    color: black;
+}

@@ -128,9 +128,7 @@ export default function Home() {
                     <>
                       <FormOptions placeholder="Dentista" htmlFor="especialidade">Digite ou escolha uma especialidade</FormOptions>
                       <div className={`d-flex justify-content-center align-items-center ${styles.buttonSend}`}>
-                        <button className={`ms-3`}
-                        //  onClick={() => setShowCardResult(true)}
-                        >Buscar</button>
+                        <button className={`ms-3`} onClick={() => setShowCardResult(true)}>Buscar</button>
                       </div>
                     </>
                   ) : (
@@ -344,9 +342,8 @@ export default function Home() {
                     </div>
                   </div>
                   <div className={`text-center mb-5 ${styles.btnPlan} ${styles.btnGreen}`}>
-                    {/* <Link href="/patient/plans"> */}
-                    <a>ASSINE AGORA</a>
-                    {/* </Link> */}
+                    <Link href="/patient/plans"><a>ASSINE AGORA</a></Link>
+
                   </div>
                 </div>
                 <div className={`${styles.imageBenefits}`}>
