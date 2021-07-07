@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bg-white">
             <div className="container py-5">
-                <div className="row py-4">
+                <div className="row py-4 link-footer">
                     <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                         <img src="/img/logos/logo-teste.png" alt="" width="180" className="mb-3" />
                         <ul className="list-unstyled mb-0 text-muted">
@@ -27,7 +27,7 @@ const Footer = () => {
                     </div>
                     <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                         <h6 className="text-uppercase font-weight-bold mb-4">Prestadores</h6>
-                        <ul className="list-unstyled mb-0">
+                        <ul className="list-unstyled mb-0">v
                             <li className="mb-2"><Link href="/clinical/login"><a className="text-muted">Credencie seu Estabelecimento de Saúde</a></Link></li>
                             <li className="mb-2"><Link href="/clinical/documents"><a className="text-muted">Painel do Prestador</a></Link></li>
                             <li className="mb-2"><a href="#" className="text-muted">Sistema Autorizador</a></li>
@@ -39,6 +39,7 @@ const Footer = () => {
                         <ul className="list-unstyled mb-0">
                             <li className="mb-2"><Link href="/consultant/login"><a className="text-muted">Seja um Consultor</a></Link></li>
                             <li className="mb-2"><Link href="/consultant/personal"><a className="text-muted">Painel do Consultor</a></Link></li>
+
                             <li className="mb-2"><a href="#" className="text-muted">Material de Apoio e Marketing</a></li>
                             <li className="mb-2"><a href="#" className="text-muted">Treinamento</a></li>
                         </ul>

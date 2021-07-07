@@ -160,7 +160,9 @@ export default function Home() {
                           <label for="floatingSelect">Selecione um bairro</label>
                         </div>
                         <div className={`d-flex align-items-center ${styles.buttonSend}`}>
-                          <button className={`ms-3`} onClick={() => setShowCardResult(true)}>Buscar</button>
+                          <button className={`ms-3`}
+                          // onClick={() => setShowCardResult(true)}
+                          >Buscar</button>
                         </div>
                       </div>
                     </>
@@ -341,6 +343,7 @@ export default function Home() {
                   </div>
                   <div className={`text-center mb-5 ${styles.btnPlan} ${styles.btnGreen}`}>
                     <Link href="/patient/plans"><a>ASSINE AGORA</a></Link>
+
                   </div>
                 </div>
                 <div className={`${styles.imageBenefits}`}>
@@ -528,7 +531,6 @@ export default function Home() {
                           <li>50</li>
                         </ul>
                       </div>
-
                       <div className={`${styles.btnPlan} ${styles.btnGreen} d-flex justify-content-center`}>
                         <Link href="#"><a>VEJA MAIS</a></Link>
                       </div>
