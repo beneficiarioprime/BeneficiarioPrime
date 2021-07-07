@@ -1,26 +1,28 @@
 import { createContext, useEffect, useState } from "react";
-import { setCookie, parseCookies } from 'nookies'
-import axios from 'axios'
-import { UNITY } from '../service/routes'
+import { parseCookies } from "nookies";
+import axios from "axios";
+import { UNITY } from "../service/routes";
 import { settings } from "./auth";
 
 export const UnityContext = createContext({
-    list: [],
-    listUnity: () => { }
-})
-
+  list: [],
+  listUnity: () => {},
+});
 
 export function Unity({ children }) {
-    const { [settings.token.profileId]: profile, [settings.token.auth]: token } = parseCookies()
-    const [list, setList] = useState([])
+  const { [settings.token.profileId]: profile, [settings.token.auth]: token } =
+    parseCookies();
+  const [list, setList] = useState([]);
 
-    async function listUnity() {
-        axios.get(UNITY.LIST, { headers: { Authorization: `Bearer ${token}` } }).then(x => setList(x.data.unity))
-    }
+  async function listUnity() {
+    axios
+      .get(UNITY.LIST, { headers: { Authorization: `Bearer ${token}` } })
+      .then((x) => setList(x.data.unity));
+  }
 
-    return (
-        <UnityContext.Provider value={{ list, listUnity }}>
-            {children}
-        </UnityContext.Provider>
-    )
+  return (
+    <UnityContext.Provider value={{ list, listUnity }}>
+      {children}
+    </UnityContext.Provider>
+  );
 }
