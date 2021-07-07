@@ -80,7 +80,7 @@ const ClinicalDocuments = () => {
                                             </div>
                                         }
                                         control={control}
-                                        defaultValue={user.zipCode}
+                                        // defaultValue={user.zipCode}
                                         name="zipCode"
                                     />
                                 </div>

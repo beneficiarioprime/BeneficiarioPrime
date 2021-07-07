@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import style from '../../styles/ConsultantLogin.module.css'
@@ -13,8 +13,8 @@ import InputMask from "react-input-mask";
 const ClinicalLogin = () => {
 
     let [erro, setErro] = useState(null);
-    const { signIn } = useContext(AuthContext)
-    const { signUp } = useContext(UnityContext)
+    const { signIn, signUpUnity, isLogged } = useContext(AuthContext)
+    // const { signUp } = useContext(UnityContext)
     const { handleSubmit, register, control } = useForm();
 
     async function handleLogin(data) {
@@ -29,12 +29,15 @@ const ClinicalLogin = () => {
     async function handleRegister(data) {
         try {
             setErro(null)
-            await signUp(data)
+            await signUpUnity(data)
         } catch (error) {
             setErro(error)
         }
     }
 
+    useEffect(() => {
+        if (isLogged) Router.push("/clinical/documents")
+    }, [isLogged])
 
     let [change, setChange] = useState('login')
 
