@@ -40,6 +40,9 @@ const ClinicalDocuments = () => {
             </Head>
             <div className={`${style.body}`}>
                 <div className="container pt-5 mb-5">
+                    <div className={`d-flex justify-content-center ${style.logo} mb-3`}>
+                        <img src="/img/logos/logo-grande.png" style={{ maxWidth: "250px" }} />
+                    </div>
                     <div className="card card-body mb-3">
                         <div className={`${style.title}`}>
                             Olá, {data.name}
@@ -72,6 +75,9 @@ const ClinicalDocuments = () => {
                             </div> */}
                             <div className="row">
                                 <div className="col-6">
+                                    <div>
+                                        <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Rua" placeholder="rua" />
+                                    </div>
                                     <Controller
                                         render={({ field }) =>
                                             <div className="form-floating mb-3">
@@ -83,6 +89,7 @@ const ClinicalDocuments = () => {
                                         defaultValue={user.zipCode}
                                         name="zipCode"
                                     />
+
                                 </div>
                                 <div className="col-6">
                                     <div>
@@ -190,13 +197,13 @@ const ClinicalDocuments = () => {
                             </div>
                             <h4 className="mt-5 mb-4">Dados bancários</h4>
                             <div className="row">
-                                <div className="col col-md-4">
+                                <div className="col-12 col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Nome do banco" placeholder="banco" />
                                 </div>
-                                <div className="col col-md-4">
+                                <div className="col-12 col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Agência" placeholder="Agência" />
                                 </div>
-                                <div className="col col-md-4">
+                                <div className="col-12 col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Conta corrente" placeholder="Conta corrente" />
                                 </div>
                             </div>

@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import FloatingLabels from '../../../components/FloatingLabels';
-import RowDataClinical from '../../../components/RowDataClinical';
-import style from '../../../styles/PersonalData.module.css';
+
+import FloatingLabels from '../../../../components/FloatingLabels';
+import RowDataClinical from '../../../../components/RowDataClinical';
+import style from '../../../../styles/PersonalData.module.css';
+
 import Head from 'next/head';
 import Image from 'next/image';
 import { faPencilAlt, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
