@@ -26,6 +26,9 @@ const ClinicalDocuments = () => {
             </Head>
             <div className={`${style.body}`}>
                 <div className="container pt-5 mb-5">
+                    <div className={`d-flex justify-content-center ${style.logo} mb-3`}>
+                        <img src="/img/logos/logo-grande.png" style={{ maxWidth: "250px" }} />
+                    </div>
                     <div className="card card-body mb-3">
                         <div className={`${style.title}`}>
                             Olá, {data.name}
@@ -50,9 +53,23 @@ const ClinicalDocuments = () => {
                             </div>
                             <div className="row">
                                 <div className="col-6">
+<<<<<<< Updated upstream
                                     <div>
                                         <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Rua" placeholder="rua" />
                                     </div>
+=======
+                                    <Controller
+                                        render={({ field }) =>
+                                            <div className="form-floating mb-3">
+                                                <InputMask id="cep" mask="99999-999" {...field} className="form-control" />
+                                                <label for="cep">CEP</label>
+                                            </div>
+                                        }
+                                        control={control}
+                                        defaultValue=""
+                                        name="zipCode"
+                                    />
+>>>>>>> Stashed changes
                                 </div>
                                 <div className="col-6">
                                     <div>
@@ -92,9 +109,15 @@ const ClinicalDocuments = () => {
                                             <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Telefone" placeholder="telefone" />
                                         </div>
                                     </div>
+<<<<<<< Updated upstream
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                                         <label class="form-check-label" for="flexCheckDefault">É o responsável financeiro?</label>
+=======
+                                    <div className="form-check mb-3">
+                                        <input className="form-check-input" checked={isFinance} onClick={handleClickFinance} type="checkbox" value="" id="flexCheckDefault" />
+                                        <label className="form-check-label" for="flexCheckDefault">É o responsável financeiro?</label>
+>>>>>>> Stashed changes
                                     </div>
                                 </div>
                                 <div className="col col-md">
@@ -105,7 +128,21 @@ const ClinicalDocuments = () => {
                                                 <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Email" placeholder="email" />
                                             </div>
                                             <div className="col-12 col-md">
+<<<<<<< Updated upstream
                                                 <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Telefone" placeholder="telefone" />
+=======
+                                                <Controller
+                                                    render={({ field }) =>
+                                                        <div className="form-floating mb-3">
+                                                            <InputMask id="phone" disabled={isFinance && "disabled"} mask="+55 (99) 99999-9999"  {...field} className="form-control" />
+                                                            <label for="phone">Telefone</label>
+                                                        </div>
+                                                    }
+                                                    control={control}
+                                                    name="phone"
+                                                    rules={{ required: true }}
+                                                />
+>>>>>>> Stashed changes
                                             </div>
                                         </div>
                                     </div>
@@ -113,13 +150,13 @@ const ClinicalDocuments = () => {
                             </div>
                             <h4 className="mt-5 mb-4">Dados bancários</h4>
                             <div className="row">
-                                <div className="col col-md-4">
+                                <div className="col-12 col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Nome do banco" placeholder="banco" />
                                 </div>
-                                <div className="col col-md-4">
+                                <div className="col-12 col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Agência" placeholder="Agência" />
                                 </div>
-                                <div className="col col-md-4">
+                                <div className="col-12 col-md-4">
                                     <FloatingLabels className={`${style.floatingLabel}`} type="text" title="Conta corrente" placeholder="Conta corrente" />
                                 </div>
                             </div>

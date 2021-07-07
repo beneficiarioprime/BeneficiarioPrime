@@ -131,7 +131,14 @@ export default function Home() {
                     <>
                       <FormOptions placeholder="Dentista" htmlFor="especialidade">Digite ou escolha uma especialidade</FormOptions>
                       <div className={`d-flex justify-content-center align-items-center ${styles.buttonSend}`}>
+<<<<<<< Updated upstream
                         <button className={`ms-3`}>Buscar</button>
+=======
+                        <button
+                          className={`ms-3`}
+                        // onClick={() => setShowCardResult(true)}
+                        >Buscar</button>
+>>>>>>> Stashed changes
                       </div>
                     </>
                   ) : (
@@ -145,7 +152,10 @@ export default function Home() {
                       <div className={`${styles.cardBtnCenter}`}>
                         <FormOptions placeholder="Jardim" className="flex-grow-1" htmlFor="cidade">Escolha o bairro</FormOptions>
                         <div className={`d-flex align-items-center ${styles.buttonSend}`}>
-                          <button className={`ms-3`} onClick={() => setShowCardResult(true)}>Buscar</button>
+                          <button
+                            className={`ms-3`}
+                          // onClick={() => setShowCardResult(true)}
+                          >Buscar</button>
                         </div>
                       </div>
                     </>
@@ -286,6 +296,7 @@ export default function Home() {
               <div className={`mb-4`}>
                 <h1>COMPARE VOCÊ MESMO</h1>
 
+<<<<<<< Updated upstream
               </div>
               <div className={`d-flex ${styles.containerBenefits}`}>
                 <div className={`${styles.benefits} mb-5`}>
@@ -304,6 +315,50 @@ export default function Home() {
                     <li><FaTimes /><span>Dificuldade em encontrar credenciais</span></li>
                     <li><FaTimes /><span>Valor médio R$ 500,00/mês</span></li>
                   </ul>
+=======
+                  </div>
+                  <div className={`d-flex ${styles.containerBenefits}`}>
+                    <div className={`${styles.benefits} mb-5`}>
+                      <h2 className="mb-3">Convênios Antigos</h2>
+                      <ul>
+                        <li><FaCheck /><span>Consultas médicas</span></li>
+                        <li><FaCheck /><span>Exames diagnósticos</span></li>
+                        <li><FaCheck /><span>Acesso a Procedimentos</span></li>
+                        <li><FaCheck /><span>Pronto socorro</span></li>
+                        <li><FaCheck /><span>Internação</span></li>
+                        <li><FaTimes /><span>Carência em tudo</span></li>
+                        <li><FaTimes /><span>Rede de atendimento limitada</span></li>
+                        <li><FaTimes /><span>Aumenta o plano conforme idade</span></li>
+                        <li><FaTimes /><span>Agendamento difícil, até 30 dias de espera, via telefone</span></li>
+                        <li><FaTimes /><span>Sem Medicina Estética</span></li>
+                        <li><FaTimes /><span>Dificuldade em encontrar credenciais</span></li>
+                        <li><FaTimes /><span>Valor médio R$ 500,00/mês</span></li>
+                      </ul>
+                    </div>
+                    <div className={`${styles.benefits} mb-5`}>
+                      <h2 className="mb-3">Beneficiário Prime</h2>
+                      <ul>
+                        <li><FaCheck /><span>Consultas médicas</span></li>
+                        <li><FaCheck /><span>Exames diagnósticos</span></li>
+                        <li><FaCheck /><span>Acesso a Procedimentos</span></li>
+                        <li><FaTimes /><span>Pronto socorro</span></li>
+                        <li><FaTimes /><span>Internação</span></li>
+                        <li><FaCheck /><span>Carência 0, uso imediato</span></li>
+                        <li><FaCheck /><span>Rede de atendimento ilimitada</span></li>
+                        <li><FaCheck /><span>Não aumenta o plano conforme idade</span></li>
+                        <li><FaCheck /><span>Agendamento fácil, via telefone, site ou app, até para o mesmo dia</span></li>
+                        <li><FaCheck /><span>Medicina estética</span></li>
+                        <li><FaCheck /><span>Há sempre um credenciado perto de você</span></li>
+                        <li><FaCheck /><span>Valor médio R$ 35,90/mês</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className={`text-center mb-5 ${styles.btnPlan} ${styles.btnGreen}`}>
+                    {/* <Link href="/patient/plans"> */}
+                    <a href="#">ASSINE AGORA</a>
+                    {/* </Link> */}
+                  </div>
+>>>>>>> Stashed changes
                 </div>
                 <div className={`${styles.benefits} mb-5`}>
                   <h2 className="mb-3">Beneficiário Prime</h2>

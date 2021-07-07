@@ -57,6 +57,14 @@ a {
   color: white;
 }
 
+.link-footer a {
+  text-decoration: none;
+}
+
+.link-footer a:hover {
+  color: #41464a;
+}
+
 #b {
   animation-delay: 0.2s;
 }

@@ -1,6 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+<<<<<<< Updated upstream
 import FloatingLabels from '../../../../components/FloatingLabels';
+=======
+import FloatingLabels from '../../../../components/';
+>>>>>>> Stashed changes
 import RowDataClinical from '../../../../components/RowDataClinical';
 import style from '../../../../styles/PersonalData.module.css';
 import Head from 'next/head';
