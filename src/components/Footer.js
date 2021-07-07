@@ -17,11 +17,7 @@ const Footer = () => {
                     <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                         <h6 className="text-uppercase font-weight-bold mb-4">Beneficiários</h6>
                         <ul className="list-unstyled mb-0">
-<<<<<<< Updated upstream
-                            <li className="mb-2"><a href="#" className="text-muted">Contrate Agora</a></li>
-=======
                             {/* <li className="mb-2"><Link href="/patient/plans"><a className="text-muted">Contrate Agora</a></Link></li> */}
->>>>>>> Stashed changes
                             <li className="mb-2"><a href="#" className="text-muted">Como Funciona</a></li>
                             <li className="mb-2"><a href="#" className="text-muted">Mapa de Atendimento</a></li>
                             <li className="mb-2"><a href="#" className="text-muted">Painel Administrativo</a></li>
@@ -31,13 +27,8 @@ const Footer = () => {
                     <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                         <h6 className="text-uppercase font-weight-bold mb-4">Prestadores</h6>
                         <ul className="list-unstyled mb-0">
-<<<<<<< Updated upstream
-                            <li className="mb-2"><a href="#" className="text-muted">Credencie seu Estabelecimento de Saúde</a></li>
-                            <li className="mb-2"><a href="#" className="text-muted">Painel do Prestador</a></li>
-=======
                             {/* <li className="mb-2"><Link href="/clinical/login"><a className="text-muted">Credencie seu Estabelecimento de Saúde</a></Link></li> */}
                             {/* <li className="mb-2"><Link href="/clinical/documents"><a className="text-muted">Painel do Prestador</a></Link></li> */}
->>>>>>> Stashed changes
                             <li className="mb-2"><a href="#" className="text-muted">Sistema Autorizador</a></li>
                             <li className="mb-2"><a href="#" className="text-muted">Contato</a></li>
                         </ul>
@@ -45,13 +36,8 @@ const Footer = () => {
                     <div className="col-lg-3 col-md-6 mb-lg-0">
                         <h6 className="text-uppercase font-weight-bold mb-4">Consultores</h6>
                         <ul className="list-unstyled mb-0">
-<<<<<<< Updated upstream
-                            <li className="mb-2"><a href="#" className="text-muted">Seja um Consultor</a></li>
-                            <li className="mb-2"><a href="#" className="text-muted">Painel do Consultor</a></li>
-=======
                             {/* <li className="mb-2"><Link href="/consultant/login"><a className="text-muted">Seja um Consultor</a></Link></li> */}
                             {/* <li className="mb-2"><Link href="/consultant/personal"><a className="text-muted">Painel do Consultor</a></Link></li> */}
->>>>>>> Stashed changes
                             <li className="mb-2"><a href="#" className="text-muted">Material de Apoio e Marketing</a></li>
                             <li className="mb-2"><a href="#" className="text-muted">Treinamento</a></li>
                         </ul>
