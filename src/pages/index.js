@@ -1,10 +1,10 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import Link from 'next/link';
-import Navbar from '../components/Navbar';
-import React, { useEffect, useState, useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import Navbar from "../components/Navbar";
+import React, { useEffect, useState, useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCommentMedical,
   faMapMarkerAlt,
@@ -21,81 +21,82 @@ import {
   faHeartbeat,
   faUsers,
   faDiagnoses,
-  faArrowCircleUp
-} from '@fortawesome/free-solid-svg-icons'
-import Footer from '../components/Footer';
-import AnimatedCounter from '../components/AnimatedCounter';
-import CollapseAnswer from '../components/CollapseAnswer';
-import FormOptions from '../components/FormOptions';
-import CardResult from '../components/CardResult';
-import { IBGEContext, IBGE } from '../contexts/ibge';
+  faArrowCircleUp,
+} from "@fortawesome/free-solid-svg-icons";
+import Footer from "../components/Footer";
+import AnimatedCounter from "../components/AnimatedCounter";
+import CollapseAnswer from "../components/CollapseAnswer";
+import FormOptions from "../components/FormOptions";
+import CardResult from "../components/CardResult";
+import { IBGEContext, IBGE } from "../contexts/ibge";
 
-const ButtonOptions = props => {
+const ButtonOptions = (props) => {
   return (
     <button
       className={`${styles.buttonOptions} ${props.className}`}
       title={props.title}
       onClick={props.onClick}
       onChange={props.onChange}
-    >{props.children}
+    >
+      {props.children}
     </button>
-  )
-}
+  );
+};
 
-const CardOffers = props => {
+const CardOffers = (props) => {
   return (
     <div className={`card ${styles.cardOffers} ${props.className}`}>
-      <div className="card-body">
-        {props.children}
-      </div>
+      <div className="card-body">{props.children}</div>
     </div>
-  )
-}
+  );
+};
 
-const CardAppointments = props => {
+const CardAppointments = (props) => {
   return (
     <div className={`${styles.bodyAppointment}`} style={{ width: "520px" }}>
       <div className={`card ${styles.cardOffers} ${props.className}`}>
-        <div className="card-body">
-          {props.children}
-        </div>
+        <div className="card-body">{props.children}</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const FaCheck = () => {
   return (
-    <span className={`${styles.faCheck}`}><FontAwesomeIcon icon={faCheckCircle} /></span>
-  )
-}
+    <span className={`${styles.faCheck}`}>
+      <FontAwesomeIcon icon={faCheckCircle} />
+    </span>
+  );
+};
 
 const FaTimes = () => {
   return (
-    <span className={`${styles.faTimes}`}><FontAwesomeIcon icon={faTimesCircle} /></span>
-  )
-}
+    <span className={`${styles.faTimes}`}>
+      <FontAwesomeIcon icon={faTimesCircle} />
+    </span>
+  );
+};
 
 export default function Home() {
-
-  let [option, setOption] = useState('consulta');
+  let [option, setOption] = useState("consulta");
   const [showScroll, setShowScroll] = useState(false);
   const [showCardResult, setShowCardResult] = useState(false);
-  const { estado, cidade, getCidade, distrito, getDistrito } = useContext(IBGEContext)
+  const { estado, cidade, getCidade, distrito, getDistrito } =
+    useContext(IBGEContext);
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 400) {
-      setShowScroll(true)
+      setShowScroll(true);
     } else if (showScroll && window.pageYOffset <= 400) {
-      setShowScroll(false)
+      setShowScroll(false);
     }
   };
 
   const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  window.addEventListener('scroll', checkScrollTop)
+  window.addEventListener("scroll", checkScrollTop);
 
   return (
     <>
@@ -104,63 +105,170 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <header className={styles.container} style={{zIndex: "10"}}>
-        <div className={`container-fluid flex-row-reverse ${styles.containerFluid} ${styles.displayFlexCard}`} style={{ maxHeight: "700px" }}>
+      <header className={styles.container} style={{ zIndex: "2" }}>
+        <div
+          className={`container-fluid flex-row-reverse ${styles.containerFluid} ${styles.displayFlexCard}`}
+          style={{ maxHeight: "700px" }}
+        >
           <div className={`${styles.imageBackground}`}>
             <Image src="/svg/undraw_doctors_hwty.svg" layout="fill" />
           </div>
           <div className={`${styles.containerCard}`}>
             <div className={`${styles.content} ${styles.contentCard}`}>
-              <h1 className={`${styles.title} card-title`}>Tem sempre uma clínica perto de você!</h1>
-              <h4>Agende agora mesmo sua consulta, exame, procedimento, ou vacina. São centenas de estabelecimentos credenciados.</h4>
+              <h1 className={`${styles.title} card-title`}>
+                Tem sempre uma clínica perto de você!
+              </h1>
+              <h4>
+                Agende agora mesmo sua consulta, exame, procedimento, ou vacina.
+                São centenas de estabelecimentos credenciados.
+              </h4>
               <div className={`card mt-4 ${styles.card}`}>
                 <div className="card-body">
                   <div className={`mb-1 ${styles.scrollX}`}>
-                    <ButtonOptions className={option === "consulta" && `${styles.buttonOptionsSelected}`} onClick={() => setOption('consulta')}><span><FontAwesomeIcon icon={faStethoscope} /></span> Consultas Presenciais</ButtonOptions>
-                    <ButtonOptions className={option === "telemedicina" && `${styles.buttonOptionsSelected}`} onClick={() => setOption('telemedicina')}><span><FontAwesomeIcon icon={faVideo} /></span> Telemedicina</ButtonOptions>
-                    <ButtonOptions className={option === "exames" && `${styles.buttonOptionsSelected}`} onClick={() => setOption('exames')}><span><FontAwesomeIcon icon={faMicroscope} /></span> Exames</ButtonOptions>
-                    <ButtonOptions className="d-none" onClick={() => setOption('vacinas')}><span><FontAwesomeIcon icon={faCrutch} /></span> Vacinas</ButtonOptions>
-                    <ButtonOptions className="d-none" onClick={() => setOption('procedimentos')}><span><FontAwesomeIcon icon={faNotesMedical} /></span> Procedimentos</ButtonOptions>
+                    <ButtonOptions
+                      className={
+                        option === "consulta" &&
+                        `${styles.buttonOptionsSelected}`
+                      }
+                      onClick={() => setOption("consulta")}
+                    >
+                      <span>
+                        <FontAwesomeIcon icon={faStethoscope} />
+                      </span>{" "}
+                      Consultas Presenciais
+                    </ButtonOptions>
+                    <ButtonOptions
+                      className={
+                        option === "telemedicina" &&
+                        `${styles.buttonOptionsSelected}`
+                      }
+                      onClick={() => setOption("telemedicina")}
+                    >
+                      <span>
+                        <FontAwesomeIcon icon={faVideo} />
+                      </span>{" "}
+                      Telemedicina
+                    </ButtonOptions>
+                    <ButtonOptions
+                      className={
+                        option === "exames" && `${styles.buttonOptionsSelected}`
+                      }
+                      onClick={() => setOption("exames")}
+                    >
+                      <span>
+                        <FontAwesomeIcon icon={faMicroscope} />
+                      </span>{" "}
+                      Exames
+                    </ButtonOptions>
+                    <ButtonOptions
+                      className="d-none"
+                      onClick={() => setOption("vacinas")}
+                    >
+                      <span>
+                        <FontAwesomeIcon icon={faCrutch} />
+                      </span>{" "}
+                      Vacinas
+                    </ButtonOptions>
+                    <ButtonOptions
+                      className="d-none"
+                      onClick={() => setOption("procedimentos")}
+                    >
+                      <span>
+                        <FontAwesomeIcon icon={faNotesMedical} />
+                      </span>{" "}
+                      Procedimentos
+                    </ButtonOptions>
                   </div>
-                  {option == 'telemedicina' ? (
+                  {option == "telemedicina" ? (
                     <>
-                      <FormOptions placeholder="Dentista" htmlFor="especialidade">Digite ou escolha uma especialidade</FormOptions>
-                      <div className={`d-flex justify-content-center align-items-center ${styles.buttonSend}`}>
-                        <button className={`ms-3`} onClick={() => setShowCardResult(true)}>Buscar</button>
+                      <FormOptions
+                        placeholder="Dentista"
+                        htmlFor="especialidade"
+                      >
+                        Digite ou escolha uma especialidade
+                      </FormOptions>
+                      <div
+                        className={`d-flex justify-content-center align-items-center ${styles.buttonSend}`}
+                      >
+                        <button
+                          className={`ms-3`}
+                          onClick={() => setShowCardResult(true)}
+                        >
+                          Buscar
+                        </button>
                       </div>
                     </>
                   ) : (
                     <>
                       <div className="form-floating mb-3">
-                        <select className="form-select mb-3" id="estados" aria-label="Selecione seu estado" onChange={(x) => getCidade(x.target.value)}>
+                        <select
+                          className="form-select mb-3"
+                          id="estados"
+                          aria-label="Selecione seu estado"
+                          onChange={(x) => getCidade(x.target.value)}
+                        >
                           <option selected>Selecione</option>
-                          {estado.map((x, i) => <option key={i} value={x.sigla}>{x.sigla} - {x.nome}</option>)}
-
+                          {estado.map((x, i) => (
+                            <option key={i} value={x.sigla}>
+                              {x.sigla} - {x.nome}
+                            </option>
+                          ))}
                         </select>
                         <label for="floatingSelect">Selecione seu estado</label>
                       </div>
 
                       <div className="form-floating mb-3">
-                        <select className="form-select mb-3" id="cidades" aria-label="Selecione sua cidade" disabled={cidade.length == 0} onChange={(x) => getDistrito(x.target.value)}>
+                        <select
+                          className="form-select mb-3"
+                          id="cidades"
+                          aria-label="Selecione sua cidade"
+                          disabled={cidade.length == 0}
+                          onChange={(x) => getDistrito(x.target.value)}
+                        >
                           <option selected>Selecione</option>
-                          {cidade.map((x, i) => <option key={i} value={x.id}>{x.nome}</option>)}
+                          {cidade.map((x, i) => (
+                            <option key={i} value={x.id}>
+                              {x.nome}
+                            </option>
+                          ))}
                         </select>
                         <label for="floatingSelect">Selecione sua cidade</label>
                       </div>
 
-                      <FormOptions placeholder="Dentista" htmlFor="especialidade">Digite ou escolha uma especialidade</FormOptions>
+                      <FormOptions
+                        placeholder="Dentista"
+                        htmlFor="especialidade"
+                      >
+                        Digite ou escolha uma especialidade
+                      </FormOptions>
                       <div className={`${styles.cardBtnCenter}`}>
                         <div className="form-floating flex-grow-1">
-                          <select className="form-select flex-grow-1" id="bairros" aria-label="Selecione um bairro" disabled={distrito.length == 0}>
+                          <select
+                            className="form-select flex-grow-1"
+                            id="bairros"
+                            aria-label="Selecione um bairro"
+                            disabled={distrito.length == 0}
+                          >
                             <option selected>Selecione</option>
-                            {distrito.map((x, i) => <option key={i} value={x.id}>{x.nome}</option>)}
+                            {distrito.map((x, i) => (
+                              <option key={i} value={x.id}>
+                                {x.nome}
+                              </option>
+                            ))}
                           </select>
-                          <label for="floatingSelect">Selecione um bairro</label>
+                          <label for="floatingSelect">
+                            Selecione um bairro
+                          </label>
                         </div>
-                        <div className={`d-flex align-items-center ${styles.buttonSend}`}>
-                          <button className={`ms-3`}
-                          // onClick={() => setShowCardResult(true)}
-                          >Buscar</button>
+                        <div
+                          className={`d-flex align-items-center ${styles.buttonSend}`}
+                        >
+                          <button
+                            className={`ms-3`}
+                            // onClick={() => setShowCardResult(true)}
+                          >
+                            Buscar
+                          </button>
                         </div>
                       </div>
                     </>
@@ -186,10 +294,17 @@ export default function Home() {
             <div className={`${styles.containerFluid} container-fluid`}>
               <div className={`${styles.containerCardOffers}`}>
                 <h1>O Beneficiário Prime é tudo que você está precisando!</h1>
-                <h4>Com ele, terá assistência médica e laboratorial de qualidade e com preço justo.</h4>
-                <h4>Consultas presenciais, telemedicina, exames e procedimentos.</h4>
+                <h4>
+                  Com ele, terá assistência médica e laboratorial de qualidade e
+                  com preço justo.
+                </h4>
+                <h4>
+                  Consultas presenciais, telemedicina, exames e procedimentos.
+                </h4>
                 <h3>Confira nossos planos:</h3>
-                <div className={`${styles.content} ${styles.contentCardOffers} d-flex`}>
+                <div
+                  className={`${styles.content} ${styles.contentCardOffers} d-flex`}
+                >
                   <CardOffers className={`${styles.cardDarkBlue}`}>
                     <span>PLANO</span>
                     <br />
@@ -197,15 +312,21 @@ export default function Home() {
                     <p className={`mb-4`}>Qualquer consulta: R$ 59,90</p>
                     <p className="mb-4">Exames até 50% mais baratos</p>
                     <p className="mb-4">Exames a partir de R$ 5,00</p>
-                    <p className="mb-4">Consultas presenciais ou telemedicina</p>
+                    <p className="mb-4">
+                      Consultas presenciais ou telemedicina
+                    </p>
                     <ul>
                       <li>1 Vida = 12 X R$ 24,90</li>
                       <li>2 Vidas - 12 X R$ 35,90</li>
                       <li>3 Vidas - 12 X R$ 40,90</li>
                     </ul>
                     <p>Plano Família + R$ 5,00/mês por dependente adicional</p>
-                    <div className={`${styles.btnPlan} ${styles.btnFirst} d-flex flex-row-reverse`}>
-                      <Link href="#"><a>ASSINE AGORA</a></Link>
+                    <div
+                      className={`${styles.btnPlan} ${styles.btnFirst} d-flex flex-row-reverse`}
+                    >
+                      <Link href="#">
+                        <a>ASSINE AGORA</a>
+                      </Link>
                     </div>
                   </CardOffers>
                   <CardOffers className={`${styles.cardBlue}`}>
@@ -215,7 +336,9 @@ export default function Home() {
                     <p className={`mb-4`}>Qualquer consulta: R$ 49,90</p>
                     <p className="mb-4">Exames até 70% mais baratos</p>
                     <p className="mb-4">Exames a partir de R$ 4,00</p>
-                    <p className="mb-4">Consultas presenciais ou telemedicina</p>
+                    <p className="mb-4">
+                      Consultas presenciais ou telemedicina
+                    </p>
                     <p className="mb-4">Procedimentos e Vacinas</p>
                     <ul>
                       <li>1 Vida - 12 X R$ 35,90</li>
@@ -223,8 +346,12 @@ export default function Home() {
                       <li>3 Vidas - 12 X R$ 54,90</li>
                     </ul>
                     <p>Plano Família + R$9,00/mês por dependente adicional</p>
-                    <div className={`${styles.btnPlan} ${styles.btnSecond} d-flex flex-row-reverse`}>
-                      <Link href="#"><a>ASSINE AGORA</a></Link>
+                    <div
+                      className={`${styles.btnPlan} ${styles.btnSecond} d-flex flex-row-reverse`}
+                    >
+                      <Link href="#">
+                        <a>ASSINE AGORA</a>
+                      </Link>
                     </div>
                   </CardOffers>
                   <CardOffers className={`${styles.cardGreen}`}>
@@ -234,9 +361,13 @@ export default function Home() {
                     <p className={`mb-4`}>Qualquer consulta: R$ 49,90</p>
                     <p className="mb-4">Exames até 90% mais baratos</p>
                     <p className="mb-4">Exames a partir de R$ 3,00</p>
-                    <p className="mb-4">Consultas presenciais ou telemedicina</p>
+                    <p className="mb-4">
+                      Consultas presenciais ou telemedicina
+                    </p>
                     <p className="mb-4">Procedimentos e Vacinas</p>
-                    <p className="mb-4">Medicina Estética (botox, harmonização facial, etc...)</p>
+                    <p className="mb-4">
+                      Medicina Estética (botox, harmonização facial, etc...)
+                    </p>
                     <ul>
                       <li>1 Vida - 12 X R$ 45,90</li>
                       <li>2 Vidas - 12 X R$ 54,90</li>
@@ -244,8 +375,13 @@ export default function Home() {
                     </ul>
                     <p>Plano Família + R$ 12,00/mês por dependente adicional</p>
                     <div className="d-flex flex-row-reverse ">
-                      <div style={{ marginTop: "24px" }} className={`${styles.btnPlan} ${styles.btnSpotlight} animate__animated animate__pulse animate__slow animate__infinite`}>
-                        <Link href="#"><a className="">ASSINE AGORA</a></Link>
+                      <div
+                        style={{ marginTop: "24px" }}
+                        className={`${styles.btnPlan} ${styles.btnSpotlight} animate__animated animate__pulse animate__slow animate__infinite`}
+                      >
+                        <Link href="#">
+                          <a className="">ASSINE AGORA</a>
+                        </Link>
                       </div>
                     </div>
                   </CardOffers>
@@ -296,67 +432,161 @@ export default function Home() {
             </div>
           </div>
           <div className={`${styles.container}`}>
-            <div className={`${styles.containerFluid} container-fluid`} style={{ backgroundColor: "#f4f4f4" }}>
+            <div
+              className={`${styles.containerFluid} container-fluid`}
+              style={{ backgroundColor: "#f4f4f4" }}
+            >
               <div className={`mt-5 d-flex justify-content-between`}>
                 <div className={`mt-5`}>
                   <div className={`mb-4`}>
                     <h1>COMPARE VOCÊ MESMO</h1>
-
                   </div>
                   <div className={`d-flex ${styles.containerBenefits}`}>
                     <div className={`${styles.benefits} mb-5`}>
                       <h2 className="mb-3">Convênios Antigos</h2>
                       <ul>
-                        <li><FaCheck /><span>Consultas médicas</span></li>
-                        <li><FaCheck /><span>Exames diagnósticos</span></li>
-                        <li><FaCheck /><span>Acesso a Procedimentos</span></li>
-                        <li><FaCheck /><span>Pronto socorro</span></li>
-                        <li><FaCheck /><span>Internação</span></li>
-                        <li><FaTimes /><span>Carência em tudo</span></li>
-                        <li><FaTimes /><span>Rede de atendimento limitada</span></li>
-                        <li><FaTimes /><span>Aumenta o plano conforme idade</span></li>
-                        <li><FaTimes /><span>Agendamento difícil, até 30 dias de espera, via telefone</span></li>
-                        <li><FaTimes /><span>Sem Medicina Estética</span></li>
-                        <li><FaTimes /><span>Dificuldade em encontrar credenciais</span></li>
-                        <li><FaTimes /><span>Valor médio R$ 500,00/mês</span></li>
+                        <li>
+                          <FaCheck />
+                          <span>Consultas médicas</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Exames diagnósticos</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Acesso a Procedimentos</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Pronto socorro</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Internação</span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>Carência em tudo</span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>Rede de atendimento limitada</span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>Aumenta o plano conforme idade</span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>
+                            Agendamento difícil, até 30 dias de espera, via
+                            telefone
+                          </span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>Sem Medicina Estética</span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>Dificuldade em encontrar credenciais</span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>Valor médio R$ 500,00/mês</span>
+                        </li>
                       </ul>
                     </div>
                     <div className={`${styles.benefits} mb-5`}>
                       <h2 className="mb-3">Beneficiário Prime</h2>
                       <ul>
-                        <li><FaCheck /><span>Consultas médicas</span></li>
-                        <li><FaCheck /><span>Exames diagnósticos</span></li>
-                        <li><FaCheck /><span>Acesso a Procedimentos</span></li>
-                        <li><FaTimes /><span>Pronto socorro</span></li>
-                        <li><FaTimes /><span>Internação</span></li>
-                        <li><FaCheck /><span>Carência 0, uso imediato</span></li>
-                        <li><FaCheck /><span>Rede de atendimento ilimitada</span></li>
-                        <li><FaCheck /><span>Não aumenta o plano conforme idade</span></li>
-                        <li><FaCheck /><span>Agendamento fácil, via telefone, site ou app, até para o mesmo dia</span></li>
-                        <li><FaCheck /><span>Medicina estética</span></li>
-                        <li><FaCheck /><span>Há sempre um credenciado perto de você</span></li>
-                        <li><FaCheck /><span>Valor médio R$ 35,90/mês</span></li>
+                        <li>
+                          <FaCheck />
+                          <span>Consultas médicas</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Exames diagnósticos</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Acesso a Procedimentos</span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>Pronto socorro</span>
+                        </li>
+                        <li>
+                          <FaTimes />
+                          <span>Internação</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Carência 0, uso imediato</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Rede de atendimento ilimitada</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Não aumenta o plano conforme idade</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>
+                            Agendamento fácil, via telefone, site ou app, até
+                            para o mesmo dia
+                          </span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Medicina estética</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Há sempre um credenciado perto de você</span>
+                        </li>
+                        <li>
+                          <FaCheck />
+                          <span>Valor médio R$ 35,90/mês</span>
+                        </li>
                       </ul>
                     </div>
                   </div>
-                  <div className={`text-center mb-5 ${styles.btnPlan} ${styles.btnGreen}`}>
-                    <Link href="/patient/plans"><a>ASSINE AGORA</a></Link>
-
+                  <div
+                    className={`text-center mb-5 ${styles.btnPlan} ${styles.btnGreen}`}
+                  >
+                    <Link href="/patient/plans">
+                      <a>ASSINE AGORA</a>
+                    </Link>
                   </div>
                 </div>
                 <div className={`${styles.imageBenefits}`}>
-                  <Image src="/img/home/medicos-olhando.png" width={739} height={713} />
+                  <Image
+                    src="/img/home/medicos-olhando.png"
+                    width={739}
+                    height={713}
+                  />
                 </div>
               </div>
             </div>
           </div>
           <section className={`${styles.container}`}>
-            <div className={`${styles.containerFluid} ${styles.containerAppointments} container-fluid`}>
+            <div
+              className={`${styles.containerFluid} ${styles.containerAppointments} container-fluid`}
+            >
               <div className={`mt-5`}>
                 <h1>Vantagens de verdade para nossos Beneficiários</h1>
-                <h4>Menor preço garantido em consultas, exames, vacinas e procedimentos, confira!</h4>
+                <h4>
+                  Menor preço garantido em consultas, exames, vacinas e
+                  procedimentos, confira!
+                </h4>
                 <div className="d-flex justify-content-center">
-                  <div className={`${styles.content} ${styles.contentAppointments} ${styles.scrollXAppointments} d-flex`}>
+                  <div
+                    className={`${styles.content} ${styles.contentAppointments} ${styles.scrollXAppointments} d-flex`}
+                  >
                     <CardAppointments>
                       <h3 className={`mb-2 text-center`}>CONSULTA MÉDICAS</h3>
                       <div className="d-flex justify-content-between">
@@ -411,14 +641,27 @@ export default function Home() {
                         </ul>
                       </div>
                       <ul className={``}>
-                        <li style={{ fontSize: "14px", marginTop: "-38px!important" }}>Mais outras dezenas de especialidades por R$39,90</li>
+                        <li
+                          style={{
+                            fontSize: "14px",
+                            marginTop: "-38px!important",
+                          }}
+                        >
+                          Mais outras dezenas de especialidades por R$39,90
+                        </li>
                       </ul>
-                      <div className={`${styles.btnPlan} ${styles.btnGreen} d-flex justify-content-center`}>
-                        <Link href="#"><a>VEJA MAIS</a></Link>
+                      <div
+                        className={`${styles.btnPlan} ${styles.btnGreen} d-flex justify-content-center`}
+                      >
+                        <Link href="#">
+                          <a>VEJA MAIS</a>
+                        </Link>
                       </div>
                     </CardAppointments>
                     <CardAppointments>
-                      <h3 className={`mb-2 text-center`}>EXAMES DIAGNÓSTICOS</h3>
+                      <h3 className={`mb-2 text-center`}>
+                        EXAMES DIAGNÓSTICOS
+                      </h3>
                       <div className="d-flex justify-content-between">
                         <ul>
                           <li className={`${styles.liEspaco}`}></li>
@@ -471,8 +714,12 @@ export default function Home() {
                           <li>190</li>
                         </ul>
                       </div>
-                      <div className={`${styles.btnPlan} ${styles.btnGreen} d-flex justify-content-center`}>
-                        <Link href="#"><a>VEJA MAIS</a></Link>
+                      <div
+                        className={`${styles.btnPlan} ${styles.btnGreen} d-flex justify-content-center`}
+                      >
+                        <Link href="#">
+                          <a>VEJA MAIS</a>
+                        </Link>
                       </div>
                     </CardAppointments>
                     {/* <CardAppointments className="d-none">
@@ -535,12 +782,19 @@ export default function Home() {
                     </CardAppointments> */}
                   </div>
                 </div>
-                <span style={{ fontSize: "12px" }}>*Valores referenciais, com base na Tabela do Plano Especial de São Paulo em Janeiro de 2021. Consulte os laboratórios e clínicas participantes no ato da compra.</span>
+                <span style={{ fontSize: "12px" }}>
+                  *Valores referenciais, com base na Tabela do Plano Especial de
+                  São Paulo em Janeiro de 2021. Consulte os laboratórios e
+                  clínicas participantes no ato da compra.
+                </span>
               </div>
             </div>
           </section>
           <div className={`${styles.container}`}>
-            <div className={`${styles.containerFluid} container-fluid pt-5 pb-5`} style={{ backgroundColor: "#3174B4", color: "#FFFFFF" }}>
+            <div
+              className={`${styles.containerFluid} container-fluid pt-5 pb-5`}
+              style={{ backgroundColor: "#3174B4", color: "#FFFFFF" }}
+            >
               <div className="d-flex justify-content-center">
                 <div>
                   <AnimatedCounter
@@ -612,68 +866,158 @@ export default function Home() {
             </div>
           </div> */}
           <div className={`${styles.container}`}>
-            <div className={`${styles.containerFluid} ${styles.containerCollapse} container-fluid`}>
+            <div
+              className={`${styles.containerFluid} ${styles.containerCollapse} container-fluid`}
+            >
               <div>
                 <h1>Perguntas e Respostas</h1>
-                <CollapseAnswer id="pergunta1"
-                  answer="Por que devo ser um Beneficiário Prime?">
-                  <p>Como Beneficiário, você terá acesso à medicina de qualidade em ótimas clínicas e laboratórios e hospitais por um preço que irá adorar pagar.<br />
-                    Você pode fazer um plano só para você ou incluir toda família, pois os planos são bem em conta e o melhor funciona!</p>
-                </CollapseAnswer>
-                <CollapseAnswer id="pergunta2"
-                  answer="Quanto pagarei nas consultas? E tem direito a retorno?">
-                  <p>O valor é sempre fixo, conforme o plano escolhido, independente da especialidade médica, que deseja passar. Escolha um dos planos disponíveis Essencial, Prime ou Especial.<br />
-                    Você ainda tem direito a retorno gratuito nas especialidades Médicas CRM em até 30 dias.
-                    E se marcar consulta online, você pode retornar de forma presencial, com mesmo especialista.
-                    Somente não há previsão de retorno nas especialidades de tratamento contínuo, que são obstetrícia e psiquiatria.
+                <CollapseAnswer
+                  id="pergunta1"
+                  answer="Por que devo ser um Beneficiário Prime?"
+                >
+                  <p>
+                    Como Beneficiário, você terá acesso à medicina de qualidade
+                    em ótimas clínicas e laboratórios e hospitais por um preço
+                    que irá adorar pagar.
+                    <br />
+                    Você pode fazer um plano só para você ou incluir toda
+                    família, pois os planos são bem em conta e o melhor
+                    funciona!
                   </p>
                 </CollapseAnswer>
-                <CollapseAnswer id="pergunta3"
-                  answer="Demora muito para conseguir agendar uma consulta?">
-                  <p>Não! Você consegue agendar até para o mesmo dia, desde haja disponibilidade na agenda do médico.</p>
+                <CollapseAnswer
+                  id="pergunta2"
+                  answer="Quanto pagarei nas consultas? E tem direito a retorno?"
+                >
+                  <p>
+                    O valor é sempre fixo, conforme o plano escolhido,
+                    independente da especialidade médica, que deseja passar.
+                    Escolha um dos planos disponíveis Essencial, Prime ou
+                    Especial.
+                    <br />
+                    Você ainda tem direito a retorno gratuito nas especialidades
+                    Médicas CRM em até 30 dias. E se marcar consulta online,
+                    você pode retornar de forma presencial, com mesmo
+                    especialista. Somente não há previsão de retorno nas
+                    especialidades de tratamento contínuo, que são obstetrícia e
+                    psiquiatria.
+                  </p>
                 </CollapseAnswer>
-                <CollapseAnswer id="pergunta4"
-                  answer="Como funciona no caso dos exames?">
-                  <p>Você terá acesso a ótimos laboratórios espalhados pelo Brasil, podendo escolher aquele que melhor lhe atender. Quanto melhor o plano escolhido menor será o preço dos exames.</p>
+                <CollapseAnswer
+                  id="pergunta3"
+                  answer="Demora muito para conseguir agendar uma consulta?"
+                >
+                  <p>
+                    Não! Você consegue agendar até para o mesmo dia, desde haja
+                    disponibilidade na agenda do médico.
+                  </p>
                 </CollapseAnswer>
-                <CollapseAnswer id="pergunta5"
-                  answer="E se eu precisar de uma cirurgia?">
-                  <p>Também terá suporte a mais de 30 tipos de cirurgias, em excelentes hospitais, podendo até parcelar o pagamento. Além das cirurgias, você tem acesso às centenas de procedimentos realizados em ambiente clínico.</p>
+                <CollapseAnswer
+                  id="pergunta4"
+                  answer="Como funciona no caso dos exames?"
+                >
+                  <p>
+                    Você terá acesso a ótimos laboratórios espalhados pelo
+                    Brasil, podendo escolher aquele que melhor lhe atender.
+                    Quanto melhor o plano escolhido menor será o preço dos
+                    exames.
+                  </p>
                 </CollapseAnswer>
-                <CollapseAnswer id="pergunta6"
-                  answer="Vacinas têm?">
-                  <p>Sim, você também terá acesso às dezenas de clínicas de vacinas espalhadas em todo Brasil. E nós negociamos para que você pague um preço justo por elas. E claro, quanto melhor o plano escolhido, menor o preço cobrado.</p>
+                <CollapseAnswer
+                  id="pergunta5"
+                  answer="E se eu precisar de uma cirurgia?"
+                >
+                  <p>
+                    Também terá suporte a mais de 30 tipos de cirurgias, em
+                    excelentes hospitais, podendo até parcelar o pagamento. Além
+                    das cirurgias, você tem acesso às centenas de procedimentos
+                    realizados em ambiente clínico.
+                  </p>
                 </CollapseAnswer>
-                <CollapseAnswer id="pergunta7"
-                  answer="E medicina Estética ou Terapêutica, têm?">
-                  <p>Tem sim! Botox, harmonização facial, escleroterapia (secagem dos vasinhos)* e outros.<br />
-                    Também tem terapia para tratar da saúde mental e física, tais como tratamento de dores ou emagrecimento, condicionamento físico.</p>
+                <CollapseAnswer id="pergunta6" answer="Vacinas têm?">
+                  <p>
+                    Sim, você também terá acesso às dezenas de clínicas de
+                    vacinas espalhadas em todo Brasil. E nós negociamos para que
+                    você pague um preço justo por elas. E claro, quanto melhor o
+                    plano escolhido, menor o preço cobrado.
+                  </p>
                 </CollapseAnswer>
-                <CollapseAnswer id="pergunta8"
-                  answer="Vocês são convênio? Qual é a diferença?">
-                  <p>Não somos convênio e não cobrimos pronto socorro.<br />
-                    Mas você sabia que em 98% dos casos, seu problema de saúde é resolvido a nível clínico?
-                    Mesmo os exames mais complexos, conosco você pagará mais barato!</p>
+                <CollapseAnswer
+                  id="pergunta7"
+                  answer="E medicina Estética ou Terapêutica, têm?"
+                >
+                  <p>
+                    Tem sim! Botox, harmonização facial, escleroterapia (secagem
+                    dos vasinhos)* e outros.
+                    <br />
+                    Também tem terapia para tratar da saúde mental e física,
+                    tais como tratamento de dores ou emagrecimento,
+                    condicionamento físico.
+                  </p>
                 </CollapseAnswer>
-                <CollapseAnswer id="pergunta9"
-                  answer="E quais as vantagens então?">
-                  <p>A primeira grande vantagem é que seu plano não aumenta conforme a idade.<br />
-                    A segunda vantagem, é que você será atendida por excelentes médicos, pagando bem menos do que um convênio cobra todo mês. <br />
-                    Nós negociamos todos os preços para que você consiga realizar todo seu tratamento médico, com toda dignidade que merece.<br />
-                    E mais uma coisa! Você nunca terá que se aborrecer para agendar uma consulta ou exame.</p>
+                <CollapseAnswer
+                  id="pergunta8"
+                  answer="Vocês são convênio? Qual é a diferença?"
+                >
+                  <p>
+                    Não somos convênio e não cobrimos pronto socorro.
+                    <br />
+                    Mas você sabia que em 98% dos casos, seu problema de saúde é
+                    resolvido a nível clínico? Mesmo os exames mais complexos,
+                    conosco você pagará mais barato!
+                  </p>
                 </CollapseAnswer>
-                <CollapseAnswer id="pergunta10"
-                  answer="E se eu quiser cancelar, pago multa?">
-                  <p>Não, você pode cancelar quando quiser! Nossos Beneficiários estão conosco pois estão contentes com o serviço oferecido, não por que obrigamos. Com você não será diferente!</p>
+                <CollapseAnswer
+                  id="pergunta9"
+                  answer="E quais as vantagens então?"
+                >
+                  <p>
+                    A primeira grande vantagem é que seu plano não aumenta
+                    conforme a idade.
+                    <br />
+                    A segunda vantagem, é que você será atendida por excelentes
+                    médicos, pagando bem menos do que um convênio cobra todo
+                    mês. <br />
+                    Nós negociamos todos os preços para que você consiga
+                    realizar todo seu tratamento médico, com toda dignidade que
+                    merece.
+                    <br />E mais uma coisa! Você nunca terá que se aborrecer
+                    para agendar uma consulta ou exame.
+                  </p>
+                </CollapseAnswer>
+                <CollapseAnswer
+                  id="pergunta10"
+                  answer="E se eu quiser cancelar, pago multa?"
+                >
+                  <p>
+                    Não, você pode cancelar quando quiser! Nossos Beneficiários
+                    estão conosco pois estão contentes com o serviço oferecido,
+                    não por que obrigamos. Com você não será diferente!
+                  </p>
                 </CollapseAnswer>
               </div>
             </div>
           </div>
-        </>)}
-      <div onClick={scrollTop} style={{ display: showScroll ? 'flex' : 'none' }} className={`${styles.scrollTop}`}><FontAwesomeIcon icon={faArrowCircleUp} /></div>
+        </>
+      )}
+      <div
+        onClick={scrollTop}
+        style={{ display: showScroll ? "flex" : "none" }}
+        className={`${styles.scrollTop}`}
+      >
+        <FontAwesomeIcon icon={faArrowCircleUp} />
+      </div>
       <Footer />
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossOrigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossOrigin="anonymous"></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossOrigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossOrigin="anonymous"
+      ></script>
     </>
-  )
+  );
 }
