@@ -26,10 +26,8 @@ import {
 import Footer from '../components/Footer';
 import AnimatedCounter from '../components/AnimatedCounter';
 import CollapseAnswer from '../components/CollapseAnswer';
-import LoginModal from '../components/LoginModal';
 import FormOptions from '../components/FormOptions';
 import CardResult from '../components/CardResult';
-import Loading from '../components/Loading';
 import { IBGEContext, IBGE } from '../contexts/ibge';
 
 const ButtonOptions = props => {
@@ -106,7 +104,7 @@ export default function Home() {
       </Head>
       <Navbar />
 
-      <header className={styles.container}>
+      <header className={styles.container} style={{zIndex: "10"}}>
         <div className={`container-fluid flex-row-reverse ${styles.containerFluid} ${styles.displayFlexCard}`} style={{ maxHeight: "700px" }}>
           <div className={`${styles.imageBackground}`}>
             <Image src="/svg/undraw_doctors_hwty.svg" layout="fill" />
