@@ -30,6 +30,8 @@ export const saveCookie = (data) =>
 export const AuthContext = createContext({
   isLogged: false,
   user: null,
+  unity: null,
+  setUnity: () => {},
   setUser: () => {},
   setLogged: () => {},
   signIn: (data) => {},
@@ -41,11 +43,14 @@ export const AuthContext = createContext({
 export function Auth({ children }) {
   const [user, setUser] = useState({});
   const [isLogged, setLogged] = useState(false);
+  const [unity, setUnity] = useState({});
   const { [settings.token.profileId]: profile, [settings.token.auth]: token } =
     parseCookies();
+
   const saveUserLogged = ({ data }) => {
     saveCookie(data);
     setUser(data.user);
+    if (data.unity !== undefined) setUnity(data.unity);
     setLogged(true);
   };
 
@@ -117,6 +122,8 @@ export function Auth({ children }) {
       value={{
         isLogged,
         user,
+        unity,
+        setUnity,
         signIn,
         signUp,
         logout,
