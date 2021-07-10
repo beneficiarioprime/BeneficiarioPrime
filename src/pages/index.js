@@ -80,10 +80,6 @@ const FaTimes = () => {
 
 export default function Home() {
 
-  useEffect(() => {
-    console.log("Carreguei")
-  })
-
   let [option, setOption] = useState('consulta');
   const [showScroll, setShowScroll] = useState(false);
   const [showCardResult, setShowCardResult] = useState(false);
