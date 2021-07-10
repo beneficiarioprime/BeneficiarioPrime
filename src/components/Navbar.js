@@ -30,7 +30,7 @@ const Navbar = (props) => {
                             <Link href="/consultant/login"><a className={`nav-link ${styles.navLink}`} aria-current="page">Seja um consultor</a></Link>
                         </li> */}
                         <li className="me-3 ms-3 nav-item">
-                            <Link href="/clinical/login"><a className={`nav-link ${styles.navLink}`} href="#">Área do Prestador</a></Link>
+                            {/* <Link href="/clinical/login"><a className={`nav-link ${styles.navLink}`} href="#">Área do Prestador</a></Link> */}
                         </li>
                         {/* <li className="me-3 ms-3 nav-item">
                             <a className={`nav-link ${styles.navLink}`} href="#">Planos para Empresas</a>
@@ -43,8 +43,8 @@ const Navbar = (props) => {
                         </>
                         :
                         <>
-                            <a onClick={() => setIsModalVisible(true)} className={`me-5 ${styles.btnLogin}`}>Entrar</a>
-                            <a onClick={() => setIsModalVisible(true)} className={`btn ${styles.btnRegister}`} type="submit">Assine aqui</a>
+                            {/* <a onClick={() => setIsModalVisible(true)} className={`me-5 ${styles.btnLogin}`}>Entrar</a> */}
+                            {/* <a onClick={() => setIsModalVisible(true)} className={`btn ${styles.btnRegister}`} type="submit">Assine aqui</a> */}
                         </>
                     }
                 </div>
