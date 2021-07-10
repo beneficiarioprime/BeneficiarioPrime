@@ -1,31 +1,17 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import FloatingLabels from "../../components/FloatingLabels";
 import RowDataClinical from "../../components/RowDataClinical";
 import style from "../../styles/PersonalData.module.css";
 import Head from "next/head";
-import Image from "next/image";
-import {
-  faFacebook,
-  faInstagram,
-  faWhatsapp,
-} from "@fortawesome/free-brands-svg-icons";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import { AuthContext } from "../../contexts/auth";
-
-const data = {
-  name: "Doas Urgouxei Zuygo",
-  cpf: "816.305.150-78",
-  email: "email@email.com",
-  link: "algumlink.com",
-};
 
 const ClinicalDocuments = () => {
   const [hasPix, setHasPix] = useState(false);
   const [isFinance, setIsFinance] = useState(true);
   const { handleSubmit, register, control } = useForm();
-  const { isLogged, user } = useContext(AuthContext);
+  const { isLogged, user, unity } = useContext(AuthContext);
 
   const handleClickPix = () => {
     setHasPix(!hasPix);
@@ -34,6 +20,11 @@ const ClinicalDocuments = () => {
   const handleClickFinance = () => {
     setIsFinance(!isFinance);
   };
+
+  useEffect(() => {
+    if (unity.hasPix != undefined) setHasPix(unity.hasPix);
+  }, [unity]);
+
   return (
     <>
       {isLogged && user.role == "provider" ? (
@@ -52,7 +43,7 @@ const ClinicalDocuments = () => {
                 />
               </div>
               <div className="card card-body mb-3">
-                <div className={`${style.title}`}>Olá, {user.name}</div>
+                <div className={`${style.title}`}>Olá, {unity.name}</div>
               </div>
               <RowDataClinical>
                 <form>
@@ -85,6 +76,7 @@ const ClinicalDocuments = () => {
                     )}
                     control={control}
                     name="cnpj"
+                    defaultValue={unity.cnpj}
                     rules={{ required: true }}
                   />
                   {/* <input className={`${style.floatingLabel} form-control`} type="file" id="cnpj" /> */}
@@ -131,6 +123,7 @@ const ClinicalDocuments = () => {
                           type="text"
                           title="Rua"
                           placeholder="rua"
+                          defaultValue={unity.street}
                         />
                       </div>
                     </div>
@@ -142,6 +135,7 @@ const ClinicalDocuments = () => {
                           type="text"
                           title="Número"
                           placeholder="número"
+                          defaultValue={unity.number}
                         />
                       </div>
                     </div>
@@ -153,6 +147,7 @@ const ClinicalDocuments = () => {
                           type="text"
                           title="Cidade"
                           placeholder="Cidade"
+                          defaultValue={unity.city}
                         />
                       </div>
                     </div>
@@ -213,6 +208,7 @@ const ClinicalDocuments = () => {
                           type="text"
                           title="Bairro"
                           placeholder="Bairro"
+                          defaultValue={unity.district}
                         />
                       </div>
                     </div>
@@ -225,6 +221,7 @@ const ClinicalDocuments = () => {
                         type="text"
                         title="Nome do responsável técnico"
                         placeholder="técnico"
+                        defaultValue={unity.techinicalResponsibleName}
                       />
                       <div className="row">
                         <div className="col-12 col-md">
@@ -233,15 +230,27 @@ const ClinicalDocuments = () => {
                             type="text"
                             title="Email"
                             placeholder="email"
+                            defaultValue={unity.techinicalResponsibleEmail}
                           />
                         </div>
                         <div className="col-12 col-md">
-                          <FloatingLabels
-                            className={`${style.floatingLabel}`}
-                            type="text"
-                            title="Telefone"
-                            placeholder="telefone"
-                          />
+                        <Controller
+                              render={({ field }) => (
+                                <div className="form-floating mb-3">
+                                  <InputMask
+                                    id="phone"
+                                    mask="+55 (99) 99999-9999"
+                                    {...field}
+                                    className="form-control"
+                                  />
+                                  <label for="phone">Telefone</label>
+                                </div>
+                              )}
+                              control={control}
+                              name="phone"
+                              rules={{ required: true }}
+                              defaultValue={unity.techinicalResponsiblePhone}
+                            />
                         </div>
                       </div>
                       <div className="form-check">
@@ -269,6 +278,7 @@ const ClinicalDocuments = () => {
                           disabled={isFinance && "disabled"}
                           title="Nome do responsável financeiro"
                           placeholder="técnico"
+                          defaultValue={unity.financialResponsibleName}
                         />
                         <div className="row">
                           <div className="col-12 col-md">
@@ -278,6 +288,7 @@ const ClinicalDocuments = () => {
                               type="text"
                               title="Email"
                               placeholder="email"
+                              defaultValue={unity.financialResponsibleEmail}
                             />
                           </div>
                           <div className="col-12 col-md">
@@ -296,6 +307,7 @@ const ClinicalDocuments = () => {
                               control={control}
                               name="phone"
                               rules={{ required: true }}
+                              defaultValue={unity.financialResponsiblePhone}
                             />
                           </div>
                         </div>
@@ -310,6 +322,7 @@ const ClinicalDocuments = () => {
                         type="text"
                         title="Nome do banco"
                         placeholder="banco"
+                        defaultValue={unity.bankName}
                       />
                     </div>
                     <div className="col-12 col-md-4">
@@ -318,6 +331,7 @@ const ClinicalDocuments = () => {
                         type="text"
                         title="Agência"
                         placeholder="Agência"
+                        defaultValue={unity.bankAgency}
                       />
                     </div>
                     <div className="col-12 col-md-4">
@@ -326,17 +340,20 @@ const ClinicalDocuments = () => {
                         type="text"
                         title="Conta corrente"
                         placeholder="Conta corrente"
+                        defaultValue={unity.bankAccount}
                       />
                     </div>
                   </div>
                   <div className="form-check mb-3">
-                    <input
-                      className="form-check-input"
+                  <input
+                      class="form-check-input"
                       checked={hasPix}
                       onClick={handleClickPix}
                       type="checkbox"
                       value=""
                       id="hasPix"
+                      name="hasPix"
+                      register={{ ...register("hasPix") }}
                     />
                     <label className="form-check-label" for="pix">
                       Possui pix?
@@ -349,6 +366,7 @@ const ClinicalDocuments = () => {
                         placeholder="Pix"
                         type="text"
                         title="Chave Pix"
+                        defaultValue={unity.numberPix}
                       />
                     </div>
                   )}

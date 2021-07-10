@@ -43,7 +43,43 @@ export const AuthContext = createContext({
 export function Auth({ children }) {
   const [user, setUser] = useState({});
   const [isLogged, setLogged] = useState(false);
-  const [unity, setUnity] = useState({});
+  const [unity, setUnity] = useState({
+    hasPix: false,
+    typePix: "",
+    numberPix: "",
+    bankName: "teste",
+    bankAgency: "000",
+    bankAccount: "00000000",
+    techinicalResponsibleName: "teste",
+    techinicalResponsibleEmail: "teste",
+    techinicalResponsiblePhone: "18981000000",
+    financialResponsibleName: "teste",
+    financialResponsibleEmail: "teste",
+    financialResponsiblePhone: "18981000000",
+    CREMESP: null,
+    surveillancePermit: null,
+    addressDetails: "",
+    exams: [],
+    appointments: [],
+    vaccines: [],
+    surgicalProcedures: [],
+    schedules: [],
+    city: "",
+    state: "",
+    district: "",
+    zipCode: "",
+    number: "",
+    district: "",
+    street: "",
+    _id: "60e500ab867a8787507cf129",
+    name: "Clínica do Meu Coração",
+    responsible: "60e500ab867a8787507cf128",
+    phone: "+55 (11) 40028-922_",
+    cnpj: "01.002.003/0001-0",
+    createdAt: "2021-07-07T01:17:31.804Z",
+    updatedAt: "2021-07-07T01:17:31.804Z",
+    __v: 0,
+  });
   const { [settings.token.profileId]: profile, [settings.token.auth]: token } =
     parseCookies();
 
